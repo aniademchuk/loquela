@@ -1,15 +1,20 @@
 import React from "react";
+import LoginForm from "./components/LoginForm";
 
 function App() {
     return (
-        <div className="App">
-            <header className="App-header">
-                <img
-                    src="/loquela_img.jpg"
-                    alt="logo"
-                />
-                <h1>Loquela. Make your language better!</h1>
-            </header>
+        <div className="w-full h-screen flex items-center justify-center">
+            <div className="text-center">
+                <h1 className="text-[56px] text-red-600">
+                    Welcome to Loquela!
+                </h1>
+                <h4 className="text-2xl">
+                    Enjoy your best learning web application.
+                </h4>
+                <div className="mt-20 pl-20">
+                    <LoginForm />
+                </div>
+            </div>
         </div>
     );
 }

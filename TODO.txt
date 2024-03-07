@@ -1,5 +1,0 @@
-Add prettierrc setting on format in vscode json setting, this:
-{
-"editor.defaultFormatter": "esbenp.prettier-vscode",
-"editor.formatOnSave": true
-}
