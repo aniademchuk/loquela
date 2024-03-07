@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 
 function App() {
     return (
@@ -7,10 +6,9 @@ function App() {
             <header className="App-header">
                 <img
                     src="/loquela_img.jpg"
-                    className="App-logo"
                     alt="logo"
                 />
-                <h1>Loquela. Makre your language better!</h1>
+                <h1>Loquela. Make your language better!</h1>
             </header>
         </div>
     );
