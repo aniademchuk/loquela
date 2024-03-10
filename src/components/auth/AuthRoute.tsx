@@ -18,6 +18,7 @@ const AuthRoute = ({ children }: AuthRouteProps) => {
                 setLoading(false);
             } else {
                 navigate("/login");
+                setLoading(false);
             }
         });
     }, [auth, navigate]);
