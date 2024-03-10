@@ -33,11 +33,7 @@ const RegisterForm = () => {
                     navigate("/home");
                 })
                 .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-
-                    console.log(errorCode);
-                    console.log(errorMessage);
+                    toast.error(error.code);
                 });
         } else {
             if (password !== confirmPassword) {

@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
-import React from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import React, { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import AuthRoute from "./components/auth/AuthRoute";
 import { firebaseConfig } from "./firebase/config";
 import Home from "./pages/Home";
