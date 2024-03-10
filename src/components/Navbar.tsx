@@ -8,13 +8,14 @@ const Navbar = () => {
     return (
         <nav className="bg-white w-full z-20 top-0 start-0 border-b border-gray-200 ">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <Link to="https://flowbite.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
+                <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="/loquela-logo.png" className="h-14" alt="Loquela Logo" />
                 </Link>
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     <button
                         type="button"
                         className="text-gray-700 hover:text-black font-medium text-md px-4 py-2 text-center"
+                        onClick={() => navigate("/login")}
                     >
                         Login
                     </button>

@@ -1,19 +1,35 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase/config";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
+
+const validateCredentials = (email: string, name: string, pass1: string, pass2: string, termsAccepted: boolean) => {
+    return email !== "" && name !== "" && pass1 !== "" && pass1 === pass2 && termsAccepted;
+};
 
 const RegisterForm = () => {
     const [email, setEmail] = useState<string>("");
+    const [name, setName] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
+    const [acceptTerms, setAcceptTerms] = useState<boolean>(false);
+    const auth = getAuth();
+    const navigate = useNavigate();
+    const db = getDatabase();
 
-    const handleRegister = () => {
-        if (password === confirmPassword) {
+    const handleRegister = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        event.stopPropagation();
+
+        if (validateCredentials(email, name, password, confirmPassword, acceptTerms)) {
             createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     const user = userCredential.user;
-                    console.log(user);
+                    set(ref(db, "users/" + user.uid), {
+                        email: user.email,
+                        name: name,
+                    }).then();
+
+                    navigate("/home");
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -40,6 +56,21 @@ const RegisterForm = () => {
                     placeholder="name@flowbite.com"
                     onChange={(event) => {
                         setEmail(event.target.value);
+                    }}
+                    required
+                />
+            </div>
+            <div className="mb-5">
+                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
+                    Your name
+                </label>
+                <input
+                    type="name"
+                    id="name"
+                    className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Boris Kalbasov"
+                    onChange={(event) => {
+                        setName(event.target.value);
                     }}
                     required
                 />
@@ -75,6 +106,7 @@ const RegisterForm = () => {
                         type="checkbox"
                         value=""
                         className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300"
+                        onChange={(event) => setAcceptTerms(event.target.checked)}
                         required
                     />
                 </div>
@@ -86,9 +118,10 @@ const RegisterForm = () => {
                 </label>
             </div>
             <button
-                type="submit"
+                type="button"
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                onClick={handleRegister}
+                onClick={(event) => handleRegister(event)}
+                disabled={!acceptTerms}
             >
                 Register new account
             </button>

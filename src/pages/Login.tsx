@@ -1,15 +1,15 @@
-import RegisterForm from "../components/auth/RegisterForm";
 import Navbar from "../components/Navbar";
+import LoginForm from "../components/auth/LoginForm";
 
-const Register = () => {
+const Login = () => {
     return (
         <>
             <Navbar />
             <div className="mt-10">
-                <RegisterForm />
+                <LoginForm />
             </div>
         </>
     );
 };
 
-export default Register;
+export default Login;
