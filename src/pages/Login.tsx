@@ -5,7 +5,7 @@ const Login = () => {
     return (
         <>
             <Navbar />
-            <div className="mt-10">
+            <div className="mt-10 text-center">
                 <LoginForm />
             </div>
         </>

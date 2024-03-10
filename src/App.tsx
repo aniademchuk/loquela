@@ -1,18 +1,20 @@
-import React from "react";
 import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "./firebase/config";
+import React from "react";
+import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Welcome from "./pages/Welcome";
-import Register from "./pages/Register";
 import AuthRoute from "./components/auth/AuthRoute";
+import { firebaseConfig } from "./firebase/config";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Welcome from "./pages/Welcome";
 
 initializeApp(firebaseConfig);
 
 function App() {
     return (
         <BrowserRouter>
+            <Toaster position="bottom-right" />
             <Routes>
                 <Route path="/" element={<Welcome />} />
                 <Route

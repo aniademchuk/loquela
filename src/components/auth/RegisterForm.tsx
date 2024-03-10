@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
+import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
 
 const validateCredentials = (email: string, name: string, pass1: string, pass2: string, termsAccepted: boolean) => {
     return email !== "" && name !== "" && pass1 !== "" && pass1 === pass2 && termsAccepted;
@@ -12,7 +13,7 @@ const RegisterForm = () => {
     const [name, setName] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
-    const [acceptTerms, setAcceptTerms] = useState<boolean>(false);
+    const [termsAccepted, setTermsAccepted] = useState<boolean>(false);
     const auth = getAuth();
     const navigate = useNavigate();
     const db = getDatabase();
@@ -20,7 +21,7 @@ const RegisterForm = () => {
     const handleRegister = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.stopPropagation();
 
-        if (validateCredentials(email, name, password, confirmPassword, acceptTerms)) {
+        if (validateCredentials(email, name, password, confirmPassword, termsAccepted)) {
             createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     const user = userCredential.user;
@@ -39,7 +40,12 @@ const RegisterForm = () => {
                     console.log(errorMessage);
                 });
         } else {
-            alert("Passwords don't match!");
+            if (password !== confirmPassword) {
+                toast.error("Passwords don't match.");
+            }
+            if (!termsAccepted) {
+                toast.error("Please accept terms and conditions.");
+            }
         }
     };
 
@@ -106,7 +112,7 @@ const RegisterForm = () => {
                         type="checkbox"
                         value=""
                         className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300"
-                        onChange={(event) => setAcceptTerms(event.target.checked)}
+                        onChange={(event) => setTermsAccepted(event.target.checked)}
                         required
                     />
                 </div>
@@ -119,9 +125,9 @@ const RegisterForm = () => {
             </div>
             <button
                 type="button"
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                className={`text-white ${termsAccepted ? "bg-blue-700 hover:bg-blue-800" : "bg-gray-600 cursor-not-allowed"} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
                 onClick={(event) => handleRegister(event)}
-                disabled={!acceptTerms}
+                disabled={!termsAccepted}
             >
                 Register new account
             </button>

@@ -1,5 +1,6 @@
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
@@ -9,13 +10,15 @@ const LoginForm = () => {
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        signInWithEmailAndPassword(auth, email, password).then(() => {
-            navigate("/home");
-        });
-        // .catch((error) => {
-        //     const errorCode = error.code;
-        //     const errorMessage = error.message;
-        // });
+        signInWithEmailAndPassword(auth, email, password)
+            .then(() => {
+                navigate("/home");
+            })
+            .catch((error) => {
+                if (error.code === "auth/invalid-credential") {
+                    toast.error("Wrong email or password");
+                }
+            });
     };
 
     return (
@@ -64,7 +67,7 @@ const LoginForm = () => {
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
                 onClick={handleLogin}
             >
-                Submit
+                Login
             </button>
         </form>
     );
