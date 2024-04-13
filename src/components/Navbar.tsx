@@ -1,8 +1,15 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
+const smallSelectedStyle = "block py-2 px-3 text-white bg-blue-700 rounded";
+const smallDefaultStyle = "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100";
+const bigSelectedStyle = "block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 ";
+const bigDefaultStyle =
+    "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ";
 
 const Navbar = () => {
     const [isNavOpen, setNavOpen] = useState<boolean>(false);
+    const location = useLocation().pathname;
     const navigate = useNavigate();
 
     return (
@@ -65,8 +72,7 @@ const Navbar = () => {
                         <li>
                             <Link
                                 to="/"
-                                className="block py-2 px-3 text-white bg-blue-700 rounded
-                                    md:bg-transparent md:text-blue-700 md:p-0 "
+                                className={location === "/" ? bigSelectedStyle : bigDefaultStyle}
                                 aria-current="page"
                             >
                                 Home
@@ -74,29 +80,10 @@ const Navbar = () => {
                         </li>
                         <li>
                             <Link
-                                to="/"
-                                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100
-                                    md:hover:bg-transparent md:hover:text-blue-700 md:p-0 "
+                                to="/entry-test"
+                                className={location === "/entry-test" ? bigSelectedStyle : bigDefaultStyle}
                             >
-                                About
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to="/"
-                                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100
-                                    md:hover:bg-transparent md:hover:text-blue-700 md:p-0 "
-                            >
-                                Services
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to="/"
-                                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100
-                                    md:hover:bg-transparent md:hover:text-blue-700 md:p-0 "
-                            >
-                                Contact
+                                Entry Test
                             </Link>
                         </li>
                     </ul>
@@ -106,25 +93,18 @@ const Navbar = () => {
                         <li>
                             <Link
                                 to="/"
-                                className="block py-2 px-3 text-white bg-blue-700 rounded "
+                                className={location === "/" ? smallSelectedStyle : smallDefaultStyle}
                                 aria-current="page"
                             >
                                 Home
                             </Link>
                         </li>
                         <li>
-                            <Link to="/" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100">
-                                Services
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100">
-                                Pricing
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100">
-                                Contact
+                            <Link
+                                to="/entry-test"
+                                className={location === "/entry-test" ? smallSelectedStyle : smallDefaultStyle}
+                            >
+                                Entry Test
                             </Link>
                         </li>
                     </ul>
