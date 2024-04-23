@@ -42,15 +42,24 @@ const SideNavBar = ({ children }: SideNavBarProps) => {
                             <div className="flex flex-col items-center ms-3">
                                 <div>
                                     <button
-                                        className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300"
+                                        className="flex p-2 text-sm rounded-full hover:bg-gray-200 focus:ring-4 focus:ring-gray-300"
                                         onClick={() => setUserMenuOpen(!isUserMenuOpen)}
                                     >
                                         <span className="sr-only">Open user menu</span>
-                                        <img
-                                            className="w-8 h-8 rounded-full"
-                                            src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                                            alt="somehting"
-                                        />
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            strokeWidth="1.5"
+                                            stroke="black"
+                                            className="w-6 h-6"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                                            />
+                                        </svg>
                                     </button>
                                 </div>
                                 <div
@@ -103,7 +112,7 @@ const SideNavBar = ({ children }: SideNavBarProps) => {
                 className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform bg-white border-r border-gray-200 ${isSideNavOpen ? "translate-x-0" : "-translate-x-full"} sm:translate-x-0`}
                 aria-label="Sidebar"
             >
-                <div className="h-full px-3 pb-4 overflow-y-auto bg-white">
+                <div className="h-full mt-4 px-3 pb-4 overflow-y-auto bg-white">
                     <ul className="space-y-2 font-medium">
                         <li>
                             <Link
