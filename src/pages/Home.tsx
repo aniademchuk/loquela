@@ -1,7 +1,7 @@
 import { getAuth } from "firebase/auth";
 import { child, get, getDatabase, ref } from "firebase/database";
 import { useState } from "react";
-import SideNavBar from "../components/SideNavBar";
+import SideBar from "../components/SideBar";
 import LogoutButton from "../components/auth/LogoutButton";
 
 const Home = () => {
@@ -21,7 +21,7 @@ const Home = () => {
 
     return (
         <>
-            <SideNavBar>
+            <SideBar>
                 <div className="flex flex-col text-center ">
                     <h1 className="mt-20 text-3xl">
                         Hey <span className="font-bold text-blue-600">{name}</span>. Welcome to Loquela!
@@ -30,7 +30,7 @@ const Home = () => {
                         <LogoutButton />
                     </div>
                 </div>
-            </SideNavBar>
+            </SideBar>
         </>
     );
 };

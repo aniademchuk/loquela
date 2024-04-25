@@ -13,7 +13,7 @@ const Login = () => {
                 navigate("/home");
             }
         });
-    }, [auth]);
+    }, [auth, navigate]);
 
     return (
         <>

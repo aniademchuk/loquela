@@ -1,0 +1,65 @@
+import React, { useState } from "react";
+
+const LanguageButtonSideBar = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [language, setLanguage] = useState<string>("us");
+
+    return (
+        <>
+            <button
+                className="p-1 w-[44px] h-[44px] text-gray-900 rounded-lg hover:bg-gray-100 group"
+                id="dropdownDefaultButton"
+                data-dropdown-toggle="dropdown"
+                type="button"
+                onClick={() => setIsOpen((prevState) => !prevState)}
+            >
+                <img src={`https://flagcdn.com/${language}.svg`} width="40" alt="United States" />
+            </button>
+            <div
+                id="dropdown"
+                className={`z-10 bottom-14 left-6 ${isOpen ? "absolute" : "hidden"} bg-white divide-y divide-gray-100 rounded-lg shadow w-44`}
+            >
+                <ul className="py-2 text-sm text-gray-700 " aria-labelledby="dropdownDefaultButton">
+                    <li>
+                        <button
+                            className="flex flex-row gap-2 px-4 py-2 items-center hover:bg-gray-100"
+                            onClick={() => {
+                                setLanguage("us");
+                                setIsOpen(false);
+                            }}
+                        >
+                            <img src="https://flagcdn.com/us.svg" width="32" alt="United States" />
+                            <span>English</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            className="flex flex-row gap-2 px-4 py-2 items-center hover:bg-gray-100"
+                            onClick={() => {
+                                setLanguage("ua");
+                                setIsOpen(false);
+                            }}
+                        >
+                            <img src="https://flagcdn.com/ua.svg" width="32" alt="United States" />
+                            <span>Ukrainian</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            className="flex flex-row gap-2 px-4 py-2 items-center hover:bg-gray-100"
+                            onClick={() => {
+                                setLanguage("de");
+                                setIsOpen(false);
+                            }}
+                        >
+                            <img src="https://flagcdn.com/de.svg" width="32" alt="United States" />
+                            <span>German</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </>
+    );
+};
+
+export default LanguageButtonSideBar;
