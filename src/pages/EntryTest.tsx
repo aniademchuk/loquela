@@ -9,7 +9,7 @@ export interface QuestionEntry {
     points: number;
 }
 
-const singleSelectQuesitons: QuestionEntry[] = [
+const singleSelectQuestions: QuestionEntry[] = [
     {
         question: "What is the right option?",
         options: ["first", "second", "third", "forth"],
@@ -24,7 +24,7 @@ const singleSelectQuesitons: QuestionEntry[] = [
     },
 ];
 
-const multipleSelectQuesitons: QuestionEntry[] = [
+const multipleSelectQuestions: QuestionEntry[] = [
     {
         question: "New Mega Multiple questions",
         options: ["first", "second", "third", "forth"],
@@ -45,12 +45,12 @@ const EntryTest = () => {
             <Navbar />
             <div className="flex flex-col px-[40px] md:px-[100px] lg:px-[200px] xl:px-[400px]">
                 <p className="pt-6 flex justify-center text-4xl font-medium text-gray-900">Here is your entry test</p>
-                {singleSelectQuesitons.map((quesiton, key) => (
+                {singleSelectQuestions.map((question, key) => (
                     <div key={key}>
-                        <SingleAnswerQuestion question={quesiton} />
+                        <SingleAnswerQuestion question={question} />
                     </div>
                 ))}
-                {multipleSelectQuesitons.map((question, key) => (
+                {multipleSelectQuestions.map((question, key) => (
                     <div key={key}>
                         <MultipleAnswerQuestion question={question} />
                     </div>

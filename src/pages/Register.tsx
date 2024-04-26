@@ -13,7 +13,7 @@ const Register = () => {
                 navigate("/home");
             }
         });
-    }, [auth]);
+    }, [auth, navigate]);
 
     return (
         <>

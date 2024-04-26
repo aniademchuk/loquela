@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import LanguageButtonSideBar from "./buttons/LanguageButtonSideBar";
+import ThemeButton from "./buttons/ThemeButton";
+import UserPreferencesButton from "./buttons/UserPreferencesButton";
 
 interface SideNavBarProps {
     children: React.ReactNode;
@@ -8,6 +10,7 @@ interface SideNavBarProps {
 
 const SideBar = ({ children }: SideNavBarProps) => {
     const [isSideNavOpen, setSideNavOpen] = useState<boolean>(false);
+    const location = useLocation().pathname;
 
     return (
         <>
@@ -57,14 +60,14 @@ const SideBar = ({ children }: SideNavBarProps) => {
                         <ul className="space-y-2 font-medium">
                             <li>
                                 <Link
-                                    to="#"
-                                    className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+                                    to="/progress"
+                                    className={`flex items-center p-2 rounded-lg group ${location === "/progress" ? "text-sky-900 bg-sky-50" : "hover:bg-gray-100 text-gray-900"}`}
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="2 0 24 24"
                                         fill="currentColor"
-                                        className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                                        className={`w-6 h-6  transition duration-75 ${location === "/progress" ? "text-sky-700" : "text-gray-500 group-hover:text-gray-900"}`}
                                     >
                                         <path
                                             fillRule="evenodd"
@@ -83,14 +86,14 @@ const SideBar = ({ children }: SideNavBarProps) => {
                             </li>
                             <li>
                                 <Link
-                                    to="#"
-                                    className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+                                    to="/grammar"
+                                    className={`flex items-center p-2 rounded-lg group ${location === "/grammar" ? "text-sky-900 bg-sky-50" : "hover:bg-gray-100 text-gray-900"}`}
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="2 0 24 24"
                                         fill="currentColor"
-                                        className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                                        className={`w-6 h-6  transition duration-75 ${location === "/grammar" ? "text-sky-700" : "text-gray-500 group-hover:text-gray-900"}`}
                                     >
                                         <path d="M11.25 5.337c0-.355-.186-.676-.401-.959a1.647 1.647 0 0 1-.349-1.003c0-1.036 1.007-1.875 2.25-1.875S15 2.34 15 3.375c0 .369-.128.713-.349 1.003-.215.283-.401.604-.401.959 0 .332.278.598.61.578 1.91-.114 3.79-.342 5.632-.676a.75.75 0 0 1 .878.645 49.17 49.17 0 0 1 .376 5.452.657.657 0 0 1-.66.664c-.354 0-.675-.186-.958-.401a1.647 1.647 0 0 0-1.003-.349c-1.035 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401.31 0 .557.262.534.571a48.774 48.774 0 0 1-.595 4.845.75.75 0 0 1-.61.61c-1.82.317-3.673.533-5.555.642a.58.58 0 0 1-.611-.581c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.035-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959a.641.641 0 0 1-.658.643 49.118 49.118 0 0 1-4.708-.36.75.75 0 0 1-.645-.878c.293-1.614.504-3.257.629-4.924A.53.53 0 0 0 5.337 15c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.036 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.369 0 .713.128 1.003.349.283.215.604.401.959.401a.656.656 0 0 0 .659-.663 47.703 47.703 0 0 0-.31-4.82.75.75 0 0 1 .83-.832c1.343.155 2.703.254 4.077.294a.64.64 0 0 0 .657-.642Z" />
                                     </svg>
@@ -100,14 +103,14 @@ const SideBar = ({ children }: SideNavBarProps) => {
                             </li>
                             <li>
                                 <Link
-                                    to="#"
-                                    className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+                                    to="/writing"
+                                    className={`flex items-center p-2 rounded-lg group ${location === "/writing" ? "text-sky-900 bg-sky-50" : "hover:bg-gray-100 text-gray-900"}`}
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="2 0 24 24"
                                         fill="currentColor"
-                                        className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                                        className={`w-6 h-6  transition duration-75 ${location === "/writing" ? "text-sky-700" : "text-gray-500 group-hover:text-gray-900"}`}
                                     >
                                         <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32L19.513 8.2Z" />
                                     </svg>
@@ -119,14 +122,14 @@ const SideBar = ({ children }: SideNavBarProps) => {
                             </li>
                             <li>
                                 <Link
-                                    to="#"
-                                    className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+                                    to="/reading"
+                                    className={`flex items-center p-2 rounded-lg group ${location === "/reading" ? "text-sky-900 bg-sky-50" : "hover:bg-gray-100 text-gray-900"}`}
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="2 0 24 24"
                                         fill="currentColor"
-                                        className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                                        className={`w-6 h-6  transition duration-75 ${location === "/reading" ? "text-sky-700" : "text-gray-500 group-hover:text-gray-900"}`}
                                     >
                                         <path d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18.75c1.995 0 3.823.707 5.25 1.886V4.533ZM12.75 20.636A8.214 8.214 0 0 1 18 18.75c.966 0 1.89.166 2.75.47a.75.75 0 0 0 1-.708V4.262a.75.75 0 0 0-.5-.707A9.735 9.735 0 0 0 18 3a9.707 9.707 0 0 0-5.25 1.533v16.103Z" />
                                     </svg>
@@ -135,14 +138,14 @@ const SideBar = ({ children }: SideNavBarProps) => {
                             </li>
                             <li>
                                 <Link
-                                    to="#"
-                                    className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+                                    to="/everyday-lesson"
+                                    className={`flex items-center p-2 rounded-lg group ${location === "/everyday-lesson" ? "text-sky-900 bg-sky-50" : "hover:bg-gray-100 text-gray-900"}`}
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="2 0 24 24"
                                         fill="currentColor"
-                                        className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                                        className={`w-6 h-6  transition duration-75 ${location === "/everyday-lesson" ? "text-sky-700" : "text-gray-500 group-hover:text-gray-900"}`}
                                     >
                                         <path
                                             fillRule="evenodd"
@@ -155,14 +158,14 @@ const SideBar = ({ children }: SideNavBarProps) => {
                             </li>
                             <li>
                                 <Link
-                                    to="#"
-                                    className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+                                    to="/recommendations"
+                                    className={`flex items-center p-2 rounded-lg group ${location === "/recommendations" ? "text-sky-900 bg-sky-50" : "hover:bg-gray-100 text-gray-900"}`}
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="2 0 24 24"
                                         fill="currentColor"
-                                        className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                                        className={`w-6 h-6  transition duration-75 ${location === "/recommendations" ? "text-sky-700" : "text-gray-500 group-hover:text-gray-900"}`}
                                     >
                                         <path
                                             fillRule="evenodd"
@@ -176,11 +179,11 @@ const SideBar = ({ children }: SideNavBarProps) => {
                             <hr className="h-px my-8 bg-gray-200 border-0" />
                             <li>
                                 <Link
-                                    to="#"
-                                    className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+                                    to="/support"
+                                    className={`flex items-center p-2 rounded-lg group ${location === "/support" ? "text-sky-900 bg-sky-50" : "hover:bg-gray-100 text-gray-900"}`}
                                 >
                                     <svg
-                                        className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                                        className={`w-6 h-6  transition duration-75 ${location === "/support" ? "text-sky-700" : "text-gray-500 group-hover:text-gray-900"}`}
                                         aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor"
@@ -200,43 +203,8 @@ const SideBar = ({ children }: SideNavBarProps) => {
                     <hr className="h-px bg-gray-200 border-0" />
                     <div className="flex flex-row items-center justify-center gap-8 py-1.5">
                         <LanguageButtonSideBar />
-                        <button className="p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth={1.5}
-                                stroke="currentColor"
-                                className="flex-shrink-0 w-7 h-7 text-gray-500 transition duration-75 group-hover:text-gray-900"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
-                                />
-                            </svg>
-                        </button>
-                        <button className="p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth={1.5}
-                                stroke="currentColor"
-                                className="flex-shrink-0 w-7 h-7 text-gray-500 transition duration-75 group-hover:text-gray-900"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 0 1 1.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.559.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.894.149c-.424.07-.764.383-.929.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 0 1-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.398.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 0 1-.12-1.45l.527-.737c.25-.35.272-.806.108-1.204-.165-.397-.506-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 0 1 .12-1.45l.773-.773a1.125 1.125 0 0 1 1.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894Z"
-                                />
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                                />
-                            </svg>
-                        </button>
+                        <ThemeButton />
+                        <UserPreferencesButton />
                     </div>
                 </div>
             </aside>
