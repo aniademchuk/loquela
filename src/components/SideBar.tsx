@@ -14,12 +14,12 @@ const SideBar = ({ children }: SideNavBarProps) => {
 
     return (
         <>
-            <nav className="block md:hidden relative top-0 z-50 w-full bg-white border-b border-gray-200">
+            <nav className="block md:hidden sticky top-0 z-50 w-full bg-white border-b border-gray-200">
                 <div className="px-3 py-3 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center justify-start rtl:justify-end">
                             <button
-                                onClick={() => setSideNavOpen(!isSideNavOpen)}
+                                onClick={() => setSideNavOpen((prevState) => !prevState)}
                                 className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
                             >
                                 <span className="sr-only">Open sidebar</span>
@@ -208,7 +208,7 @@ const SideBar = ({ children }: SideNavBarProps) => {
                     </div>
                 </div>
             </aside>
-            <div className="p-4 md:ml-64 bg-gray-50" style={{ height: "100vh" }}>
+            <div className="p-4 md:ml-64 bg-gray-50 h-full" style={{ height: "100%" }}>
                 {children}
             </div>
         </>
