@@ -4,6 +4,7 @@ import { Tooltip } from "flowbite-react";
 const ThemeButton = () => {
     return (
         <>
+            {/* eslint-disable-next-line react/style-prop-object */}
             <Tooltip content="Theme" style="light">
                 <button className="p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
                     <svg
