@@ -208,7 +208,7 @@ const SideBar = ({ children }: SideNavBarProps) => {
                     </div>
                 </div>
             </aside>
-            <div className="p-4 md:ml-64 bg-gray-50 h-full" style={{ height: "100%" }}>
+            <div className="p-4 md:ml-64 bg-gray-50 h-full" style={{ height: "100vh" }}>
                 {children}
             </div>
         </>
