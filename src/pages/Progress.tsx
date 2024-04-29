@@ -7,7 +7,7 @@ import SideBar from "../components/SideBar";
 const Progress = () => {
     return (
         <SideBar>
-            <div className="px-4 sm:px-10 lg:px-20 pt-6">
+            <>
                 <span className="flex mb-10 text-4xl font-bold justify-center">Your Progress</span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 xxl:grid-cols-4 gap-10">
                     <Card className="border-2 hover:border-2 hover:border-blue-800">
@@ -107,7 +107,7 @@ const Progress = () => {
                 <div className="mt-10">
                     <SalesThisWeek />
                 </div>
-            </div>
+            </>
         </SideBar>
     );
 };

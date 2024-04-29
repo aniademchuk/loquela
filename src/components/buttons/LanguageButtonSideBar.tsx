@@ -8,7 +8,7 @@ const LanguageButtonSideBar = () => {
     return (
         <>
             {/* eslint-disable-next-line react/style-prop-object */}
-            <Tooltip content="Interface" style="light">
+            <Tooltip content="Interface Langugae" style="light">
                 <button
                     className="p-1 w-[44px] h-[44px] text-gray-900 rounded-lg hover:bg-gray-100 group"
                     id="dropdownDefaultButton"

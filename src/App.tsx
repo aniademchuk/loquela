@@ -9,7 +9,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Welcome from "./pages/Welcome";
-import UserSettings from "./pages/UesrSettings";
+import UserSettings from "./pages/UserSettings";
 import Progress from "./pages/Progress";
 import Grammar from "./pages/Grammar";
 import Writing from "./pages/Writing";
