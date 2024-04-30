@@ -12,7 +12,7 @@ const Home = () => {
 
     if (user) {
         const nameRef = ref(db);
-        get(child(nameRef, `users/${user.uid}/name`)).then((snapshot) => {
+        get(child(nameRef, `users/${user.uid}/fullName`)).then((snapshot) => {
             if (snapshot.exists()) {
                 setName(snapshot.val());
             }

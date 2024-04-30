@@ -1,9 +1,7 @@
-import { initializeApp } from "firebase/app";
 import React from "react";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AuthRoute from "./components/auth/AuthRoute";
-import { firebaseConfig } from "./firebase/config";
 import EntryTest from "./pages/EntryTest";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -17,6 +15,8 @@ import Reading from "./pages/Reading";
 import EverydayLesson from "./pages/EverydayLesson";
 import Support from "./pages/Support";
 import Recommendations from "./pages/Recommendations";
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "./firebase/config";
 
 initializeApp(firebaseConfig);
 

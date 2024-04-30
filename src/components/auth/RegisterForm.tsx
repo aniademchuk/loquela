@@ -1,47 +1,80 @@
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { getDatabase, ref, set } from "firebase/database";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import { RegisterUser } from "../../interfaces/registerUser";
+import { getLanguage } from "../../helper/LocalStoreHelper";
+import { getFunctions, httpsCallable } from "firebase/functions";
 
-const validateCredentials = (email: string, name: string, pass1: string, pass2: string, termsAccepted: boolean) => {
-    return email !== "" && name !== "" && pass1 !== "" && pass1 === pass2 && termsAccepted;
+const validateCredentials = (
+    email: string,
+    fullName: string,
+    pass1: string,
+    pass2: string,
+    interfaceLanguage: string,
+    learnLanguage: string,
+    timezone: string,
+    termsAccepted: boolean
+) => {
+    if (pass1 !== pass2) {
+        toast.error("Passwords don't match");
+        return false;
+    }
+
+    if (!termsAccepted) {
+        toast.error("Accept terms and conditions");
+        return false;
+    }
+
+    if (!email || !fullName || !pass1 || !timezone || !interfaceLanguage || !learnLanguage) {
+        toast.error("Missing some user data. Please double check input values.");
+        return false;
+    }
+
+    return true;
 };
 
 const RegisterForm = () => {
-    const [email, setEmail] = useState<string>("");
-    const [name, setName] = useState<string>("");
+    const [user, setUser] = useState<RegisterUser>({
+        email: "",
+        password: "",
+        fullName: "",
+        interfaceLanguage: getLanguage(),
+        learnLanguage: "English",
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    });
+
     const [password, setPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
     const [termsAccepted, setTermsAccepted] = useState<boolean>(false);
-    const auth = getAuth();
+
     const navigate = useNavigate();
-    const db = getDatabase();
+
+    const functions = getFunctions();
+    const register = httpsCallable(functions, "registerUser");
 
     const handleRegister = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.stopPropagation();
-
-        if (validateCredentials(email, name, password, confirmPassword, termsAccepted)) {
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    set(ref(db, "users/" + user.uid), {
-                        email: user.email,
-                        name: name,
-                    }).then();
-
-                    navigate("/home");
+        if (
+            validateCredentials(
+                user.email,
+                user.fullName,
+                password,
+                confirmPassword,
+                user.interfaceLanguage,
+                user.learnLanguage,
+                user.timezone,
+                termsAccepted
+            )
+        ) {
+            setUser((prevState) => ({ ...prevState, password }));
+            register({ ...user, password })
+                .then(() => {
+                    toast.success("User registered successfully.");
+                    navigate("/login");
                 })
-                .catch((error) => {
-                    toast.error(error.code);
+                .catch((err) => {
+                    toast.error("User register failed: " + err.message);
                 });
-        } else {
-            if (password !== confirmPassword) {
-                toast.error("Passwords don't match.");
-            }
-            if (!termsAccepted) {
-                toast.error("Please accept terms and conditions.");
-            }
         }
     };
 
@@ -57,7 +90,7 @@ const RegisterForm = () => {
                     className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="name@flowbite.com"
                     onChange={(event) => {
-                        setEmail(event.target.value);
+                        setUser((prevState) => ({ ...prevState, email: event.target.value }));
                     }}
                     required
                 />
@@ -72,7 +105,7 @@ const RegisterForm = () => {
                     className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="Boris Kalbasov"
                     onChange={(event) => {
-                        setName(event.target.value);
+                        setUser((prevState) => ({ ...prevState, fullName: event.target.value }));
                     }}
                     required
                 />

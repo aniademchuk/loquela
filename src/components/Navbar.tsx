@@ -1,5 +1,7 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Dropdown } from "flowbite-react";
+import { getLanguage, setLanguage } from "../helper/LocalStoreHelper";
 
 const smallSelectedStyle = "block py-2 px-3 text-white bg-blue-700 rounded";
 const smallDefaultStyle = "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100";
@@ -9,16 +11,44 @@ const bigDefaultStyle =
 
 const Navbar = () => {
     const [isNavOpen, setNavOpen] = useState<boolean>(false);
+    const [userSelectedLanguage, setUserSelectedLanguage] = useState<string>(getLanguage());
     const location = useLocation().pathname;
     const navigate = useNavigate();
 
+    useEffect(() => {
+        setLanguage(userSelectedLanguage);
+    }, [userSelectedLanguage]);
+
     return (
         <nav className="bg-white w-full z-20 top-0 start-0 border-b border-gray-200 ">
-            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <div className="flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="/loquela-logo.png" className="h-14" alt="Loquela Logo" />
                 </Link>
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                    <Dropdown
+                        label={
+                            <img
+                                src={`https://flagcdn.com/${userSelectedLanguage}.svg`}
+                                width="36"
+                                alt="United States"
+                            />
+                        }
+                        inline
+                        arrowIcon={false}
+                    >
+                        <Dropdown.Item onClick={() => setUserSelectedLanguage("us")}>
+                            {<img src={`https://flagcdn.com/us.svg`} width="32" alt="United States" />}
+                            English
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={() => setUserSelectedLanguage("ua")}>
+                            {<img src={`https://flagcdn.com/ua.svg`} width="32" alt="Ukraine" />} Ukrainian
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={() => setUserSelectedLanguage("de")}>
+                            {<img src={`https://flagcdn.com/de.svg`} width="32" alt="Germany" />}
+                            German
+                        </Dropdown.Item>
+                    </Dropdown>
                     <button
                         type="button"
                         className="text-gray-700 hover:text-black font-medium text-md px-4 py-2 text-center"
