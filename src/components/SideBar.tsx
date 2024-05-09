@@ -3,6 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import LanguageButtonSideBar from "./buttons/LanguageButtonSideBar";
 import ThemeButton from "./buttons/ThemeButton";
 import UserPreferencesButton from "./buttons/UserPreferencesButton";
+import { useUser } from "../context/UserContext";
+import { Spinner } from "flowbite-react";
 
 interface SideNavBarProps {
     children: React.ReactNode;
@@ -11,6 +13,7 @@ interface SideNavBarProps {
 const SideBar = ({ children }: SideNavBarProps) => {
     const [isSideNavOpen, setSideNavOpen] = useState<boolean>(false);
     const location = useLocation().pathname;
+    const { userData } = useUser();
 
     return (
         <>
@@ -155,14 +158,14 @@ const SideBar = ({ children }: SideNavBarProps) => {
                             </li>
                             <li>
                                 <Link
-                                    to="/everyday-lesson"
-                                    className={`flex items-center p-2 rounded-lg group ${location === "/everyday-lesson" ? "text-sky-900 bg-sky-50" : "hover:bg-gray-100 text-gray-900"}`}
+                                    to="/test"
+                                    className={`flex items-center p-2 rounded-lg group ${location === "/test" ? "text-sky-900 bg-sky-50" : "hover:bg-gray-100 text-gray-900"}`}
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="2 0 24 24"
                                         fill="currentColor"
-                                        className={`w-6 h-6  transition duration-75 ${location === "/everyday-lesson" ? "text-sky-700" : "text-gray-500 group-hover:text-gray-900"}`}
+                                        className={`w-6 h-6  transition duration-75 ${location === "/test" ? "text-sky-700" : "text-gray-500 group-hover:text-gray-900"}`}
                                     >
                                         <path
                                             fillRule="evenodd"
@@ -170,7 +173,7 @@ const SideBar = ({ children }: SideNavBarProps) => {
                                             clipRule="evenodd"
                                         />
                                     </svg>
-                                    <span className="flex-1 ms-3 whitespace-nowrap">Everyday Lesson</span>
+                                    <span className="flex-1 ms-3 whitespace-nowrap">Test</span>
                                 </Link>
                             </li>
                             <li>
@@ -225,12 +228,16 @@ const SideBar = ({ children }: SideNavBarProps) => {
                     </div>
                 </div>
             </aside>
-            <div
-                className="px-4 sm:px-10 lg:px-20 pt-6 py-10 md:ml-64 bg-gray-50 h-full"
-                style={{ minHeight: "100vh" }}
-            >
-                {children}
-            </div>
+            {userData ? (
+                <div
+                    className="px-4 sm:px-10 lg:px-20 pt-6 py-10 md:ml-64 bg-gray-50 h-full"
+                    style={{ minHeight: "100vh" }}
+                >
+                    {children}
+                </div>
+            ) : (
+                <Spinner />
+            )}
         </>
     );
 };

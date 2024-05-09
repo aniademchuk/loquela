@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import { RegisterUser } from "../../interfaces/registerUser";
 import { getLanguage } from "../../helper/LocalStoreHelper";
 import { getFunctions, httpsCallable } from "firebase/functions";
+import { RegisterUser } from "../../interfaces/user";
 
 const validateCredentials = (
     email: string,

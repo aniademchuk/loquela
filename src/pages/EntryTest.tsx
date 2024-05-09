@@ -1,61 +1,22 @@
-import Navbar from "../components/Navbar";
-import MultipleAnswerQuestion from "../components/questions/MultipleAnswerQuestion";
-import SingleAnswerQuestion from "../components/questions/SingleAnswerQuestion";
-
-export interface QuestionEntry {
-    question: string;
-    options: string[];
-    correctAnswer: string;
-    points: number;
-}
-
-const singleSelectQuestions: QuestionEntry[] = [
-    {
-        question: "What is the right option?",
-        options: ["first", "second", "third", "forth"],
-        correctAnswer: "second",
-        points: 3,
-    },
-    {
-        question: "How should I correctly say this: bla bla bla?",
-        options: ["first", "second", "third", "forth"],
-        correctAnswer: "third",
-        points: 4,
-    },
-];
-
-const multipleSelectQuestions: QuestionEntry[] = [
-    {
-        question: "New Mega Multiple questions",
-        options: ["first", "second", "third", "forth"],
-        correctAnswer: "first",
-        points: 2,
-    },
-    {
-        question: "Second Mega Multiple questions",
-        options: ["first", "second", "third", "forth"],
-        correctAnswer: "forth",
-        points: 5,
-    },
-];
+import SideBar from "../components/SideBar";
+import EnglishEntryTest from "../components/entryTests/EnglishEntryTest";
+import { useUser } from "../context/UserContext";
+import UkrainianEntryTest from "../components/entryTests/UkrainianEntryTest";
+import { Spinner } from "flowbite-react";
 
 const EntryTest = () => {
+    const { userData } = useUser();
+
+    if (!userData) return <Spinner />;
+
     return (
         <>
-            <Navbar />
-            <div className="flex flex-col px-[40px] md:px-[100px] lg:px-[200px] xl:px-[400px]">
-                <p className="pt-6 flex justify-center text-4xl font-medium text-gray-900">Here is your entry test</p>
-                {singleSelectQuestions.map((question, key) => (
-                    <div key={key}>
-                        <SingleAnswerQuestion question={question} />
-                    </div>
-                ))}
-                {multipleSelectQuestions.map((question, key) => (
-                    <div key={key}>
-                        <MultipleAnswerQuestion question={question} />
-                    </div>
-                ))}
-            </div>
+            <SideBar>
+                <div className="flex flex-col px-[20px]">
+                    {userData.users.learnLanguage === "English" && <EnglishEntryTest />}
+                    {userData.users.learnLanguage === "Ukrainian" && <UkrainianEntryTest />}
+                </div>
+            </SideBar>
         </>
     );
 };

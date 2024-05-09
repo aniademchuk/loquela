@@ -12,7 +12,6 @@ import Progress from "./pages/Progress";
 import Grammar from "./pages/Grammar";
 import Writing from "./pages/Writing";
 import Reading from "./pages/Reading";
-import EverydayLesson from "./pages/EverydayLesson";
 import Support from "./pages/Support";
 import Recommendations from "./pages/Recommendations";
 import { initializeApp } from "firebase/app";
@@ -26,7 +25,6 @@ function App() {
             <Toaster position="bottom-right" />
             <Routes>
                 <Route path="/" element={<Welcome />} />
-                <Route path="/entry-test" element={<EntryTest />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route
@@ -70,10 +68,10 @@ function App() {
                     }
                 />
                 <Route
-                    path="/everyday-lesson"
+                    path="/test"
                     element={
                         <AuthRoute>
-                            <EverydayLesson />
+                            <EntryTest />
                         </AuthRoute>
                     }
                 />

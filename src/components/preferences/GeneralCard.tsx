@@ -1,7 +1,12 @@
 import React from "react";
-import { Card, Label, Select, TextInput } from "flowbite-react";
+import { Card, Label, Select, Spinner, TextInput } from "flowbite-react";
+import { useUser } from "../../context/UserContext";
 
 const GeneralCard = () => {
+    const { userData } = useUser();
+
+    if (!userData) return <Spinner />;
+
     return (
         <>
             <Card>
@@ -11,7 +16,7 @@ const GeneralCard = () => {
                         <div className="mb-2 block">
                             <Label htmlFor="countries" value="Language to Learn" />
                         </div>
-                        <Select id="learn-language" required>
+                        <Select id="learn-language" value={userData.users.learnLanguage} required>
                             <option>English</option>
                             <option>Ukrainian</option>
                             <option>German</option>
@@ -31,23 +36,24 @@ const GeneralCard = () => {
                         <div className="mb-2 block">
                             <Label htmlFor="" value="Full Name" />
                         </div>
-                        <TextInput id="email2" type="name" placeholder="Mark Golovchenko" required shadow />
+                        <TextInput id="email2" type="name" placeholder={userData.users.fullName} required shadow />
                     </div>
                     <div>
                         <div className="mb-2 block">
                             <Label htmlFor="email2" value="Your email" />
                         </div>
-                        <TextInput id="email2" type="email" placeholder="name@flowbite.com" required shadow />
+                        <TextInput id="email2" type="email" placeholder={userData.users.email} required shadow />
                     </div>
                     <div>
                         <div className="mb-2 block">
                             <Label htmlFor="timezone" value="Timezone" />
                         </div>
-                        <Select id="interface-language" required>
-                            <option>English</option>
-                            <option>Ukrainian</option>
-                            <option>German</option>
-                        </Select>
+                        <TextInput id="timezone" type="text" placeholder={userData.users.timezone} required shadow />
+                        {/*<Select id="interface-language" required>*/}
+                        {/*    <option>English</option>*/}
+                        {/*    <option>Ukrainian</option>*/}
+                        {/*    <option>German</option>*/}
+                        {/*</Select>*/}
                     </div>
                 </form>
                 <div>
