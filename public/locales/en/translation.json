@@ -1,0 +1,18 @@
+{
+  "sidebar": {
+    "home": "Home",
+    "progress": "Progress",
+    "grammar": "Grammar",
+    "writing": "Writing",
+    "reading": "Reading",
+    "test": "Test",
+    "recommendations": "Recommendations",
+    "support": "Support"
+  },
+  "language": {
+    "en": "English",
+    "ua": "Ukrainian",
+    "de": "German",
+    "interface": "Interface Language"
+  }
+}

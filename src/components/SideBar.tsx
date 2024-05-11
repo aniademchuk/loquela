@@ -5,6 +5,7 @@ import ThemeButton from "./buttons/ThemeButton";
 import UserPreferencesButton from "./buttons/UserPreferencesButton";
 import { useUser } from "../context/UserContext";
 import { Spinner } from "flowbite-react";
+import { useTranslation } from "react-i18next";
 
 interface SideNavBarProps {
     children: React.ReactNode;
@@ -14,6 +15,7 @@ const SideBar = ({ children }: SideNavBarProps) => {
     const [isSideNavOpen, setSideNavOpen] = useState<boolean>(false);
     const location = useLocation().pathname;
     const { userData } = useUser();
+    const { t, i18n } = useTranslation();
 
     return (
         <>
@@ -75,7 +77,7 @@ const SideBar = ({ children }: SideNavBarProps) => {
                                         <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
                                         <path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
                                     </svg>
-                                    <span className="ms-3">Home</span>
+                                    <span className="ms-3">{t("sidebar.home")}</span>
                                 </Link>
                             </li>
                             <li>
@@ -101,7 +103,7 @@ const SideBar = ({ children }: SideNavBarProps) => {
                                         />
                                     </svg>
 
-                                    <span className="ms-3">Progress</span>
+                                    <span className="ms-3">{t("sidebar.progress")}</span>
                                 </Link>
                             </li>
                             <li>
@@ -118,7 +120,7 @@ const SideBar = ({ children }: SideNavBarProps) => {
                                         <path d="M11.25 5.337c0-.355-.186-.676-.401-.959a1.647 1.647 0 0 1-.349-1.003c0-1.036 1.007-1.875 2.25-1.875S15 2.34 15 3.375c0 .369-.128.713-.349 1.003-.215.283-.401.604-.401.959 0 .332.278.598.61.578 1.91-.114 3.79-.342 5.632-.676a.75.75 0 0 1 .878.645 49.17 49.17 0 0 1 .376 5.452.657.657 0 0 1-.66.664c-.354 0-.675-.186-.958-.401a1.647 1.647 0 0 0-1.003-.349c-1.035 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401.31 0 .557.262.534.571a48.774 48.774 0 0 1-.595 4.845.75.75 0 0 1-.61.61c-1.82.317-3.673.533-5.555.642a.58.58 0 0 1-.611-.581c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.035-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959a.641.641 0 0 1-.658.643 49.118 49.118 0 0 1-4.708-.36.75.75 0 0 1-.645-.878c.293-1.614.504-3.257.629-4.924A.53.53 0 0 0 5.337 15c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.036 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.369 0 .713.128 1.003.349.283.215.604.401.959.401a.656.656 0 0 0 .659-.663 47.703 47.703 0 0 0-.31-4.82.75.75 0 0 1 .83-.832c1.343.155 2.703.254 4.077.294a.64.64 0 0 0 .657-.642Z" />
                                     </svg>
 
-                                    <span className="flex-1 ms-3 whitespace-nowrap">Grammar</span>
+                                    <span className="flex-1 ms-3 whitespace-nowrap">{t("sidebar.grammar")}</span>
                                 </Link>
                             </li>
                             <li>
@@ -134,7 +136,7 @@ const SideBar = ({ children }: SideNavBarProps) => {
                                     >
                                         <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32L19.513 8.2Z" />
                                     </svg>
-                                    <span className="flex-1 ms-3 whitespace-nowrap">Writing</span>
+                                    <span className="flex-1 ms-3 whitespace-nowrap">{t("sidebar.writing")}</span>
                                     {/*<span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full">*/}
                                     {/*    3*/}
                                     {/*</span>*/}
@@ -153,7 +155,7 @@ const SideBar = ({ children }: SideNavBarProps) => {
                                     >
                                         <path d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18.75c1.995 0 3.823.707 5.25 1.886V4.533ZM12.75 20.636A8.214 8.214 0 0 1 18 18.75c.966 0 1.89.166 2.75.47a.75.75 0 0 0 1-.708V4.262a.75.75 0 0 0-.5-.707A9.735 9.735 0 0 0 18 3a9.707 9.707 0 0 0-5.25 1.533v16.103Z" />
                                     </svg>
-                                    <span className="flex-1 ms-3 whitespace-nowrap">Reading</span>
+                                    <span className="flex-1 ms-3 whitespace-nowrap">{t("sidebar.reading")}</span>
                                 </Link>
                             </li>
                             <li>
@@ -173,7 +175,7 @@ const SideBar = ({ children }: SideNavBarProps) => {
                                             clipRule="evenodd"
                                         />
                                     </svg>
-                                    <span className="flex-1 ms-3 whitespace-nowrap">Test</span>
+                                    <span className="flex-1 ms-3 whitespace-nowrap">{t("sidebar.test")}</span>
                                 </Link>
                             </li>
                             <li>
@@ -193,7 +195,9 @@ const SideBar = ({ children }: SideNavBarProps) => {
                                             clipRule="evenodd"
                                         />
                                     </svg>
-                                    <span className="flex-1 ms-3 whitespace-nowrap">Recommendations</span>
+                                    <span className="flex-1 ms-3 whitespace-nowrap">
+                                        {t("sidebar.recommendations")}
+                                    </span>
                                 </Link>
                             </li>
                             <hr className="h-px my-8 bg-gray-200 border-0" />
@@ -213,7 +217,7 @@ const SideBar = ({ children }: SideNavBarProps) => {
                                         <path d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z" />
                                         <path d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z" />
                                     </svg>
-                                    <span className="flex-1 ms-3 whitespace-nowrap">Support</span>
+                                    <span className="flex-1 ms-3 whitespace-nowrap">{t("sidebar.support")}</span>
                                 </Link>
                             </li>
                         </ul>

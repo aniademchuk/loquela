@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AuthRoute from "./components/auth/AuthRoute";
@@ -16,10 +16,18 @@ import Support from "./pages/Support";
 import Recommendations from "./pages/Recommendations";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./firebase/config";
+import { useTranslation } from "react-i18next";
+import { getLanguage } from "./helper/LocalStoreHelper";
 
 initializeApp(firebaseConfig);
 
 function App() {
+    const { i18n } = useTranslation();
+
+    useEffect(() => {
+        i18n.changeLanguage(getLanguage()).then();
+    }, []);
+
     return (
         <BrowserRouter>
             <Toaster position="bottom-right" />
