@@ -1,7 +1,7 @@
 import SideBar from "../components/SideBar";
-import EnglishEntryTest from "../components/entryTests/EnglishEntryTest";
+import EnglishEntryTest from "../components/entry-tests/EnglishEntryTest";
 import { useUser } from "../context/UserContext";
-import UkrainianEntryTest from "../components/entryTests/UkrainianEntryTest";
+import UkrainianEntryTest from "../components/entry-tests/UkrainianEntryTest";
 import { Spinner } from "flowbite-react";
 
 const EntryTest = () => {

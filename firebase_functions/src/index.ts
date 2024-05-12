@@ -1,26 +1,9 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * import {onCall} from "firebase-firebase_functions/v2/https";
- * import {onDocumentWritten} from "firebase-firebase_functions/v2/firestore";
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
-
 import * as admin from "firebase-admin";
-// Import firebase_functions from subdirectories
-import { registerUser } from "./auth/registration";
+import { registerUser } from "./auth/user-auth";
+import { getReadingEng } from "./ai-requests/get-reading-eng";
+import { checkReadingAnswer } from "./ai-requests/check-reading-eng";
+import { generateText } from "./ai-requests/reading-requests-en";
 
 admin.initializeApp();
 
-export {
-    registerUser, // Export Cloud Function
-};
-
-// Start writing firebase_functions
-// https://firebase.google.com/docs/functions/typescript
-
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+export { registerUser, getReadingEng, checkReadingAnswer, generateText };

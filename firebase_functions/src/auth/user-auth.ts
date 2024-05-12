@@ -1,6 +1,14 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { RegisterData } from "../interfaces";
+
+interface RegisterData {
+    email: string;
+    password: string;
+    fullName: string;
+    interfaceLanguage: string;
+    learnLanguage: string;
+    timezone: string;
+}
 
 export const registerUser = functions.https.onCall(async (data: RegisterData) => {
     const { email, password, fullName, interfaceLanguage, learnLanguage, timezone } = data;
@@ -42,8 +50,7 @@ export const registerUser = functions.https.onCall(async (data: RegisterData) =>
         });
 
         return { status: "success", userId: userRecord.uid };
-    } catch (error: any) {
-        console.error("Error creating new user:", error);
-        throw new functions.https.HttpsError("internal", error.message);
+    } catch (error: unknown) {
+        throw new functions.https.HttpsError("internal", "Failed to creating new user.", error);
     }
 });
