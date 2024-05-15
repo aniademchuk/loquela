@@ -4,35 +4,12 @@ import ApexCharts from "apexcharts";
 import Chart from "react-apexcharts";
 import SideBar from "../components/SideBar";
 import { useUser } from "../context/UserContext";
+import { formatUserLevel } from "../helper/LevelFormatter";
 
 const Progress = () => {
     const { userData } = useUser();
 
     if (!userData) return <Spinner />;
-
-    const getLevelTranscript = (level: number) => {
-        if (level === 0) {
-            return "No Level";
-        } else if (level === 1) {
-            return "A1.1";
-        } else if (level === 2) {
-            return "A1.2";
-        } else if (level === 3) {
-            return "A2.1";
-        } else if (level === 4) {
-            return "A2.2";
-        } else if (level === 5) {
-            return "B1.1";
-        } else if (level === 6) {
-            return "B1.2";
-        } else if (level === 7) {
-            return "B2.1";
-        } else if (level === 8) {
-            return "B2.2";
-        } else {
-            return "Invalid level";
-        }
-    };
 
     return (
         <SideBar>
@@ -59,7 +36,7 @@ const Progress = () => {
                         </div>
                         <div className="flex flex-row justify-center gap-2">
                             <div className="text-4xl font-bold tracking-tight text-gray-900">
-                                {getLevelTranscript(userData.user_lang_level.english)}
+                                {formatUserLevel(userData.user_lang_level.english)}
                             </div>
                         </div>
                     </Card>

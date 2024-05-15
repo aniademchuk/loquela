@@ -6,10 +6,7 @@ import { getFunctions, httpsCallable } from "firebase/functions";
 import toast from "react-hot-toast";
 import { formatUserLanguage } from "../helper/LangFormatter";
 import { getLanguage } from "../helper/LocalStoreHelper";
-
-interface QuestionRequest {
-    userLanguage: string;
-}
+import { formatUserLevel } from "../helper/LevelFormatter";
 
 interface AnswerReviewRequest {
     userLanguage: string;
@@ -18,8 +15,9 @@ interface AnswerReviewRequest {
     question: string;
 }
 
-interface ChatResponse {
-    result: string;
+interface QuestionRequest {
+    userLevel: string;
+    userLearnLanguage: string;
 }
 
 const Reading = () => {
@@ -30,25 +28,25 @@ const Reading = () => {
     const [questionLoading, setQuestionLoading] = useState(false);
     const [answerReviewLoading, setAnswerReviewLoading] = useState(false);
     const functions = getFunctions();
-    const generateQuestion = httpsCallable<unknown, string>(functions, "getReadingEng");
-    const checkReadingAnswer = httpsCallable<unknown, string>(functions, "checkReadingAnswer");
+    const generateQuestion = httpsCallable<QuestionRequest, string>(functions, "getReadingQuestion");
+    const checkReadingAnswer = httpsCallable<AnswerReviewRequest, string>(functions, "checkReadingAnswer");
 
     if (!userData) {
         return <Spinner />;
     }
     const handleQuestionGeneration = async () => {
         setQuestionLoading(true);
+
         const data = {
-            userLanguage: "English",
+            userLevel: formatUserLevel(userData.user_lang_level.english),
+            userLearnLanguage: userData.users.learnLanguage,
         };
+
         await generateQuestion(data)
             .then((response) => {
-                const result = response.data;
-                setChatQuestion(result);
-                toast.success("API call was successful");
+                setChatQuestion(response.data);
             })
             .catch((error) => {
-                console.error("Error fetching data:", error);
                 toast.error(error.message);
             })
             .finally(() => setQuestionLoading(false));
@@ -87,7 +85,7 @@ const Reading = () => {
                 {questionLoading ? (
                     <Spinner />
                 ) : (
-                    <p className="font-normal text-gray-700 dark:text-gray-400">{chatQuestion}</p>
+                    <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-pre-wrap">{chatQuestion}</p>
                 )}
                 {chatQuestion !== "" && (
                     <TextInput value={userAnswer} onChange={(e) => setUserAnswer(e.target.value)} />

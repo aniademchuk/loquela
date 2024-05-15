@@ -9,7 +9,8 @@ export const getOpenAiCompletionOnlySystem = async (systemPrompt: string): Promi
     try {
         const completion = await openai.chat.completions.create({
             messages: [{ role: "system", content: systemPrompt }],
-            model: "gpt-4-turbo",
+            model: "gpt-4o",
+            temperature: 1,
         });
 
         if (completion.choices[0].message.content !== null) {
@@ -33,7 +34,7 @@ export const getOpenAiCompletionWithUserPrompt = async (systemPrompt: string, us
                 { role: "system", content: systemPrompt },
                 { role: "user", content: userPrompt },
             ],
-            model: "gpt-4-turbo",
+            model: "gpt-4o",
         });
 
         if (completion.choices[0].message.content !== null) {
