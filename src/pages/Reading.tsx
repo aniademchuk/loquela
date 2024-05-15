@@ -54,6 +54,7 @@ const Reading = () => {
 
     const handleUserAnswerReview = async () => {
         setAnswerReviewLoading(true);
+
         const data: AnswerReviewRequest = {
             userLanguage: formatUserLanguage(getLanguage()),
             userLearnLanguage: userData.users.learnLanguage,
@@ -64,7 +65,6 @@ const Reading = () => {
         await checkReadingAnswer(data)
             .then((response) => {
                 setChatAnswerReview(response.data);
-                toast.success("API call was successful");
             })
             .catch((error) => {
                 console.log(error);
@@ -99,7 +99,9 @@ const Reading = () => {
                 {answerReviewLoading ? (
                     <Spinner />
                 ) : (
-                    <p className="font-normal text-gray-700 dark:text-gray-400">{chatAnswerReview}</p>
+                    <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-pre-wrap">
+                        {chatAnswerReview}
+                    </p>
                 )}
 
                 <Button

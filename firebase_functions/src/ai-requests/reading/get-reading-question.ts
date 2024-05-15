@@ -1,8 +1,8 @@
 import * as functions from "firebase-functions";
 import { getOpenAiCompletionOnlySystem } from "../ai-helper";
-import { getQuestionPromptEN } from "./prompts/en-reading-prompts";
-import { getQuestionPromptUA } from "./prompts/ua-reading-prompts";
-import { getQuestionPromptDE } from "./prompts/de-reading-prompts";
+import { getQuestionPromptEN } from "./prompts/en-question-prompts";
+import { getQuestionPromptUA } from "./prompts/ua-question-prompts";
+import { getQuestionPromptDE } from "./prompts/de-question-prompts";
 
 interface ReadingRequestData {
     userLevel: string;
