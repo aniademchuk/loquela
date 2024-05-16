@@ -14,5 +14,8 @@
     "ua": "Ukrainian",
     "de": "German",
     "interface": "Interface Language"
+  },
+  "noTestCard": {
+    "main": "Sorry, it appears you don't have any results from the entry test for this language. Please take the test, and then return to this page."
   }
 }

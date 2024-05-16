@@ -8,6 +8,6 @@ export const formatUserLanguage = (lang: string) => {
         case "de":
             return "German";
         default:
-            return "";
+            return "English";
     }
 };

@@ -14,5 +14,8 @@
     "ua": "Ukrainisch",
     "de": "Deutsch",
     "interface": "Interface Sprache"
+  },
+  "noTestCard": {
+    "main": "Es scheint, dass Sie keine Ergebnisse des Einstufungstests für diese Sprache haben. Bitte absolvieren Sie den Test und kehren Sie dann zu dieser Seite zurück."
   }
 }
