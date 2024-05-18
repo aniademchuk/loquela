@@ -1,8 +1,10 @@
 import * as admin from "firebase-admin";
 import { registerUser } from "./auth/user-auth";
 import { getReadingQuestion } from "./ai-requests/reading/get-reading-question";
-import { checkReadingAnswer } from "./ai-requests/reading/check-reading-eng";
+import { checkReadingAnswer } from "./ai-requests/reading/check-reading";
+import { getWritingQuestion } from "./ai-requests/writing/get-writing";
+import { checkWritingAnswer } from "./ai-requests/writing/check-writing";
 
 admin.initializeApp();
 
-export { registerUser, getReadingQuestion, checkReadingAnswer };
+export { registerUser, getReadingQuestion, checkReadingAnswer, getWritingQuestion, checkWritingAnswer };
