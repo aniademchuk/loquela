@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { Tooltip } from "flowbite-react";
 import { useTranslation } from "react-i18next";
-import { useUser } from "../../context/UserContext";
 import { setLanguage } from "../../helper/LocalStoreHelper";
 
 const LanguageButtonSideBar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { t, i18n } = useTranslation();
     const [language, setCurrentLanguage] = useState<string>(i18n.language);
-    const { userData, setUserData } = useUser();
 
     const handleLanguageChange = (language: string) => {
         setLanguage(language);
