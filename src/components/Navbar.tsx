@@ -1,23 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Dropdown } from "flowbite-react";
 import { getLanguage, setLanguage } from "../helper/LocalStoreHelper";
-
-const smallSelectedStyle = "block py-2 px-3 text-white bg-blue-700 rounded";
-const smallDefaultStyle = "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100";
-const bigSelectedStyle = "block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 ";
-const bigDefaultStyle =
-    "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
-    const [isNavOpen, setNavOpen] = useState<boolean>(false);
-    const [userSelectedLanguage, setUserSelectedLanguage] = useState<string>(getLanguage());
-    const location = useLocation().pathname;
     const navigate = useNavigate();
+    const { t, i18n } = useTranslation();
+    const [currentLang, setCurrentLang] = useState<string>(getLanguage() || "en");
 
-    useEffect(() => {
-        setLanguage(userSelectedLanguage);
-    }, [userSelectedLanguage]);
+    const handleLanguageChange = (lang: string) => {
+        setCurrentLang(lang);
+        setLanguage(lang);
+        i18n.changeLanguage(lang).then();
+    };
 
     return (
         <nav className="bg-white w-full z-20 top-0 start-0 border-b border-gray-200 ">
@@ -25,28 +21,36 @@ const Navbar = () => {
                 <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="/loquela-logo.png" className="h-14" alt="Loquela Logo" />
                 </Link>
-                <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                <div className="flex flex-col xs:flex-row items-center md:order-2 xs:space-x-4 md:space-x-0 rtl:space-x-reverse">
                     <Dropdown
                         label={
                             <img
-                                src={`https://flagcdn.com/${userSelectedLanguage}.svg`}
+                                src={`https://flagcdn.com/${currentLang === "en" ? "us" : currentLang}.svg`}
                                 width="36"
                                 alt="United States"
                             />
                         }
                         inline
                         arrowIcon={false}
+                        className="px-2 py-1 rounded-lg"
                     >
-                        <Dropdown.Item onClick={() => setUserSelectedLanguage("us")}>
-                            {<img src={`https://flagcdn.com/us.svg`} width="32" alt="United States" />}
-                            English
+                        <Dropdown.Item onClick={() => handleLanguageChange("en")} className="rounded-lg">
+                            <div className="flex flex-row w-full rounded-lg gap-2 px-2 py-1 items-center hover:bg-gray-100">
+                                <img src="https://flagcdn.com/us.svg" width="32" alt="United States" />
+                                <span>{t("language.en")}</span>
+                            </div>
                         </Dropdown.Item>
-                        <Dropdown.Item onClick={() => setUserSelectedLanguage("ua")}>
-                            {<img src={`https://flagcdn.com/ua.svg`} width="32" alt="Ukraine" />} Ukrainian
+                        <Dropdown.Item onClick={() => handleLanguageChange("ua")} className="rounded-lg">
+                            <div className="flex flex-row w-full rounded-lg gap-2 px-2 py-1 items-center hover:bg-gray-100">
+                                <img src="https://flagcdn.com/ua.svg" width="32" alt="United States" />
+                                <span>{t("language.ua")}</span>
+                            </div>
                         </Dropdown.Item>
-                        <Dropdown.Item onClick={() => setUserSelectedLanguage("de")}>
-                            {<img src={`https://flagcdn.com/de.svg`} width="32" alt="Germany" />}
-                            German
+                        <Dropdown.Item onClick={() => handleLanguageChange("de")} className="rounded-lg">
+                            <div className="flex flex-row w-full rounded-lg gap-2 px-2 py-1 items-center hover:bg-gray-100">
+                                <img src="https://flagcdn.com/de.svg" width="32" alt="United States" />
+                                <span>{t("language.de")}</span>
+                            </div>
                         </Dropdown.Item>
                     </Dropdown>
                     <button
@@ -64,80 +68,6 @@ const Navbar = () => {
                     >
                         Register
                     </button>
-                    <button
-                        data-collapse-toggle="navbar-hamburger"
-                        type="button"
-                        className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg
-                            md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
-                        aria-controls="navbar-hamburger"
-                        aria-expanded="false"
-                        onClick={() => setNavOpen(!isNavOpen)}
-                    >
-                        <span className="sr-only">Open main menu</span>
-                        <svg
-                            className="w-5 h-5"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 17 14"
-                        >
-                            <path
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M1 1h15M1 7h15M1 13h15"
-                            />
-                        </svg>
-                    </button>
-                </div>
-                <div
-                    className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-                    id="navbar-sticky"
-                >
-                    <ul
-                        className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg
-                            bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white "
-                    >
-                        <li>
-                            <Link
-                                to="/"
-                                className={location === "/" ? bigSelectedStyle : bigDefaultStyle}
-                                aria-current="page"
-                            >
-                                Home
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to="/entry-test"
-                                className={location === "/entry-test" ? bigSelectedStyle : bigDefaultStyle}
-                            >
-                                Entry Test
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-                <div className={`${isNavOpen ? "block" : "hidden"} md:hidden w-full `}>
-                    <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 ">
-                        <li>
-                            <Link
-                                to="/"
-                                className={location === "/" ? smallSelectedStyle : smallDefaultStyle}
-                                aria-current="page"
-                            >
-                                Home
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to="/entry-test"
-                                className={location === "/entry-test" ? smallSelectedStyle : smallDefaultStyle}
-                            >
-                                Entry Test
-                            </Link>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </nav>

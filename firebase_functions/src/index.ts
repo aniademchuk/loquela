@@ -1,5 +1,5 @@
 import * as admin from "firebase-admin";
-import { registerUser } from "./auth/user-auth";
+import { registerUser } from "./auth/register-user";
 import { getReadingQuestion } from "./ai-requests/reading/get-reading-question";
 import { checkReadingAnswer } from "./ai-requests/reading/check-reading";
 import { getWritingQuestion } from "./ai-requests/writing/get-writing";

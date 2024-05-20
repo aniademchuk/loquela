@@ -5,13 +5,12 @@ interface RegisterData {
     email: string;
     password: string;
     fullName: string;
-    interfaceLanguage: string;
     learnLanguage: string;
     timezone: string;
 }
 
 export const registerUser = functions.https.onCall(async (data: RegisterData) => {
-    const { email, password, fullName, interfaceLanguage, learnLanguage, timezone } = data;
+    const { email, password, fullName, learnLanguage, timezone } = data;
     if (!email || !password) {
         throw new functions.https.HttpsError("invalid-argument", "Missing required fields");
     }
@@ -26,7 +25,6 @@ export const registerUser = functions.https.onCall(async (data: RegisterData) =>
         await db.ref(`users/${userRecord.uid}`).set({
             email: email,
             fullName: fullName,
-            interfaceLanguage: interfaceLanguage,
             learnLanguage: learnLanguage,
             timezone: timezone,
         });

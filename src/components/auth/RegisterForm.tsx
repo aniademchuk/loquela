@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import { getLanguage } from "../../helper/LocalStoreHelper";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { RegisterUser } from "../../interfaces/user";
 
@@ -10,7 +9,6 @@ const validateCredentials = (
     fullName: string,
     pass1: string,
     pass2: string,
-    interfaceLanguage: string,
     learnLanguage: string,
     timezone: string,
     termsAccepted: boolean
@@ -25,7 +23,7 @@ const validateCredentials = (
         return false;
     }
 
-    if (!email || !fullName || !pass1 || !timezone || !interfaceLanguage || !learnLanguage) {
+    if (!email || !fullName || !pass1 || !timezone || !learnLanguage) {
         toast.error("Missing some user data. Please double check input values.");
         return false;
     }
@@ -38,7 +36,6 @@ const RegisterForm = () => {
         email: "",
         password: "",
         fullName: "",
-        interfaceLanguage: getLanguage(),
         learnLanguage: "English",
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     });
@@ -60,7 +57,6 @@ const RegisterForm = () => {
                 user.fullName,
                 password,
                 confirmPassword,
-                user.interfaceLanguage,
                 user.learnLanguage,
                 user.timezone,
                 termsAccepted
@@ -79,8 +75,9 @@ const RegisterForm = () => {
     };
 
     return (
-        <form className="max-w-sm mx-auto">
+        <form className="max-w-md mx-auto">
             <div className="mb-5">
+                <h1 className="text-4xl font-bold my-12">Register New Account</h1>
                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
                     Your email
                 </label>
@@ -88,7 +85,7 @@ const RegisterForm = () => {
                     type="email"
                     id="email"
                     className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="name@flowbite.com"
+                    placeholder="example@gmail.com"
                     onChange={(event) => {
                         setUser((prevState) => ({ ...prevState, email: event.target.value }));
                     }}
@@ -103,7 +100,7 @@ const RegisterForm = () => {
                     type="name"
                     id="name"
                     className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="Boris Kalbasov"
+                    placeholder="Ganna Romanchuk"
                     onChange={(event) => {
                         setUser((prevState) => ({ ...prevState, fullName: event.target.value }));
                     }}
@@ -134,7 +131,7 @@ const RegisterForm = () => {
                     required
                 />
             </div>
-            <div className="flex items-start mb-5">
+            <div className="flex items-start mt-6 mb-5">
                 <div className="flex items-center h-5">
                     <input
                         id="terms"
@@ -154,11 +151,11 @@ const RegisterForm = () => {
             </div>
             <button
                 type="button"
-                className={`text-white ${termsAccepted ? "bg-blue-700 hover:bg-blue-800" : "bg-gray-600 cursor-not-allowed"} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
+                className={`mt-4 text-white ${termsAccepted ? "bg-blue-700 hover:bg-blue-800" : "bg-gray-600 cursor-not-allowed"} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
                 onClick={(event) => handleRegister(event)}
                 disabled={!termsAccepted}
             >
-                Register new account
+                Register
             </button>
         </form>
     );

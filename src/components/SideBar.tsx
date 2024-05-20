@@ -15,7 +15,7 @@ const SideBar = ({ children }: SideNavBarProps) => {
     const [isSideNavOpen, setSideNavOpen] = useState<boolean>(false);
     const location = useLocation().pathname;
     const { userData } = useUser();
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     return (
         <>

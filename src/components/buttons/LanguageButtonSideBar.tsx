@@ -12,19 +12,7 @@ const LanguageButtonSideBar = () => {
 
     const handleLanguageChange = (language: string) => {
         setLanguage(language);
-        i18n.changeLanguage(language).then(() => {
-            if (userData) {
-                const updatedUserData = {
-                    ...userData,
-                    users: {
-                        ...userData.users,
-                        interfaceLanguage: language,
-                    },
-                };
-
-                setUserData(updatedUserData);
-            }
-        });
+        i18n.changeLanguage(language).then();
     };
 
     return (

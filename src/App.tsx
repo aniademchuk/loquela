@@ -26,7 +26,7 @@ function App() {
 
     useEffect(() => {
         i18n.changeLanguage(getLanguage()).then();
-    }, []);
+    }, [i18n]);
 
     return (
         <BrowserRouter>
