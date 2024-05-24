@@ -21,7 +21,7 @@ const QuestionCard = ({ description, question, options, answer, points, setResul
     };
 
     return (
-        <Card className="flex rounded-[30px] text-center justify-items-center">
+        <Card className="flex rounded-[30px] w-[800px] text-center justify-items-center border-cyan-600 border-2">
             <fieldset className="flex flex-col gap-4 gap-y-10 text-2xl">
                 <div className="text-gray-600 text-2xl">{description}</div>
                 <div className="text-black">{question}</div>
@@ -34,6 +34,7 @@ const QuestionCard = ({ description, question, options, answer, points, setResul
                                 value={option}
                                 checked={selectedOption === option}
                                 onChange={() => handleOptionChange(option)}
+                                className="border-1 border-gray-600"
                             />
                             <Label htmlFor={question + option} className="text-2xl">
                                 {option}

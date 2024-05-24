@@ -47,15 +47,17 @@ const EnglishEntryTest = () => {
             <p className="py-6 flex justify-center text-4xl font-medium text-gray-900">Test your English Level</p>
             <div className="flex flex-col gap-y-10">
                 {englishTestQuestions.map((question, index) => (
-                    <QuestionCard
-                        key={index + question.question}
-                        setResult={setResult}
-                        description={question.description}
-                        question={question.question}
-                        options={question.options}
-                        answer={question.answer}
-                        points={question.points}
-                    />
+                    <div className=" flex justify-center">
+                        <QuestionCard
+                            key={index + question.question}
+                            setResult={setResult}
+                            description={question.description}
+                            question={question.question}
+                            options={question.options}
+                            answer={question.answer}
+                            points={question.points}
+                        />
+                    </div>
                 ))}
             </div>
             <Button onClick={handleTestFinish}>Submit</Button>

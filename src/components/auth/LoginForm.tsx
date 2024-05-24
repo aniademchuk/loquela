@@ -1,16 +1,19 @@
 import { browserSessionPersistence, getAuth, setPersistence, signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Spinner } from "flowbite-react";
 
 const LoginForm = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(false);
     const auth = getAuth();
     const navigate = useNavigate();
 
-    const handleLogin = (event: any) => {
+    const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        setLoading(true);
         setPersistence(auth, browserSessionPersistence)
             .then(() => {
                 return signInWithEmailAndPassword(auth, email, password);
@@ -22,12 +25,13 @@ const LoginForm = () => {
                 if (error.code === "auth/invalid-credential") {
                     toast.error("Wrong email or password");
                 }
-            });
+            })
+            .finally(() => setLoading(false));
     };
 
     return (
-        <form className="max-w-md mx-auto">
-            <h1 className="text-4xl font-bold mt-12 mb-20">Login to Your Account</h1>
+        <form className="max-w-md mx-auto" onSubmit={handleLogin}>
+            <h1 className="text-4xl font-bold mt-12 mb-20">Login Into Your Account</h1>
             <div className="mb-5">
                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
                     Your email
@@ -55,11 +59,10 @@ const LoginForm = () => {
             </div>
             <button
                 type="submit"
-                className={`mt-4 text-white ${email === "" || password === "" ? "bg-gray-600 cursor-not-allowed" : "bg-blue-700 hover:bg-blue-800"} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
-                onClick={(event) => handleLogin(event)}
+                className={`mt-4 space-x-2 text-white ${email === "" || password === "" ? "bg-gray-600 cursor-not-allowed" : "bg-cyan-700 hover:bg-cyan-800"} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 text-center`}
                 disabled={email === "" && password === ""}
             >
-                Login
+                <span>Login</span> {loading && <Spinner />}
             </button>
         </form>
     );

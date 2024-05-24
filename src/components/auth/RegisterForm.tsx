@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { RegisterUser } from "../../interfaces/user";
+import { Spinner } from "flowbite-react";
 
 const validateCredentials = (
     email: string,
@@ -43,14 +44,16 @@ const RegisterForm = () => {
     const [password, setPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
     const [termsAccepted, setTermsAccepted] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const navigate = useNavigate();
 
     const functions = getFunctions();
     const register = httpsCallable(functions, "registerUser");
 
-    const handleRegister = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        event.stopPropagation();
+    const handleRegister = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setLoading(true);
         if (
             validateCredentials(
                 user.email,
@@ -70,12 +73,13 @@ const RegisterForm = () => {
                 })
                 .catch((err) => {
                     toast.error("User register failed: " + err.message);
-                });
+                })
+                .finally(() => setLoading(false));
         }
     };
 
     return (
-        <form className="max-w-md mx-auto">
+        <form className="max-w-md mx-auto" onSubmit={handleRegister}>
             <div className="mb-5">
                 <h1 className="text-4xl font-bold my-12">Register New Account</h1>
                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
@@ -100,7 +104,7 @@ const RegisterForm = () => {
                     type="name"
                     id="name"
                     className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="Ganna Romanchuk"
+                    placeholder="Mykhailo Lebigovich"
                     onChange={(event) => {
                         setUser((prevState) => ({ ...prevState, fullName: event.target.value }));
                     }}
@@ -150,12 +154,11 @@ const RegisterForm = () => {
                 </label>
             </div>
             <button
-                type="button"
-                className={`mt-4 text-white ${termsAccepted ? "bg-blue-700 hover:bg-blue-800" : "bg-gray-600 cursor-not-allowed"} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
-                onClick={(event) => handleRegister(event)}
+                type="submit"
+                className={`mt-4 space-x-2 text-white ${termsAccepted ? "bg-cyan-700 hover:bg-cyan-800" : "bg-gray-600 cursor-not-allowed"} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
                 disabled={!termsAccepted}
             >
-                Register
+                <span>Register</span> {loading && <Spinner />}
             </button>
         </form>
     );
