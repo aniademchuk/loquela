@@ -20,8 +20,6 @@ export const getWritingQuestion = functions.https.onCall(async (data: WritingReq
     return await getOpenAiCompletionOnlySystem(systemPrompt);
 });
 
-// getWritingQuestion({ data: { userLevel: "B2.2", userLanguage: "English", userLearnLanguage: "Ukrainian" } })
-
 const getWritingPrompt = (userLevel: string, userLanguage: string, userLearnLanguage: string) => {
     switch (userLanguage) {
         case "English":

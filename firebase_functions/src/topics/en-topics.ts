@@ -103,64 +103,11 @@ const actionsEN = [
     "cleans",
 ];
 
-const placesEN = [
-    "the mountains",
-    "a movie theater",
-    "a concert hall",
-    "a forest",
-    "a zoo",
-    "a gym",
-    "a stadium",
-    "a church",
-    "a temple",
-    "a mosque",
-    "a farm",
-    "an amusement park",
-    "a lake",
-    "a river",
-    "an airport",
-    "a train station",
-    "a bus stop",
-    "a campsite",
-    "a hotel",
-    "a hospital",
-    "a pharmacy",
-    "a bakery",
-    "a farm",
-    "a garden",
-    "a rooftop",
-    "a bridge",
-    "a castle",
-    "a cave",
-    "a desert",
-    "a mansion",
-    "a palace",
-    "a skyscraper",
-    "a submarine",
-    "a spaceship",
-    "a volcano",
-    "an iceberg",
-    "a waterfall",
-    "an island",
-    "a space station",
-    "a submarine",
-    "a ghost town",
-    "a village",
-    "a city square",
-    "a temple",
-    "a pyramid",
-    "a lighthouse",
-    "a beach house",
-    "a cottage",
-    "a mansion",
-];
-
-export const getRandomTopicDE = () => {
+export const getRandomTopicEN = () => {
     const name = namesEN[Math.floor(Math.random() * namesEN.length)];
     const action = actionsEN[Math.floor(Math.random() * actionsEN.length)];
-    const place = placesEN[Math.floor(Math.random() * placesEN.length)];
 
-    return `${name} ${action} at ${place}.`;
+    return `${name} ${action}.`;
 };
 
 const hardTopicsEN = [

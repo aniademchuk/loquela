@@ -1,18 +1,18 @@
-import { getRandomHardTopicEN, getRandomTopicDE } from "../../../topics/en-topics";
+import { getRandomHardTopicEN, getRandomTopicEN } from "../../../topics/en-topics";
 
 export const getWritingPromptEN = (userLevel: string, userLearnLanguage: string): string => {
-    const topic = getRandomTopicDE();
+    const topic = getRandomTopicEN();
     const hardTopic = getRandomHardTopicEN();
 
     const englishPrompts: { [key: string]: string } = {
         "A1.1": `As a language learning assistant, please generate 5 words related to the topic "${topic}" for a user at the A1.1 English level. This words should be as simple as possible, since user only started to learn ${userLearnLanguage}.
             Words should be generated in English, so user can translate them into language that he learns.
-            Return user task to translate this words in ${userLearnLanguage} and 5 words separated by comas, without any additional formatting.
+            Return user task to translate this words and 5 words separated by comas. The task and words should be provided in English.
             `,
 
         "A1.2": `As a language learning assistant, please generate 1 simple sentence related to the topic "${topic}" for a user at the A1.2 English level. This sentence should be as simple as possible, since user only started to learn ${userLearnLanguage}.
             Sentence should be generated in English, so user can translate them into language that he learns.
-            Return user task to translate this sentence in ${userLearnLanguage} and the sentence itself, without any additional formatting.
+            Return user task to translate this sentence and the sentence itself. The task and sentence should be provided in English.
             `,
 
         "A2.1": `As a language learning assistant, please generate a simple writing theme using the topic "${topic}" for a user at the A2.1 English level. Imagine user who started to learn ${userLearnLanguage} and have a little bit of progress, provide theme for this language level. 

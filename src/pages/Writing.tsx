@@ -84,7 +84,10 @@ const Writing = () => {
 
         await checkWritingAnswer(data)
             .then((response) => {
-                setChatAnswerReview(response.data);
+                const container = document.getElementById("responseContainerWriting");
+                if (container) {
+                    container.innerHTML = response.data;
+                }
             })
             .catch((error) => {
                 console.log(error);
@@ -128,13 +131,8 @@ const Writing = () => {
                         </Button>
                     </div>
 
-                    {reviewLoading ? (
-                        <Spinner />
-                    ) : (
-                        <p className="font-normal text-gray-700 dark:text-gray-400 whitespace-pre-wrap">
-                            {chatAnswerReview}
-                        </p>
-                    )}
+                    {reviewLoading && <Spinner />}
+                    <div id="responseContainerWriting" className="whitespace-pre-wrap list-disc"></div>
 
                     <Button
                         onClick={() => {

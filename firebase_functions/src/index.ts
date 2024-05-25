@@ -7,6 +7,8 @@ import { checkWritingAnswer } from "./ai-requests/writing/check-writing";
 import { updateUserData } from "./user-management/update-user-data";
 import { updateUserRemindersData } from "./user-management/update-user-reminders";
 import { deleteUserAccount } from "./user-management/delete-account";
+import { getGrammarQuestion } from "./ai-requests/grammar/get-grammar-question";
+import { checkGrammarAnswer } from "./ai-requests/grammar/check-grammar";
 
 admin.initializeApp();
 
@@ -19,4 +21,6 @@ export {
     updateUserData,
     updateUserRemindersData,
     deleteUserAccount,
+    getGrammarQuestion,
+    checkGrammarAnswer,
 };

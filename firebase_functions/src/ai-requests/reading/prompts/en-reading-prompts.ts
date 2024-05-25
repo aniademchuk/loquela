@@ -1,7 +1,7 @@
-import { getRandomHardTopicEN, getRandomTopicDE } from "../../../topics/en-topics";
+import { getRandomHardTopicEN, getRandomTopicEN } from "../../../topics/en-topics";
 
 export const getQuestionPromptEN = (userLevel: string): string => {
-    const topic = getRandomTopicDE();
+    const topic = getRandomTopicEN();
     const hardTopic = getRandomHardTopicEN();
 
     const englishPrompts: { [key: string]: string } = {

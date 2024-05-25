@@ -51,60 +51,6 @@ const namesDE = [
     "Greta",
 ];
 
-const placesDE = [
-    "Berge",
-    "Kino",
-    "Konzertsaal",
-    "Wald",
-    "Zoo",
-    "Fitnessstudio",
-    "Stadion",
-    "Kirche",
-    "Tempel",
-    "Moschee",
-    "Bauernhof",
-    "Freizeitpark",
-    "See",
-    "Fluss",
-    "Flughafen",
-    "Bahnhof",
-    "Bushaltestelle",
-    "Universität",
-    "Hotel",
-    "Krankenhaus",
-    "Apotheke",
-    "Bäckerei",
-    "Garten",
-    "Park",
-    "Brücke",
-    "Schloss",
-    "Höhle",
-    "Wüste",
-    "Palast",
-    "Straße",
-    "Haus",
-    "Boot",
-    "Kreuzfahrt",
-    "Resort",
-    "Kantine",
-    "Wasserpark",
-    "Fußballfeld",
-    "Restaurant",
-    "McDonald's",
-    "Café",
-    "Dorf",
-    "Berlin",
-    "München",
-    "Hamburg",
-    "Frankfurt",
-    "Köln",
-    "Stuttgart",
-    "Düsseldorf",
-    "Dresden",
-    "Leipzig",
-    "Nürnberg",
-];
-
 const actionsDE = [
     "spazieren gehen",
     "fernsehen",
@@ -160,9 +106,8 @@ const actionsDE = [
 export const getRandomTopicDE = () => {
     const name = namesDE[Math.floor(Math.random() * namesDE.length)];
     const action = actionsDE[Math.floor(Math.random() * actionsDE.length)];
-    const place = placesDE[Math.floor(Math.random() * placesDE.length)];
 
-    return `${name} ${action} ${place}.`;
+    return `${name} ${action}.`;
 };
 
 const hardTopicsDE = [
