@@ -3,8 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import LanguageButtonSideBar from "./buttons/LanguageButtonSideBar";
 import ThemeButton from "./buttons/ThemeButton";
 import UserPreferencesButton from "./buttons/UserPreferencesButton";
-import { useUser } from "../context/UserContext";
-import { Spinner } from "flowbite-react";
 import { useTranslation } from "react-i18next";
 
 interface SideNavBarProps {
@@ -14,7 +12,6 @@ interface SideNavBarProps {
 const SideBar = ({ children }: SideNavBarProps) => {
     const [isSideNavOpen, setSideNavOpen] = useState<boolean>(false);
     const location = useLocation().pathname;
-    const { userData } = useUser();
     const { t } = useTranslation();
 
     return (
@@ -232,16 +229,12 @@ const SideBar = ({ children }: SideNavBarProps) => {
                     </div>
                 </div>
             </aside>
-            {userData ? (
-                <div
-                    className="px-4 sm:px-10 lg:px-20 pt-6 py-10 md:ml-64 bg-gray-50 h-full"
-                    style={{ minHeight: "100vh" }}
-                >
-                    {children}
-                </div>
-            ) : (
-                <Spinner />
-            )}
+            <div
+                className="px-4 sm:px-10 lg:px-20 pt-6 py-10 md:ml-64 bg-gray-50 h-full flex flex-col"
+                style={{ minHeight: "100vh" }}
+            >
+                {children}
+            </div>
         </>
     );
 };
