@@ -199,11 +199,12 @@ const SideBar = ({ children }: SideNavBarProps) => {
                                 <Modal show={openModal} onClose={() => setOpenModal(false)}>
                                     <Modal.Header>Support</Modal.Header>
                                     <Modal.Body>
-                                        <p className="m-6 text-lg leading-relaxed text-gray-600">
+                                        <span className="m-6 text-lg leading-relaxed text-gray-600 text-justify">
                                             If you have any additional questions, please do not hesitate to contact the
-                                            developer via email at ia.03.demchuk.anna@gmail.com. We are here to help and
-                                            ensure you have the best learning experience with Loquela.
-                                        </p>
+                                            developer via email at{" "}
+                                            <span className="text-cyan-600">ia.03.demchuk.anna@gmail.com</span>. We are
+                                            here to help and ensure you have the best learning experience with Loquela.
+                                        </span>
                                     </Modal.Body>
                                     <Modal.Footer className="justify-center">
                                         <Button color="gray" onClick={() => setOpenModal(false)}>

@@ -1,4 +1,4 @@
-import { Button, Spinner } from "flowbite-react";
+import { Card, Spinner } from "flowbite-react";
 import { useState } from "react";
 import { englishTestQuestions } from "../../constants/EnglishTestQuestions";
 import QuestionCard from "../QuestionCard";
@@ -45,9 +45,9 @@ const EnglishEntryTest = () => {
     return (
         <div>
             <p className="py-6 flex justify-center text-4xl font-medium text-gray-900">Test your English Level</p>
-            <div className="flex flex-col gap-y-10">
+            <Card className="rounded-2xl border-cyan-600">
                 {englishTestQuestions.map((question, index) => (
-                    <div className=" flex justify-center">
+                    <>
                         <QuestionCard
                             key={index + question.question}
                             setResult={setResult}
@@ -57,10 +57,19 @@ const EnglishEntryTest = () => {
                             answer={question.answer}
                             points={question.points}
                         />
-                    </div>
+                        <hr />
+                    </>
                 ))}
-            </div>
-            <Button onClick={handleTestFinish}>Submit</Button>
+                <div className="mt-2 flex justify-center">
+                    <button
+                        onClick={handleTestFinish}
+                        className="flex px-4 py-2 gap-3 rounded-lg bg-cyan-700 hover:bg-cyan-800 text-white font-semibold text-lg"
+                    >
+                        Submit
+                        {/*<Spinner />*/}
+                    </button>
+                </div>
+            </Card>
         </div>
     );
 };
