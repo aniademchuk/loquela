@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Loquela</title>
+    <script>
+        const segmentCount = 0;
+        const location = window.location;
+        const path = location.pathname.split("/").slice(segmentCount + 1).join("/") + location.search;
+        sessionStorage.redirect = path;
+        location.replace(location.pathname.split('/').slice(0, segmentCount + 1).join('/') + '/?/' + path);
+    </script>
+</head>
+<body>
+</body>
+</html>
