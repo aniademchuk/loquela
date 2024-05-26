@@ -24,7 +24,7 @@ const QuestionCard = ({ description, question, options, answer, points, setResul
         <fieldset className="my-14 flex flex-col gap-4 gap-y-12 text-2xl">
             <div className="text-gray-500 text-2xl ml-10">{description}</div>
             <div className="flex text-black justify-center text-justify">{question}</div>
-            <div className="flex flex-row gap-x-6 justify-center">
+            <div className="ml-10 flex flex-col gap-y-6 justify-center">
                 {options.map((option, index) => (
                     <div key={question + option + index} className="flex items-center gap-2">
                         <Radio
