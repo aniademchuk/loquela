@@ -19,7 +19,7 @@ const Navbar = () => {
         <nav className="px-0 md:px-32 lg:px-40 xxl:px-52 bg-white w-full z-20 top-0 start-0 border-b border-gray-200 ">
             <div className="flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-                    <img src="/loquela-logo.png" className="h-14" alt="Loquela Logo" />
+                    <img src={`${process.env.PUBLIC_URL}/loquela-logo.png`} className="h-14" alt="Loquela Logo" />
                 </Link>
                 <div className="flex flex-col xs:flex-row items-center md:order-2 xs:space-x-4 md:space-x-3 rtl:space-x-reverse">
                     <Dropdown

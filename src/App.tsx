@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import AuthRoute from "./components/auth/AuthRoute";
 import EntryTest from "./pages/EntryTest";
 import Home from "./pages/Home";
@@ -27,7 +27,7 @@ function App() {
     }, [i18n]);
 
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Toaster position="bottom-right" />
             <Routes>
                 <Route path="/" element={<Welcome />} />
@@ -91,7 +91,7 @@ function App() {
                 />
                 <Route path="*" element={<div>Page not found</div>} />
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 

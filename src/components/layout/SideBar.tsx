@@ -42,7 +42,11 @@ const SideBar = ({ children }: SideNavBarProps) => {
                                 </svg>
                             </button>
                             <Link to="/home" className="flex ms-2 md:me-24">
-                                <img src="/loquela-logo.png" className="h-14" alt="Loquela Logo" />
+                                <img
+                                    src={`${process.env.PUBLIC_URL}/loquela-logo.png`}
+                                    className="h-14"
+                                    alt="Loquela Logo"
+                                />
                             </Link>
                         </div>
                     </div>
@@ -57,7 +61,7 @@ const SideBar = ({ children }: SideNavBarProps) => {
             >
                 <>
                     <Link to="/home" className="md:flex ms-14 hidden">
-                        <img src="/loquela-logo.png" className="h-14" alt="Loquela Logo" />
+                        <img src={`${process.env.PUBLIC_URL}/loquela-logo.png`} className="h-14" alt="Loquela Logo" />
                     </Link>
                     <hr className="h-px mt-0 md:mt-2 bg-gray-200 border-0" />
                     <div className="h-full mt-2 px-3 pb-4 overflow-y-auto bg-white">

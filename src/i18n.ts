@@ -9,6 +9,9 @@ i18n.use(HttpBackend)
     .init({
         fallbackLng: "en",
         debug: true,
+        backend: {
+            loadPath: "/loquela/locales/{{lng}}/translation.json",
+        },
         interpolation: {
             escapeValue: false,
         },
