@@ -16,6 +16,7 @@ import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./firebase/config";
 import { useTranslation } from "react-i18next";
 import { getLanguage } from "./helper/LocalStoreHelper";
+import PageNotFound from "./pages/PageNotFound";
 
 initializeApp(firebaseConfig);
 
@@ -89,7 +90,7 @@ function App() {
                         </AuthRoute>
                     }
                 />
-                <Route path="*" element={<div>Page not found</div>} />
+                <Route path="*" element={<PageNotFound />} />
             </Routes>
         </HashRouter>
     );
