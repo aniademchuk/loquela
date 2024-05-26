@@ -13,7 +13,6 @@ import Grammar from "./pages/Grammar";
 import Writing from "./pages/Writing";
 import Reading from "./pages/Reading";
 import Support from "./pages/Support";
-import Recommendations from "./pages/Recommendations";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./firebase/config";
 import { useTranslation } from "react-i18next";
@@ -80,14 +79,6 @@ function App() {
                     element={
                         <AuthRoute>
                             <EntryTest />
-                        </AuthRoute>
-                    }
-                />
-                <Route
-                    path="/recommendations"
-                    element={
-                        <AuthRoute>
-                            <Recommendations />
                         </AuthRoute>
                     }
                 />

@@ -155,10 +155,10 @@ const RegisterForm = () => {
             </div>
             <button
                 type="submit"
-                className={`mt-4 space-x-2 text-white ${termsAccepted ? "bg-cyan-700 hover:bg-cyan-800" : "bg-gray-600 cursor-not-allowed"} focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
+                className={`mt-4 space-x-2 items-center text-white ${termsAccepted ? "bg-cyan-700 hover:bg-cyan-800" : "bg-gray-600 cursor-not-allowed"} focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
                 disabled={!termsAccepted}
             >
-                <span>Register</span> {loading && <Spinner />}
+                <span className="text-[16px]">Create New Account</span> {loading && <Spinner />}
             </button>
         </form>
     );

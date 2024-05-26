@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Tooltip } from "flowbite-react";
 
-const UserPreferencesButton = () => {
+const UserSettingsButton = () => {
     const navigate = useNavigate();
     const location = useLocation().pathname;
 
@@ -35,4 +35,4 @@ const UserPreferencesButton = () => {
     );
 };
 
-export default UserPreferencesButton;
+export default UserSettingsButton;

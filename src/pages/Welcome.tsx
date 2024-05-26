@@ -92,7 +92,7 @@ const Welcome = () => {
     return (
         <>
             <Navbar />
-            <div className="flex flex-col ">
+            <div className="px-6 sm:px-12 md:px-20 lg:px-40 xxl:px-52 flex flex-col ">
                 <div className="mt-16 text-center">
                     <h1 className="text-[56px] font-extrabold tracking-tight leading-none">
                         Practice <span className="text-cyan-600">More</span>, Speak{" "}
@@ -102,7 +102,7 @@ const Welcome = () => {
                         Let's improve your language skills!
                     </h3>
                 </div>
-                <div className="px-72 mt-14 grid grid-cols-3 gap-x-6 gap-y-10">
+                <div className="mt-14 grid grid-cols-1 md:grid-cols-2 xxl:grid-cols-3 gap-x-6 gap-y-10">
                     {featuresCards.map((feature, index) => (
                         <Card className="rounded-2xl space-y-2" key={feature.heading + index}>
                             <div className="flex items-center space-x-4">
@@ -117,21 +117,19 @@ const Welcome = () => {
                     <h3 className="text-[44px] text-center font-extrabold tracking-tight leading-none">
                         Frequently asked questions:
                     </h3>
-                    <div className="px-72">
-                        <Accordion>
-                            {faqAccordion.map((question, index) => (
-                                <Accordion.Panel key={index}>
-                                    <Accordion.Title>{question.title}</Accordion.Title>
-                                    <Accordion.Content>
-                                        <p className="mb-2 text-gray-500">{question.content}</p>
-                                    </Accordion.Content>
-                                </Accordion.Panel>
-                            ))}
-                        </Accordion>
-                    </div>
+                    <Accordion>
+                        {faqAccordion.map((question, index) => (
+                            <Accordion.Panel key={index}>
+                                <Accordion.Title>{question.title}</Accordion.Title>
+                                <Accordion.Content>
+                                    <p className="mb-2 text-gray-500">{question.content}</p>
+                                </Accordion.Content>
+                            </Accordion.Panel>
+                        ))}
+                    </Accordion>
                 </div>
                 <div className="my-24">
-                    <div className="px-72 text-center">
+                    <div className="text-center">
                         <div className="text-[36px] font-normal tracking-tight leading-none text-gray-500">
                             Please note, Loquela is not a substitute for a teacher. It's a practice tool designed to
                             help you improve various language skills through different types of exercises.

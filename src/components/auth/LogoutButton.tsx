@@ -1,20 +1,49 @@
 import { getAuth, signOut } from "firebase/auth";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { Button, Modal, Tooltip } from "flowbite-react";
+import React, { useState } from "react";
+import { FaDoorOpen } from "react-icons/fa";
 
 const LogoutButton = () => {
+    const [openModal, setOpenModal] = useState<boolean>(false);
     const auth = getAuth();
+    const navigate = useNavigate();
+
     const handleLogout = () => {
         signOut(auth)
-            .then(() => console.log("Success"))
-            .catch((err) => console.log(err.message));
+            .then(() => {
+                navigate("/login");
+            })
+            .catch(() => toast.error("Something went wrong. Please try again."));
     };
 
     return (
-        <button
-            onClick={handleLogout}
-            className="px-4 py-2 w-40 rounded-2xl bg-blue-600 hover:bg-blue-800 text-white text-2xl"
-        >
-            Log Out
-        </button>
+        <>
+            {/* eslint-disable-next-line react/style-prop-object */}
+            <Tooltip content="Log Out" style="light">
+                <button className="p-2 rounded-lg group hover:bg-gray-100" onClick={() => setOpenModal(true)}>
+                    <FaDoorOpen size={26} className="text-gray-500 hover:text-gray-900" />
+                </button>
+            </Tooltip>
+            <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup>
+                <Modal.Header />
+                <Modal.Body>
+                    <div className="text-center">
+                        <FaDoorOpen className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+                        <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                            Are you sure you want to log out?
+                        </h3>
+                        <div className="flex justify-center gap-4">
+                            <Button onClick={handleLogout}>Yes, I'm sure</Button>
+                            <Button color="gray" onClick={() => setOpenModal(false)}>
+                                No, cancel
+                            </Button>
+                        </div>
+                    </div>
+                </Modal.Body>
+            </Modal>
+        </>
     );
 };
 
