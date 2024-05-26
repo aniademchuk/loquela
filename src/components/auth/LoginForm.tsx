@@ -39,7 +39,7 @@ const LoginForm = () => {
                 <input
                     type="email"
                     id="email"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5"
                     placeholder="example@gmail.com"
                     onChange={(event) => setEmail(event.target.value)}
                     required
@@ -52,14 +52,14 @@ const LoginForm = () => {
                 <input
                     type="password"
                     id="password"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5"
                     onChange={(event) => setPassword(event.target.value)}
                     required
                 />
             </div>
             <button
                 type="submit"
-                className={`mt-4 space-x-2 text-white ${email === "" || password === "" ? "bg-gray-600 cursor-not-allowed" : "bg-cyan-700 hover:bg-cyan-800"} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 text-center`}
+                className={`mt-4 space-x-2 text-white ${email === "" || password === "" ? "bg-gray-600 cursor-not-allowed" : "bg-cyan-700 hover:bg-cyan-800"} focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-md px-5 py-2.5 text-center`}
                 disabled={email === "" && password === ""}
             >
                 <span>Login</span> {loading && <Spinner />}

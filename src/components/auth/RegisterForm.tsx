@@ -88,7 +88,7 @@ const RegisterForm = () => {
                 <input
                     type="email"
                     id="email"
-                    className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5"
                     placeholder="example@gmail.com"
                     onChange={(event) => {
                         setUser((prevState) => ({ ...prevState, email: event.target.value }));
@@ -101,9 +101,9 @@ const RegisterForm = () => {
                     Your name
                 </label>
                 <input
-                    type="name"
+                    type="text"
                     id="name"
-                    className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5"
                     placeholder="Mykhailo Lebigovich"
                     onChange={(event) => {
                         setUser((prevState) => ({ ...prevState, fullName: event.target.value }));
@@ -119,7 +119,7 @@ const RegisterForm = () => {
                     type="password"
                     id="password"
                     onChange={(event) => setPassword(event.target.value)}
-                    className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5"
                     required
                 />
             </div>
@@ -131,7 +131,7 @@ const RegisterForm = () => {
                     type="password"
                     id="repeat-password"
                     onChange={(event) => setConfirmPassword(event.target.value)}
-                    className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5"
                     required
                 />
             </div>
@@ -141,21 +141,21 @@ const RegisterForm = () => {
                         id="terms"
                         type="checkbox"
                         value=""
-                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300"
+                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-cyan-300"
                         onChange={(event) => setTermsAccepted(event.target.checked)}
                         required
                     />
                 </div>
                 <label htmlFor="terms" className="ms-2 text-sm font-medium text-gray-900">
                     I agree with the{" "}
-                    <Link to="/" className="text-blue-600 hover:underline">
+                    <Link to="/" className="text-cyan-600 hover:underline">
                         terms and conditions
                     </Link>
                 </label>
             </div>
             <button
                 type="submit"
-                className={`mt-4 space-x-2 text-white ${termsAccepted ? "bg-cyan-700 hover:bg-cyan-800" : "bg-gray-600 cursor-not-allowed"} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
+                className={`mt-4 space-x-2 text-white ${termsAccepted ? "bg-cyan-700 hover:bg-cyan-800" : "bg-gray-600 cursor-not-allowed"} focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
                 disabled={!termsAccepted}
             >
                 <span>Register</span> {loading && <Spinner />}
