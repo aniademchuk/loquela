@@ -84,7 +84,7 @@ const faqAccordion: FAQAccordion[] = [
     {
         title: "I have additional questions.",
         content:
-            "If you have any additional questions, please do not hesitate to contact the developer via email at anyutkadem@gmail.com. We are here to help and ensure you have the best learning experience with Loquela.",
+            "If you have any additional questions, please do not hesitate to contact the developer via email at ia.03.demchuk.anna@gmail.com. We are here to help and ensure you have the best learning experience with Loquela.",
     },
 ];
 

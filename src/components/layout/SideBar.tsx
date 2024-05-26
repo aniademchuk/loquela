@@ -4,12 +4,14 @@ import LanguageButtonSideBar from "../buttons/LanguageButtonSideBar";
 import UserSettingsButton from "../buttons/UserSettingsButton";
 import { useTranslation } from "react-i18next";
 import LogoutButton from "../auth/LogoutButton";
+import { Button, Modal } from "flowbite-react";
 
 interface SideNavBarProps {
     children: React.ReactNode;
 }
 
 const SideBar = ({ children }: SideNavBarProps) => {
+    const [openModal, setOpenModal] = useState(false);
     const [isSideNavOpen, setSideNavOpen] = useState<boolean>(false);
     const location = useLocation().pathname;
     const { t } = useTranslation();
@@ -177,12 +179,12 @@ const SideBar = ({ children }: SideNavBarProps) => {
                             </li>
                             <hr className="h-px my-8 bg-gray-200 border-0" />
                             <li>
-                                <Link
-                                    to="/support"
-                                    className={`flex items-center p-2 rounded-lg group ${location === "/support" ? "text-sky-900 bg-sky-50" : "hover:bg-gray-100 text-gray-900"}`}
+                                <div
+                                    className="flex items-center p-2 rounded-lg group hover:bg-gray-100 text-gray-900 hover:cursor-pointer"
+                                    onClick={() => setOpenModal(true)}
                                 >
                                     <svg
-                                        className={`w-6 h-6  transition duration-75 ${location === "/support" ? "text-sky-700" : "text-gray-500 group-hover:text-gray-900"}`}
+                                        className="w-6 h-6 transition duration-75 text-gray-500 group-hover:text-gray-900"
                                         aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor"
@@ -193,7 +195,22 @@ const SideBar = ({ children }: SideNavBarProps) => {
                                         <path d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z" />
                                     </svg>
                                     <span className="flex-1 ms-3 whitespace-nowrap">{t("sidebar.support")}</span>
-                                </Link>
+                                </div>
+                                <Modal show={openModal} onClose={() => setOpenModal(false)}>
+                                    <Modal.Header>Support</Modal.Header>
+                                    <Modal.Body>
+                                        <p className="m-6 text-lg leading-relaxed text-gray-600">
+                                            If you have any additional questions, please do not hesitate to contact the
+                                            developer via email at ia.03.demchuk.anna@gmail.com. We are here to help and
+                                            ensure you have the best learning experience with Loquela.
+                                        </p>
+                                    </Modal.Body>
+                                    <Modal.Footer className="justify-center">
+                                        <Button color="gray" onClick={() => setOpenModal(false)}>
+                                            Got It
+                                        </Button>
+                                    </Modal.Footer>
+                                </Modal>
                             </li>
                         </ul>
                     </div>

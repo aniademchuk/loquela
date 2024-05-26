@@ -112,7 +112,7 @@ const Home = () => {
                         ))}
                     </div>
                     <div>
-                        <figure className="mx-auto max-w-screen-md text-center">
+                        <figure className="mt-10 mx-auto max-w-screen-md text-center">
                             <svg
                                 className="mx-auto mb-3 h-10 w-10 text-gray-400 dark:text-gray-600"
                                 aria-hidden="true"
