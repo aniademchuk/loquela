@@ -1,11 +1,8 @@
 import { Card } from "flowbite-react";
-import { useTranslation } from "react-i18next";
 import React from "react";
 import { PiEmptyThin } from "react-icons/pi";
 
 const NoEntryTestResultsCard = () => {
-    const { t } = useTranslation();
-
     return (
         <Card className="rounded-2xl">
             <div className="flex flex-col items-center">

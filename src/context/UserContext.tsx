@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { UserMain } from "../interfaces/user";
 import { getAuth } from "firebase/auth";
 import { get, getDatabase, ref } from "firebase/database";
@@ -12,6 +12,32 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     const auth = getAuth();
     const db = getDatabase();
 
+    const fetchUserData = useCallback(
+        async (userId: string) => {
+            const userMain: Partial<UserMain> = {};
+
+            const fetchSubObject = async (key: keyof UserMain) => {
+                const dataRef = ref(db, `${key}/${userId}`);
+                const snapshot = await get(dataRef);
+                if (snapshot.exists()) {
+                    userMain[key] = snapshot.val();
+                } else {
+                    console.log(`No data available for ${key}`);
+                }
+            };
+
+            await Promise.all([
+                fetchSubObject("users"),
+                fetchSubObject("user_practice_stats"),
+                fetchSubObject("user_lang_level"),
+                fetchSubObject("user_reminders"),
+            ]);
+
+            setUserData(userMain as UserMain);
+        },
+        [db, setUserData]
+    );
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
@@ -22,30 +48,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         });
 
         return () => unsubscribe();
-    }, [auth]);
-
-    const fetchUserData = async (userId: string) => {
-        const userMain: Partial<UserMain> = {};
-
-        const fetchSubObject = async (key: keyof UserMain) => {
-            const dataRef = ref(db, `${key}/${userId}`);
-            const snapshot = await get(dataRef);
-            if (snapshot.exists()) {
-                userMain[key] = snapshot.val();
-            } else {
-                console.log(`No data available for ${key}`);
-            }
-        };
-
-        await Promise.all([
-            fetchSubObject("users"),
-            fetchSubObject("user_practice_stats"),
-            fetchSubObject("user_lang_level"),
-            fetchSubObject("user_reminders"),
-        ]);
-
-        setUserData(userMain as UserMain);
-    };
+    }, [auth, fetchUserData]);
 
     return <UserContext.Provider value={{ userData, setUserData }}>{children}</UserContext.Provider>;
 };

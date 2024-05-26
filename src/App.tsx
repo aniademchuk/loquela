@@ -89,6 +89,7 @@ function App() {
                         </AuthRoute>
                     }
                 />
+                <Route path="*" element={<div>Page not found</div>} />
             </Routes>
         </BrowserRouter>
     );
