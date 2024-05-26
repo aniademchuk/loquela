@@ -2,6 +2,7 @@ import React, { createContext, useCallback, useContext, useEffect, useState } fr
 import { UserMain } from "../interfaces/user";
 import { getAuth } from "firebase/auth";
 import { get, getDatabase, ref } from "firebase/database";
+import toast from "react-hot-toast";
 
 const UserContext = createContext<
     { userData: UserMain | null; setUserData: React.Dispatch<React.SetStateAction<UserMain | null>> } | undefined
@@ -22,7 +23,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
                 if (snapshot.exists()) {
                     userMain[key] = snapshot.val();
                 } else {
-                    console.log(`No data available for ${key}`);
+                    toast.error(`No data available for ${key}`);
                 }
             };
 
