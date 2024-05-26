@@ -1,0 +1,20 @@
+{
+  "sidebar": {
+    "home": "Startseite",
+    "progress": "Fortschritt",
+    "grammar": "Grammatik",
+    "writing": "Schreiben",
+    "reading": "Lesen",
+    "test": "Test",
+    "support": "Unterstützung"
+  },
+  "language": {
+    "en": "Englisch",
+    "ua": "Ukrainisch",
+    "de": "Deutsch",
+    "interface": "Interface Sprache"
+  },
+  "noTestCard": {
+    "main": "Es scheint, dass Sie keine Ergebnisse des Einstufungstests für diese Sprache haben. Bitte absolvieren Sie den Test und kehren Sie dann zu dieser Seite zurück."
+  }
+}

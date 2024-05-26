@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/aniademchuk/loquela/static/css/main.296126ab.css",
+    "main.js": "/aniademchuk/loquela/static/js/main.4e24d536.js",
+    "index.html": "/aniademchuk/loquela/index.html",
+    "static/media/getFetch.cjs": "/aniademchuk/loquela/static/media/getFetch.c4cca45e22bc1b2c7d0d.cjs",
+    "main.296126ab.css.map": "/aniademchuk/loquela/static/css/main.296126ab.css.map",
+    "main.4e24d536.js.map": "/aniademchuk/loquela/static/js/main.4e24d536.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.296126ab.css",
+    "static/js/main.4e24d536.js"
+  ]
+}
