@@ -16,12 +16,12 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="bg-white w-full z-20 top-0 start-0 border-b border-gray-200 ">
+        <nav className="px-32 bg-white w-full z-20 top-0 start-0 border-b border-gray-200 ">
             <div className="flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="/loquela-logo.png" className="h-14" alt="Loquela Logo" />
                 </Link>
-                <div className="flex flex-col xs:flex-row items-center md:order-2 xs:space-x-4 md:space-x-0 rtl:space-x-reverse">
+                <div className="flex flex-col xs:flex-row items-center md:order-2 xs:space-x-4 md:space-x-3 rtl:space-x-reverse">
                     <Dropdown
                         label={
                             <img
@@ -55,7 +55,7 @@ const Navbar = () => {
                     </Dropdown>
                     <button
                         type="button"
-                        className="text-gray-700 hover:text-black font-medium text-md px-4 py-2 text-center"
+                        className="text-gray-700 hover:text-black font-semibold text-md px-4 py-2 text-center"
                         onClick={() => navigate("/login")}
                     >
                         Login
@@ -63,7 +63,7 @@ const Navbar = () => {
                     <button
                         type="button"
                         className="text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:outline-none
-                            focus:ring-blue-300 font-medium rounded-lg text-md px-4 py-2 text-center"
+                            focus:ring-blue-300 font-semibold rounded-lg text-md px-4 py-2 text-center"
                         onClick={() => navigate("/register")}
                     >
                         Register

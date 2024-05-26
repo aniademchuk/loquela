@@ -31,7 +31,7 @@ const LoginForm = () => {
 
     return (
         <form className="max-w-md mx-auto" onSubmit={handleLogin}>
-            <h1 className="text-4xl font-bold mt-12 mb-20">Login Into Your Account</h1>
+            <h1 className="text-4xl font-bold mt-20 mb-10">Log In</h1>
             <div className="mb-5">
                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
                     Your email
