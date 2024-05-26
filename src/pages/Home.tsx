@@ -1,4 +1,4 @@
-import SideBar from "../components/SideBar";
+import SideBar from "../components/layout/SideBar";
 import { useUser } from "../context/UserContext";
 import { Spinner } from "flowbite-react";
 import LogoutButton from "../components/auth/LogoutButton";

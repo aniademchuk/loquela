@@ -1,14 +1,14 @@
-import { UserMain } from "../interfaces/user";
+import { UserMain } from "../../interfaces/user";
 import { HttpsCallable } from "firebase/functions";
-import { AnswerReviewRequest, DescriptionData } from "../interfaces/AiRequests";
+import { AnswerReviewRequest, DescriptionData } from "../../interfaces/AiRequests";
 import React, { useState } from "react";
-import { formatUserLevel } from "../helper/LevelFormatter";
-import { formatUserLanguage } from "../helper/LangFormatter";
-import { getLanguage } from "../helper/LocalStoreHelper";
+import { formatUserLevel } from "../../helper/LevelFormatter";
+import { formatUserLanguage } from "../../helper/LangFormatter";
+import { getLanguage } from "../../helper/LocalStoreHelper";
 import toast from "react-hot-toast";
 import { Button, Card, Label, Spinner, Textarea, Tooltip } from "flowbite-react";
 import { FaRegCircleQuestion } from "react-icons/fa6";
-import NoEntryTestResultsCard from "./NoEntryTestResultsCard";
+import NoEntryTestResultsCard from "../NoEntryTestResultsCard";
 
 type Page = "writing" | "reading" | "grammar";
 
@@ -96,7 +96,9 @@ const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
         await generateQuestion(data)
             .then((response) => {
                 setTask(response.data);
-                toast.success("Review Generated Successfully. If you don't see it, please scroll down.");
+                toast.success("Exercise generated successfully, if you don't see it, please scroll down.", {
+                    duration: 5000,
+                });
             })
             .catch(() => {
                 toast.error("Something went wrong, please contact support or try again.");
@@ -128,7 +130,9 @@ const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
                 if (container) {
                     container.innerHTML = response.data;
                 }
-                toast.success("Review Generated Successfully. If you don't see it, please scroll down.");
+                toast.success("Review generated successfully, if you don't see it, please scroll down.", {
+                    duration: 5000,
+                });
             })
             .catch(() => {
                 toast.error("Something went wrong, please contact support or try again.");
@@ -158,6 +162,9 @@ const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
                     {descriptionData.paragraphs.map((paragraph, index) => (
                         <div key={paragraph + index}>{paragraph}</div>
                     ))}
+                    <div className="pt-6 font-semibold text-cyan-700">
+                        Note: You can hide these details by clicking the question mark next to the heading.
+                    </div>
                 </div>
                 {hasLevel && (
                     <div className="flex justify-center">

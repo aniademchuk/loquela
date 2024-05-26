@@ -1,4 +1,4 @@
-import SideBar from "../components/SideBar";
+import SideBar from "../components/layout/SideBar";
 import EnglishEntryTest from "../components/entry-tests/EnglishEntryTest";
 import { useUser } from "../context/UserContext";
 import UkrainianEntryTest from "../components/entry-tests/UkrainianEntryTest";

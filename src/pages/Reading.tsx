@@ -1,10 +1,10 @@
 import { Spinner } from "flowbite-react";
-import SideBar from "../components/SideBar";
+import SideBar from "../components/layout/SideBar";
 import { useUser } from "../context/UserContext";
 import React from "react";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { AnswerReviewRequest, DescriptionData, ReadingQuestionRequest } from "../interfaces/AiRequests";
-import ExerciseWrapper from "../components/ExerciseWrapper";
+import ExerciseWrapper from "../components/layout/ExerciseWrapper";
 
 const descriptionData: DescriptionData = {
     mainHeading: "Welcome to Reading Practice!",
@@ -15,7 +15,6 @@ const descriptionData: DescriptionData = {
         "We recommend practicing each given topic diligently and not skipping any questions. To maximize your learning, avoid copying text directly when answering questions. Instead, type everything manually to better practice and understand the material.",
         "Submit your answers to receive a comprehensive review of what you did correctly and areas where you can improve.",
         "We wish you good luck and lots of fun on your journey to improving your reading skills!",
-        "Note: You can hide these details by clicking the question mark next to the heading.",
     ],
 };
 

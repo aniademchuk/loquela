@@ -1,5 +1,5 @@
 import { Button, Card } from "flowbite-react";
-import SideBar from "../components/SideBar";
+import SideBar from "../components/layout/SideBar";
 
 const Recommendations = () => {
     return (

@@ -1,4 +1,4 @@
-import SideBar from "../components/SideBar";
+import SideBar from "../components/layout/SideBar";
 import NotificationsCard from "../components/user-settings/NotificationsCard";
 import GeneralCard from "../components/user-settings/GeneralCard";
 import { Spinner } from "flowbite-react";

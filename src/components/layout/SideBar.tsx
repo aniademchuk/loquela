@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import LanguageButtonSideBar from "./buttons/LanguageButtonSideBar";
-import ThemeButton from "./buttons/ThemeButton";
-import UserPreferencesButton from "./buttons/UserPreferencesButton";
+import LanguageButtonSideBar from "../buttons/LanguageButtonSideBar";
+import ThemeButton from "../buttons/ThemeButton";
+import UserPreferencesButton from "../buttons/UserPreferencesButton";
 import { useTranslation } from "react-i18next";
 
 interface SideNavBarProps {
@@ -224,7 +224,9 @@ const SideBar = ({ children }: SideNavBarProps) => {
                     <hr className="h-px bg-gray-200 border-0" />
                     <div className="flex flex-row items-center justify-center gap-8 py-1.5">
                         <LanguageButtonSideBar />
-                        <ThemeButton />
+                        <div className="hidden">
+                            <ThemeButton />
+                        </div>
                         <UserPreferencesButton />
                     </div>
                 </div>

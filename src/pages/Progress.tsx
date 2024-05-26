@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Spinner, useThemeMode } from "flowbite-react";
 import ApexCharts from "apexcharts";
 import Chart from "react-apexcharts";
-import SideBar from "../components/SideBar";
+import SideBar from "../components/layout/SideBar";
 import { useUser } from "../context/UserContext";
 import { formatUserLevel } from "../helper/LevelFormatter";
 
@@ -16,7 +16,7 @@ const Progress = () => {
             <>
                 <span className="flex mb-10 text-4xl font-bold justify-center">Your Progress</span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 xxl:grid-cols-4 gap-10">
-                    <Card className="border-2 hover:border-2 hover:border-blue-800">
+                    <Card className="border-2 hover:border-2 hover:border-cyan-600">
                         <div className="flex flex-row justify-between">
                             <h5 className="text-xl font-normal text-gray-500">Estimated Level</h5>
                             <svg
@@ -40,7 +40,7 @@ const Progress = () => {
                             </div>
                         </div>
                     </Card>
-                    <Card className="border-2 hover:border-2 hover:border-blue-800">
+                    <Card className="border-2 hover:border-2 hover:border-cyan-600">
                         <div className="flex flex-row justify-between">
                             <h5 className="text-xl font-normal text-gray-500">Current Streak</h5>
                             <svg
@@ -63,7 +63,7 @@ const Progress = () => {
                             <div className="text-xl pt-2.5 font-normal text-gray-500">days</div>
                         </div>
                     </Card>
-                    <Card className="border-2 hover:border-2 hover:border-blue-800">
+                    <Card className="border-2 hover:border-2 hover:border-cyan-600">
                         <div className="flex flex-row justify-between">
                             <h5 className="text-xl font-normal text-gray-500">Total Practiced</h5>
                             <svg
@@ -86,7 +86,7 @@ const Progress = () => {
                             <div className="text-xl pt-2.5 font-normal text-gray-500">days</div>
                         </div>
                     </Card>
-                    <Card className="border-2 hover:border-2 hover:border-blue-800">
+                    <Card className="border-2 hover:border-2 hover:border-cyan-600">
                         <div className="flex flex-row justify-between">
                             <h5 className="text-xl font-normal text-gray-500">Total Lessons</h5>
                             <svg
@@ -123,7 +123,7 @@ export default Progress;
 
 const SalesThisWeek = () => {
     return (
-        <Card className="border-2 hover:border-2 hover:border-blue-800">
+        <Card className="border-2 hover:border-2 hover:border-cyan-600">
             <div className="mb-4 flex items-center justify-between">
                 <div className="shrink-0">
                     <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
@@ -273,7 +273,7 @@ const SalesChart = () => {
         {
             name: "Total Lessons",
             data: [2, 6, 10, 14, 14, 14, 20],
-            color: "#1A56DB",
+            color: "#0891b2",
         },
     ];
 

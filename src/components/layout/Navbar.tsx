@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Dropdown } from "flowbite-react";
-import { getLanguage, setLanguage } from "../helper/LocalStoreHelper";
+import { getLanguage, setLanguage } from "../../helper/LocalStoreHelper";
 import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
