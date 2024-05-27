@@ -1,29 +1,114 @@
-import { Card, Spinner } from "flowbite-react";
+import { Button, Card, Modal, Spinner } from "flowbite-react";
 import React, { useState } from "react";
 import QuestionCard from "../QuestionCard";
 import { Question } from "../../interfaces/Question";
+import { getFunctions, httpsCallable } from "firebase/functions";
+import toast from "react-hot-toast";
+import { UserMain } from "../../interfaces/user";
+import { formatUserLevel } from "../../helper/LevelFormatter";
 
-type EntryTestType = "english" | "german" | "ukrainian";
+type TestType = "english" | "german" | "ukrainian";
 
-interface EntryTestWrapperProps {
-    entryTestType: EntryTestType;
-    questionsArray: Question[];
-    testTitle: string;
+interface CalculateUserLangLevelRequest {
+    testResult: number;
+    testType: TestType;
 }
 
-const EntryTestWrapper: React.FC<EntryTestWrapperProps> = ({ entryTestType, testTitle, questionsArray }) => {
+interface EntryTestWrapperProps {
+    entryTestType: TestType;
+    questionsArray: Question[];
+    testTitle: string;
+    userData: UserMain;
+    setUserData: React.Dispatch<React.SetStateAction<UserMain | null>>;
+}
+
+const EntryTestWrapper: React.FC<EntryTestWrapperProps> = ({
+    entryTestType,
+    testTitle,
+    questionsArray,
+    userData,
+    setUserData,
+}) => {
     const [result, setResult] = useState<number>(0);
     const [loading, setLoading] = useState<boolean>(false);
+    const [openModal, setOpenModal] = useState(false);
 
-    console.log(result);
+    const functions = getFunctions();
+    const calcAndUpdateLangLevel = httpsCallable<CalculateUserLangLevelRequest, number>(
+        functions,
+        "calculateUserLangLevel"
+    );
 
-    const handleTestFinish = () => {
-        // TODO Add cloud function call to calculate and update the lang value in DB.
+    const handleTestFinish = async () => {
         setLoading(true);
+        const data: CalculateUserLangLevelRequest = {
+            testType: entryTestType,
+            testResult: result,
+        };
+
+        try {
+            const response = await calcAndUpdateLangLevel(data);
+            const level = response.data;
+
+            const updatedUserData = getUpdatedUserData(userData, entryTestType, level);
+
+            setUserData(updatedUserData);
+
+            toast.success(`You successfully passed entry test in ${entryTestType}.`);
+        } catch (error) {
+            toast.error("Something went wrong, please try again.");
+        } finally {
+            setLoading(false);
+            setOpenModal(true);
+        }
+    };
+
+    const getUpdatedUserData = (userData: UserMain, testType: TestType, level: number) => {
+        switch (testType) {
+            case "english":
+                return {
+                    ...userData,
+                    user_lang_level: {
+                        ...userData.user_lang_level,
+                        english: level,
+                    },
+                };
+            case "ukrainian":
+                return {
+                    ...userData,
+                    user_lang_level: {
+                        ...userData.user_lang_level,
+                        ukrainian: level,
+                    },
+                };
+            case "german":
+                return {
+                    ...userData,
+                    user_lang_level: {
+                        ...userData.user_lang_level,
+                        german: level,
+                    },
+                };
+            default:
+                return userData;
+        }
+    };
+
+    const getUserLevel = () => {
+        switch (entryTestType) {
+            case "english":
+                return formatUserLevel(userData.user_lang_level.english);
+            case "ukrainian":
+                return formatUserLevel(userData.user_lang_level.ukrainian);
+            case "german":
+                return formatUserLevel(userData.user_lang_level.german);
+            default:
+                formatUserLevel(userData.user_lang_level.english);
+        }
     };
 
     return (
-        <div>
+        <React.Fragment>
             <p className="py-6 flex justify-center text-4xl font-medium text-gray-900">{testTitle}</p>
             <Card className="rounded-2xl border-cyan-600">
                 {questionsArray.map((question, index) => (
@@ -50,7 +135,23 @@ const EntryTestWrapper: React.FC<EntryTestWrapperProps> = ({ entryTestType, test
                     </button>
                 </div>
             </Card>
-        </div>
+            <Modal show={openModal} size="lg" onClose={() => setOpenModal(false)} popup>
+                <Modal.Header />
+                <Modal.Body>
+                    <div className="text-center space-y-6">
+                        <h3 className="mb-5 text-xl font-medium text-gray-700">
+                            🎉 Congratulations on finishing the test! 🎉 <div>Your estimated level is:</div>
+                        </h3>
+                        <div className="text-[50px] font-bold text-black">{getUserLevel()}</div>
+                        <div className="flex justify-center content-center gap-4">
+                            <Button onClick={() => setOpenModal(false)}>
+                                <span className="text-lg">OK</span>
+                            </Button>
+                        </div>
+                    </div>
+                </Modal.Body>
+            </Modal>
+        </React.Fragment>
     );
 };
 

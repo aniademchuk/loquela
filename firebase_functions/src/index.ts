@@ -9,6 +9,7 @@ import { updateUserRemindersData } from "./user-management/update-user-reminders
 import { deleteUserAccount } from "./user-management/delete-account";
 import { getGrammarQuestion } from "./ai-requests/grammar/get-grammar-question";
 import { checkGrammarAnswer } from "./ai-requests/grammar/check-grammar";
+import { calculateUserLangLevel } from "./entry-test/calculate-user-lang-level";
 
 admin.initializeApp();
 
@@ -23,4 +24,5 @@ export {
     deleteUserAccount,
     getGrammarQuestion,
     checkGrammarAnswer,
+    calculateUserLangLevel,
 };

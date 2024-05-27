@@ -8,7 +8,7 @@ import { ukrainianTestQuestions } from "../constants/UkrainianTestQuestions";
 import { germanTestQuestions } from "../constants/GermanTestQuestions";
 
 const EntryTest = () => {
-    const { userData } = useUser();
+    const { userData, setUserData } = useUser();
 
     if (!userData) {
         return (
@@ -27,6 +27,8 @@ const EntryTest = () => {
                             entryTestType="english"
                             questionsArray={englishTestQuestions}
                             testTitle="English Entry Test:"
+                            userData={userData}
+                            setUserData={setUserData}
                         />
                     )}
                     {userData.users.learnLanguage === "Ukrainian" && (
@@ -34,6 +36,8 @@ const EntryTest = () => {
                             entryTestType="ukrainian"
                             questionsArray={ukrainianTestQuestions}
                             testTitle="Тест на знання української мови:"
+                            userData={userData}
+                            setUserData={setUserData}
                         />
                     )}
                     {userData.users.learnLanguage === "German" && (
@@ -41,6 +45,8 @@ const EntryTest = () => {
                             entryTestType="german"
                             questionsArray={germanTestQuestions}
                             testTitle="Deutsch Einstufungstest:"
+                            userData={userData}
+                            setUserData={setUserData}
                         />
                     )}
                 </div>
