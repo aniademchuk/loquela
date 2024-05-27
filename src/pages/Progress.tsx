@@ -1,15 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Spinner, useThemeMode } from "flowbite-react";
 import ApexCharts from "apexcharts";
 import Chart from "react-apexcharts";
 import SideBar from "../components/layout/SideBar";
 import { useUser } from "../context/UserContext";
 import { formatUserLevel } from "../helper/LevelFormatter";
+import { UserMain } from "../interfaces/user";
+import { getFunctions, httpsCallable } from "firebase/functions";
+import toast from "react-hot-toast";
+
+interface ChartDataResponse {
+    categories: string[];
+    data: number[];
+}
 
 const Progress = () => {
     const { userData } = useUser();
 
-    if (!userData) return <Spinner />;
+    if (!userData) {
+        return (
+            <div className="flex items-center justify-center h-full" style={{ minHeight: "80vh" }}>
+                <Spinner className="h-24 w-24" />
+            </div>
+        );
+    }
+
+    const getCurrentLanguageLevel = () => {
+        switch (userData.users.learnLanguage) {
+            case "English":
+                return formatUserLevel(userData.user_lang_level.english);
+            case "Ukrainian":
+                return formatUserLevel(userData.user_lang_level.ukrainian);
+            case "German":
+                return formatUserLevel(userData.user_lang_level.german);
+            default:
+                return formatUserLevel(userData.user_lang_level.english);
+        }
+    };
 
     return (
         <SideBar>
@@ -36,7 +63,7 @@ const Progress = () => {
                         </div>
                         <div className="flex flex-row justify-center gap-2">
                             <div className="text-4xl font-bold tracking-tight text-gray-900">
-                                {formatUserLevel(userData.user_lang_level.english)}
+                                {getCurrentLanguageLevel()}
                             </div>
                         </div>
                     </Card>
@@ -59,7 +86,9 @@ const Progress = () => {
                             </svg>
                         </div>
                         <div className="flex flex-row justify-center gap-2">
-                            <div className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">3</div>
+                            <div className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                {userData.user_practice_stats.daily_streak}
+                            </div>
                             <div className="text-xl pt-2.5 font-normal text-gray-500">days</div>
                         </div>
                     </Card>
@@ -82,7 +111,9 @@ const Progress = () => {
                             </svg>
                         </div>
                         <div className="flex flex-row justify-center gap-2">
-                            <div className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">8</div>
+                            <div className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                {userData.user_practice_stats.total_days_learning}
+                            </div>
                             <div className="text-xl pt-2.5 font-normal text-gray-500">days</div>
                         </div>
                     </Card>
@@ -105,14 +136,16 @@ const Progress = () => {
                             </svg>
                         </div>
                         <div className="flex flex-row justify-center gap-2">
-                            <div className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">20</div>
+                            <div className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                {userData.user_practice_stats.total_lessons}
+                            </div>
                             <div className="text-xl pt-2.5 font-normal text-gray-500">learned</div>
                         </div>
                     </Card>
                 </div>
 
                 <div className="my-10">
-                    <SalesThisWeek />
+                    <SalesThisWeek userData={userData} />
                 </div>
             </>
         </SideBar>
@@ -121,19 +154,23 @@ const Progress = () => {
 
 export default Progress;
 
-const SalesThisWeek = () => {
+interface SalesThisWeekProps {
+    userData: UserMain;
+}
+
+const SalesThisWeek: React.FC<SalesThisWeekProps> = ({ userData }) => {
     return (
         <Card className="border-2 hover:border-2 hover:border-cyan-600">
             <div className="mb-4 flex items-center justify-between">
                 <div className="shrink-0">
                     <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
-                        20
+                        {userData.user_practice_stats.total_lessons}
                     </span>
                     <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">Total Lessons</h3>
                 </div>
                 <div className="flex flex-1 items-center justify-end text-base font-bold text-green-600">
                     <div className="flex flex-row items-center gap-1">
-                        <span className="text-xl">3</span>
+                        <span className="text-xl">{userData.user_practice_stats.daily_streak}</span>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -157,6 +194,23 @@ const SalesThisWeek = () => {
 };
 
 const SalesChart = () => {
+    const functions = getFunctions();
+    const getPracticeDataForChart = httpsCallable<void, ChartDataResponse>(functions, "getPracticeDataForChart");
+    const [categories, setCategories] = useState<string[]>([]);
+    const [data, setData] = useState<number[]>([]);
+    const [loading, setLoading] = useState<boolean>(false);
+
+    const handleCharDataRequest = async () => {
+        setLoading(true);
+        getPracticeDataForChart()
+            .then((response) => {
+                setCategories(response.data.categories);
+                setData(response.data.data);
+            })
+            .catch(() => toast.error("Something went wrong, try again later. "))
+            .finally(() => setLoading(false));
+    };
+
     const { mode } = useThemeMode();
     const isDarkTheme = mode === "dark";
 
@@ -212,7 +266,7 @@ const SalesChart = () => {
             },
         },
         xaxis: {
-            categories: ["01 Feb", "02 Feb", "03 Feb", "04 Feb", "05 Feb", "06 Feb", "07 Feb"],
+            categories: categories,
             labels: {
                 style: {
                     colors: [labelColor],
@@ -272,10 +326,24 @@ const SalesChart = () => {
     const series = [
         {
             name: "Total Lessons",
-            data: [2, 6, 10, 14, 14, 14, 20],
+            data: data,
             color: "#0891b2",
         },
     ];
 
-    return <Chart height={420} options={options} series={series} type="area" />;
+    return (
+        <>
+            <div className="flex justify-center">
+                <button
+                    type="button"
+                    className="flex flex-row text-white space-x-3 bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 text-center"
+                    onClick={handleCharDataRequest}
+                >
+                    <span>Load Chart Data</span>
+                    {loading && <Spinner />}
+                </button>
+            </div>
+            <Chart height={420} options={options} series={series} type="area" />
+        </>
+    );
 };

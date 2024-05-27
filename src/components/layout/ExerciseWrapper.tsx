@@ -1,7 +1,7 @@
 import { UserMain } from "../../interfaces/user";
-import { HttpsCallable } from "firebase/functions";
+import { getFunctions, httpsCallable, HttpsCallable } from "firebase/functions";
 import { AnswerReviewRequest, DescriptionData } from "../../interfaces/AiRequests";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { formatUserLevel } from "../../helper/LevelFormatter";
 import { formatUserLanguage } from "../../helper/LangFormatter";
 import { getLanguage } from "../../helper/LocalStoreHelper";
@@ -10,11 +10,18 @@ import { Button, Card, Label, Spinner, Textarea, Tooltip } from "flowbite-react"
 import { FaRegCircleQuestion } from "react-icons/fa6";
 import NoEntryTestResultsCard from "../NoEntryTestResultsCard";
 
+interface UpdatePracticeDataResponse {
+    daily_streak: number;
+    total_lessons: number;
+    total_days_learning: number;
+}
+
 type Page = "writing" | "reading" | "grammar";
 
 interface ExerciseWrapperProps {
     pageType: Page;
     userData: UserMain;
+    setUserData: Dispatch<SetStateAction<UserMain | null>>;
     generateQuestion: HttpsCallable<any, string>;
     generateAnswerReview: HttpsCallable<AnswerReviewRequest, string>;
     descriptionData: DescriptionData;
@@ -23,10 +30,14 @@ interface ExerciseWrapperProps {
 const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
     pageType,
     userData,
+    setUserData,
     generateQuestion,
     generateAnswerReview,
     descriptionData,
 }) => {
+    const functions = getFunctions();
+    const updatePracticeData = httpsCallable<void, UpdatePracticeDataResponse>(functions, "updatePracticeData");
+
     const [chatTask, setTask] = useState<string>("");
     const [userAnswer, setUserAnswer] = useState<string>("");
     const localStorageKey = `showDetails-${pageType}`;
@@ -112,6 +123,20 @@ const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
     };
 
     const handleUserAnswerReview = async () => {
+        await updatePracticeData().then((response) => {
+            const data = response.data;
+            const newUserData: UserMain = {
+                ...userData,
+                user_practice_stats: {
+                    total_lessons: data.total_lessons,
+                    total_days_learning: data.total_days_learning,
+                    daily_streak: data.daily_streak,
+                },
+            };
+
+            setUserData(newUserData);
+        });
+
         setReviewCard({
             triggered: true,
             loading: true,

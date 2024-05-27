@@ -18,7 +18,7 @@ const descriptionData: DescriptionData = {
 };
 
 const Writing = () => {
-    const { userData } = useUser();
+    const { userData, setUserData } = useUser();
 
     const functions = getFunctions();
     const getWritingQuestion = httpsCallable<WritingQuestionRequest, string>(functions, "getWritingQuestion");
@@ -37,6 +37,7 @@ const Writing = () => {
             <ExerciseWrapper
                 pageType="writing"
                 userData={userData}
+                setUserData={setUserData}
                 generateQuestion={getWritingQuestion}
                 generateAnswerReview={checkWritingAnswer}
                 descriptionData={descriptionData}

@@ -10,6 +10,9 @@ import { deleteUserAccount } from "./user-management/delete-account";
 import { getGrammarQuestion } from "./ai-requests/grammar/get-grammar-question";
 import { checkGrammarAnswer } from "./ai-requests/grammar/check-grammar";
 import { calculateUserLangLevel } from "./entry-test/calculate-user-lang-level";
+import { updatePracticeData } from "./user-management/udpate-user-statistic";
+import { checkUserStreak } from "./user-management/check-user-streak";
+import { getPracticeDataForChart } from "./user-management/get-practice-data-for-chart";
 
 admin.initializeApp();
 
@@ -25,4 +28,7 @@ export {
     getGrammarQuestion,
     checkGrammarAnswer,
     calculateUserLangLevel,
+    updatePracticeData,
+    checkUserStreak,
+    getPracticeDataForChart,
 };

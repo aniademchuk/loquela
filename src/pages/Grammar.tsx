@@ -20,7 +20,7 @@ const descriptionData: DescriptionData = {
 };
 
 const Grammar = () => {
-    const { userData } = useUser();
+    const { userData, setUserData } = useUser();
 
     const functions = getFunctions();
     const getGrammarQuestion = httpsCallable<GrammarQuestionRequest, string>(functions, "getGrammarQuestion");
@@ -39,6 +39,7 @@ const Grammar = () => {
             <ExerciseWrapper
                 pageType="grammar"
                 userData={userData}
+                setUserData={setUserData}
                 generateQuestion={getGrammarQuestion}
                 generateAnswerReview={checkGrammarAnswer}
                 descriptionData={descriptionData}
