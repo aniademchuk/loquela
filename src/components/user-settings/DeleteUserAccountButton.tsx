@@ -4,11 +4,13 @@ import { getFunctions, httpsCallable } from "firebase/functions";
 import { useNavigate } from "react-router-dom";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import toast from "react-hot-toast";
+import { getAuth, signOut } from "firebase/auth";
 
 const DeleteUserAccountButton: React.FC = () => {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
 
+    const auth = getAuth();
     const functions = getFunctions();
     const deleteUserAccount = httpsCallable(functions, "deleteUserAccount");
     const navigate = useNavigate();
@@ -18,6 +20,7 @@ const DeleteUserAccountButton: React.FC = () => {
         deleteUserAccount()
             .then(() => {
                 toast.success("Account was successfully deleted.");
+                signOut(auth).then();
                 navigate("/");
             })
             .catch(() => {

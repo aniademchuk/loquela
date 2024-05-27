@@ -125,7 +125,7 @@ const NotificationsCard: React.FC<{ userData: UserMain; setUserData: Dispatch<Se
                     onClick={handleRemindersUpdate}
                 >
                     <span>Update</span>
-                    {loading && <Spinner size="sm" />}
+                    {loading && <Spinner size="md" />}
                 </button>
             </div>
         </Card>

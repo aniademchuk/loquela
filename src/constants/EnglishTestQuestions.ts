@@ -291,14 +291,16 @@ export const englishTestQuestions: Question[] = [
     },
     {
         description: "Question 42. Reading comprehension:",
-        question: "Why did John go to the store?",
+        question:
+            "John went to the store to buy apples. He wanted to make an apple pie for his family. The store did not have any apples left. John was disappointed. Question: Why did John go to the store?",
         options: ["To buy oranges.", "To buy apples.", "To make an apple pie.", "Because he was disappointed."],
         answer: "To buy apples.",
         points: 1,
     },
     {
         description: "Question 43. Reading comprehension:",
-        question: "How did Martin’s perception of New York change over time?",
+        question:
+            "When Martin first moved to New York, he found the city overwhelming. However, as months passed by, he adapted to the city’s fast pace and now enjoys the diverse culture and opportunities it offers. Question: How did Martin’s perception of New York change over time?",
         options: [
             "He found it overwhelming initially and now finds it boring.",
             "He first found it overwhelming, but now enjoys the city.",
@@ -307,6 +309,19 @@ export const englishTestQuestions: Question[] = [
         ],
         answer: "He first found it overwhelming, but now enjoys the city.",
         points: 2,
+    },
+    {
+        description: "Question 44. Reading comprehension:",
+        question:
+            "While numerous studies underscore the relationship between education and societal development, we must be cautious not to mistake correlation for causation. The evolution of society is the result of a complex interplay of numerous factors, of which education is undoubtedly an integral part, but not the only driving force. Question: According to the text, what is the role of education in societal development?",
+        options: [
+            "Education is the sole driving force of societal development.",
+            "Education has no role in societal development.",
+            "Education is an integral part, but not the only factor driving societal development.",
+            "The role of education in societal development is entirely misunderstood.",
+        ],
+        answer: "Education is an integral part, but not the only factor driving societal development.",
+        points: 3,
     },
     {
         description: "Read the text and answer the follow questions:",
@@ -319,18 +334,6 @@ export const englishTestQuestions: Question[] = [
         options: [],
         answer: "",
         points: 0,
-    },
-    {
-        description: "Question 44. Reading comprehension:",
-        question: "According to the text, what is the role of education in societal development?",
-        options: [
-            "Education is the sole driving force of societal development.",
-            "Education has no role in societal development.",
-            "Education is an integral part, but not the only factor driving societal development.",
-            "The role of education in societal development is entirely misunderstood.",
-        ],
-        answer: "Education is an integral part, but not the only factor driving societal development.",
-        points: 3,
     },
     {
         description: "Question 45. Reading comprehension:",

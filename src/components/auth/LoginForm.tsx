@@ -57,13 +57,15 @@ const LoginForm = () => {
                     required
                 />
             </div>
-            <button
-                type="submit"
-                className={`flex flex-row mt-4 space-x-2 text-white ${email === "" || password === "" ? "bg-gray-600 cursor-not-allowed" : "bg-cyan-700 hover:bg-cyan-800"} focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-md px-5 py-2.5 text-center`}
-                disabled={email === "" && password === ""}
-            >
-                <span>Login</span> {loading && <Spinner />}
-            </button>
+            <div className="flex justify-center">
+                <button
+                    type="submit"
+                    className={`flex flex-row mt-4 space-x-2 text-white ${email === "" || password === "" ? "bg-gray-600 cursor-not-allowed" : "bg-cyan-700 hover:bg-cyan-800"} focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-md px-5 py-2.5 text-center`}
+                    disabled={email === "" && password === ""}
+                >
+                    <span>Login</span> {loading && <Spinner />}
+                </button>
+            </div>
         </form>
     );
 };
