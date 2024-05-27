@@ -115,7 +115,7 @@ const PasswordCard = ({ auth }: { auth: Auth }) => {
                             <Button color="gray" onClick={() => setOpenModal(false)} className="px-2">
                                 Decline
                             </Button>
-                            <Button onClick={handleReauthenticateAndUpdatePassword}>
+                            <Button onClick={handleReauthenticateAndUpdatePassword} className="flex flex-row">
                                 <div>Update</div>
                                 {loading && <Spinner className="ml-2" size="sm" />}
                             </Button>

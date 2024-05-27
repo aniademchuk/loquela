@@ -45,7 +45,7 @@ const DeleteUserAccountButton: React.FC = () => {
                         </h3>
                         <div className="mt-10 flex justify-center gap-4">
                             <Button color="failure" onClick={handleDeleteUser}>
-                                <div className="flex align-middle space-x-2">
+                                <div className="flex flex-row align-middle space-x-2">
                                     <span className="text-[15px]">Yes, I'm sure</span>
                                     {loading && <Spinner size="md" color="failure" />}
                                 </div>

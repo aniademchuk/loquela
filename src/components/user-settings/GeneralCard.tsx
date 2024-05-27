@@ -173,7 +173,7 @@ const GeneralCard: React.FC<{ userData: UserMain; setUserData: Dispatch<SetState
                     <div className="mt-5 flex justify-end">
                         <button
                             type="submit"
-                            className="text-white space-x-3 bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 text-center"
+                            className="flex flex-row text-white space-x-3 bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 text-center"
                         >
                             <span>Update</span>
                             {loading && <Spinner />}

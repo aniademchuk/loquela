@@ -18,7 +18,7 @@ const Register = () => {
     return (
         <>
             <Navbar />
-            <div className="mt-10 text-center">
+            <div className="my-20 px-6 sm:px-12 text-center">
                 <RegisterForm />
             </div>
         </>
