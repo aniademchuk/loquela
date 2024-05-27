@@ -7,9 +7,14 @@ interface RegisterData {
     fullName: string;
     learnLanguage: string;
     timezone: string;
+    secureCode: string;
 }
 
 export const registerUser = functions.https.onCall(async (data: RegisterData) => {
+    if (data.secureCode !== "hB47E6p$m2ie1Avc") {
+        throw new functions.https.HttpsError("invalid-argument", "Missing secure code.");
+    }
+
     const { email, password, fullName, learnLanguage, timezone } = data;
     if (!email || !password) {
         throw new functions.https.HttpsError("invalid-argument", "Missing required fields");

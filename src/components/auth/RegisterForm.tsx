@@ -43,6 +43,7 @@ const RegisterForm = () => {
 
     const [password, setPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
+    const [secureCode, setSecureCode] = useState<string>("");
     const [termsAccepted, setTermsAccepted] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -66,7 +67,7 @@ const RegisterForm = () => {
             )
         ) {
             setUser((prevState) => ({ ...prevState, password }));
-            register({ ...user, password })
+            register({ ...user, password, secureCode })
                 .then(() => {
                     toast.success("User registered successfully.");
                     navigate("/login");
@@ -131,6 +132,18 @@ const RegisterForm = () => {
                     type="password"
                     id="repeat-password"
                     onChange={(event) => setConfirmPassword(event.target.value)}
+                    className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5"
+                    required
+                />
+            </div>
+            <div className="mb-5">
+                <label htmlFor="repeat-password" className="block mb-2 text-sm font-medium text-gray-900">
+                    Enter Registration Secure Code
+                </label>
+                <input
+                    type="text"
+                    id="secure-dev-code"
+                    onChange={(event) => setSecureCode(event.target.value)}
                     className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5"
                     required
                 />
