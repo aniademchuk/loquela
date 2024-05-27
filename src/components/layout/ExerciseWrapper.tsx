@@ -185,7 +185,7 @@ const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
                     ) : (
                         <div className="space-y-8">
                             {descriptionData.taskDescription && <p>{descriptionData.taskDescription}</p>}
-                            <p className="text-md font-normal whitespace-pre-wrap">{chatTask}</p>
+                            <p className="text-md font-normal text-justify whitespace-pre-wrap">{chatTask}</p>
                             <div>
                                 <div className="mb-2 block">
                                     <Label htmlFor="comment" value="Your answer:" />
