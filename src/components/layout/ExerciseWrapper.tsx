@@ -5,10 +5,10 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import { formatUserLevel } from "../../helper/LevelFormatter";
 import { formatUserLanguage } from "../../helper/LangFormatter";
 import { getLanguage } from "../../helper/LocalStoreHelper";
-import toast from "react-hot-toast";
 import { Button, Card, Label, Spinner, Textarea, Tooltip } from "flowbite-react";
 import { FaRegCircleQuestion } from "react-icons/fa6";
 import NoEntryTestResultsCard from "../NoEntryTestResultsCard";
+import { useTranslation } from "react-i18next";
 
 interface UpdatePracticeDataResponse {
     daily_streak: number;
@@ -37,6 +37,7 @@ const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
 }) => {
     const functions = getFunctions();
     const updatePracticeData = httpsCallable<void, UpdatePracticeDataResponse>(functions, "updatePracticeData");
+    const { t } = useTranslation();
 
     const [chatTask, setTask] = useState<string>("");
     const [userAnswer, setUserAnswer] = useState<string>("");
@@ -107,12 +108,9 @@ const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
         await generateQuestion(data)
             .then((response) => {
                 setTask(response.data);
-                toast.success("Exercise generated successfully, if you don't see it, please scroll down.", {
-                    duration: 5000,
-                });
             })
             .catch(() => {
-                toast.error("Something went wrong, please contact support or try again.");
+                console.error("Something went wrong, please contact support or try again.");
             })
             .finally(() =>
                 setExerciseCard((prevState) => ({
@@ -123,6 +121,11 @@ const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
     };
 
     const handleUserAnswerReview = async () => {
+        setReviewCard({
+            triggered: true,
+            loading: true,
+        });
+
         await updatePracticeData().then((response) => {
             const data = response.data;
             const newUserData: UserMain = {
@@ -135,11 +138,6 @@ const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
             };
 
             setUserData(newUserData);
-        });
-
-        setReviewCard({
-            triggered: true,
-            loading: true,
         });
 
         const data: AnswerReviewRequest = {
@@ -155,12 +153,9 @@ const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
                 if (container) {
                     container.innerHTML = response.data;
                 }
-                toast.success("Review generated successfully, if you don't see it, please scroll down.", {
-                    duration: 5000,
-                });
             })
             .catch(() => {
-                toast.error("Something went wrong, please contact support or try again.");
+                console.error("Something went wrong, please contact support or try again.");
             })
             .finally(() => {
                 setReviewCard((prevState) => ({
@@ -187,14 +182,12 @@ const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
                     {descriptionData.paragraphs.map((paragraph, index) => (
                         <div key={paragraph + index}>{paragraph}</div>
                     ))}
-                    <div className="pt-6 font-semibold text-cyan-700">
-                        Note: You can hide these details by clicking the question mark next to the heading.
-                    </div>
+                    <div className="pt-6 font-semibold text-cyan-700">{t("aiPages.noteHide")}</div>
                 </div>
                 {hasLevel && (
                     <div className="flex justify-center">
                         <Button onClick={handleQuestionGeneration} className="mt-4" disabled={exerciseCard.loading}>
-                            <span className="text-[15px]">Start the Exercise 🔥</span>
+                            <span className="text-[15px]">{t("aiPages.start")} 🔥</span>
                         </Button>
                     </div>
                 )}
@@ -202,7 +195,9 @@ const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
             {!hasLevel && <NoEntryTestResultsCard />}
             {exerciseCard.triggered && (
                 <Card className="rounded-2xl">
-                    <h5 className="text-2xl text-center font-bold tracking-tight text-gray-900">Exercise</h5>
+                    <h5 className="text-2xl text-center font-bold tracking-tight text-gray-900">
+                        {t("aiPages.exercise")}
+                    </h5>
                     {exerciseCard.loading ? (
                         <div className="flex justify-center py-2">
                             <Spinner className="h-12 w-12" />
@@ -213,11 +208,10 @@ const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
                             <p className="text-md font-normal text-justify whitespace-pre-wrap">{chatTask}</p>
                             <div>
                                 <div className="mb-2 block">
-                                    <Label htmlFor="comment" value="Your answer:" />
+                                    <Label htmlFor="comment" value={t("aiPages.answer")} />
                                 </div>
                                 <Textarea
                                     id="comment"
-                                    placeholder="Leave a comment..."
                                     required
                                     rows={4}
                                     onChange={(e) => setUserAnswer(e.target.value)}
@@ -229,7 +223,7 @@ const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
                                     onClick={handleUserAnswerReview}
                                     disabled={userAnswer === "" || reviewCard.loading}
                                 >
-                                    <span>Check the Answer!</span>
+                                    <span>{t("aiPages.checkAnswer")}</span>
                                 </Button>
                             </div>
                         </div>
@@ -238,7 +232,9 @@ const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
             )}
             {reviewCard.triggered && (
                 <Card className="rounded-2xl">
-                    <h5 className="text-2xl text-center font-bold tracking-tight text-gray-900">Detailed Review</h5>
+                    <h5 className="text-2xl text-center font-bold tracking-tight text-gray-900">
+                        {t("aiPages.review")}
+                    </h5>
                     {reviewCard.loading && (
                         <div className="flex justify-center py-2">
                             <Spinner className="h-12 w-12" />
@@ -247,7 +243,7 @@ const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
                     <div id="responseContainerWriting" className="whitespace-pre-wrap list-disc"></div>
                     {!reviewCard.loading && (
                         <div className="flex justify-center mt-4 font-semibold text-cyan-600">
-                            Note: If you want to practice more, simply press the start exercise button again.
+                            {t("aiPages.noteRestart")}
                         </div>
                     )}
                 </Card>

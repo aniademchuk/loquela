@@ -59,5 +59,14 @@
     "lessons": "Gesamtlektionen",
     "learned": "gelernt",
     "chart": "Diagramm anzeigen"
+  },
+  "aiPages": {
+    "noteHide": "Hinweis: Sie können diese Details ausblenden, indem Sie auf das Fragezeichen neben der Überschrift klicken.",
+    "start": "Übung starten",
+    "answer": "Ihre Antwort:",
+    "exercise": "Übung",
+    "checkAnswer": "Antwort überprüfen!",
+    "review": "Detaillierte Überprüfung",
+    "noteRestart": "Hinweis: Wenn Sie mehr üben möchten, drücken Sie einfach erneut die Schaltfläche Übung starten."
   }
 }

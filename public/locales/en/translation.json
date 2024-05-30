@@ -59,5 +59,14 @@
     "lessons": "Total Lessons",
     "learned": "learned",
     "chart": "Show Chart"
+  },
+  "aiPages": {
+    "noteHide": "Note: You can hide these details by clicking the question mark next to the heading.",
+    "start": "Start the Exercise ",
+    "exercise": "Exercise",
+    "answer": "Your answer:",
+    "checkAnswer": "Check the Answer!",
+    "review": "Detailed Review",
+    "noteRestart": "Note: If you want to practice more, simply press the start exercise button again."
   }
 }
