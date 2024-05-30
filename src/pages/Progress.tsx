@@ -5,9 +5,10 @@ import Chart from "react-apexcharts";
 import SideBar from "../components/layout/SideBar";
 import { useUser } from "../context/UserContext";
 import { formatUserLevel } from "../helper/LevelFormatter";
-import { UserMain } from "../interfaces/user";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
+import { TFunction } from "i18next";
 
 interface ChartDataResponse {
     categories: string[];
@@ -16,6 +17,7 @@ interface ChartDataResponse {
 
 const Progress = () => {
     const { userData } = useUser();
+    const { t } = useTranslation();
 
     if (!userData) {
         return (
@@ -41,11 +43,11 @@ const Progress = () => {
     return (
         <SideBar>
             <>
-                <span className="flex mb-10 text-4xl font-bold justify-center">Your Progress</span>
+                <span className="flex mb-10 text-4xl font-bold justify-center">{t("progress.title")}</span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 xxl:grid-cols-4 gap-10">
                     <Card className="border-2 hover:border-2 hover:border-cyan-600">
                         <div className="flex flex-row justify-between">
-                            <h5 className="text-xl font-normal text-gray-500">Estimated Level</h5>
+                            <h5 className="text-xl font-normal text-gray-500">{t("progress.level")}</h5>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -69,7 +71,7 @@ const Progress = () => {
                     </Card>
                     <Card className="border-2 hover:border-2 hover:border-cyan-600">
                         <div className="flex flex-row justify-between">
-                            <h5 className="text-xl font-normal text-gray-500">Current Streak</h5>
+                            <h5 className="text-xl font-normal text-gray-500">{t("progress.streak")}</h5>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -89,12 +91,12 @@ const Progress = () => {
                             <div className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
                                 {userData.user_practice_stats.daily_streak}
                             </div>
-                            <div className="text-xl pt-2.5 font-normal text-gray-500">days</div>
+                            <div className="text-xl pt-2.5 font-normal text-gray-500">{t("progress.days")}</div>
                         </div>
                     </Card>
                     <Card className="border-2 hover:border-2 hover:border-cyan-600">
                         <div className="flex flex-row justify-between">
-                            <h5 className="text-xl font-normal text-gray-500">Total Practiced</h5>
+                            <h5 className="text-xl font-normal text-gray-500">{t("progress.practiced")}</h5>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -114,12 +116,12 @@ const Progress = () => {
                             <div className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
                                 {userData.user_practice_stats.total_days_learning}
                             </div>
-                            <div className="text-xl pt-2.5 font-normal text-gray-500">days</div>
+                            <div className="text-xl pt-2.5 font-normal text-gray-500">{t("progress.days")}</div>
                         </div>
                     </Card>
                     <Card className="border-2 hover:border-2 hover:border-cyan-600">
                         <div className="flex flex-row justify-between">
-                            <h5 className="text-xl font-normal text-gray-500">Total Lessons</h5>
+                            <h5 className="text-xl font-normal text-gray-500">{t("progress.lessons")}</h5>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -139,13 +141,15 @@ const Progress = () => {
                             <div className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
                                 {userData.user_practice_stats.total_lessons}
                             </div>
-                            <div className="text-xl pt-2.5 font-normal text-gray-500">learned</div>
+                            <div className="text-xl pt-2.5 font-normal text-gray-500">{t("progress.learned")}</div>
                         </div>
                     </Card>
                 </div>
 
                 <div className="my-10">
-                    <SalesThisWeek userData={userData} />
+                    <Card className="border-2 hover:border-2 hover:border-cyan-600">
+                        <SalesChart t={t} />
+                    </Card>
                 </div>
             </>
         </SideBar>
@@ -154,46 +158,7 @@ const Progress = () => {
 
 export default Progress;
 
-interface SalesThisWeekProps {
-    userData: UserMain;
-}
-
-const SalesThisWeek: React.FC<SalesThisWeekProps> = ({ userData }) => {
-    return (
-        <Card className="border-2 hover:border-2 hover:border-cyan-600">
-            <div className="mb-4 flex items-center justify-between">
-                <div className="shrink-0">
-                    <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
-                        {userData.user_practice_stats.total_lessons}
-                    </span>
-                    <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">Total Lessons</h3>
-                </div>
-                <div className="flex flex-1 items-center justify-end text-base font-bold text-green-600">
-                    <div className="flex flex-row items-center gap-1">
-                        <span className="text-xl">{userData.user_practice_stats.daily_streak}</span>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1.5}
-                            stroke="green"
-                            className="w-5 h-5"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0"
-                            />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            <SalesChart />
-        </Card>
-    );
-};
-
-const SalesChart = () => {
+const SalesChart = ({ t }: { t: TFunction<"translation", undefined> }) => {
     const functions = getFunctions();
     const getPracticeDataForChart = httpsCallable<void, ChartDataResponse>(functions, "getPracticeDataForChart");
     const [categories, setCategories] = useState<string[]>([]);
@@ -325,7 +290,7 @@ const SalesChart = () => {
     };
     const series = [
         {
-            name: "Total Lessons",
+            name: t("progress.lessons"),
             data: data,
             color: "#0891b2",
         },
@@ -340,7 +305,7 @@ const SalesChart = () => {
                     onClick={handleCharDataRequest}
                     disabled={loading}
                 >
-                    <span>Show Chart</span>
+                    <span>{t("progress.chart")}</span>
                     {loading && <Spinner />}
                 </button>
             </div>

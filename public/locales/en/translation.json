@@ -49,5 +49,15 @@
     "days": "days",
     "quote": "“Learning another language is not only learning different words for the same things, but learning another way to think about things.”",
     "author": "Flora Lewis"
+  },
+  "progress": {
+    "title": "Your Progress",
+    "level": "Estimated Level",
+    "streak": "Current Streak",
+    "days": "days",
+    "practiced": "Total Practiced",
+    "lessons": "Total Lessons",
+    "learned": "learned",
+    "chart": "Show Chart"
   }
 }

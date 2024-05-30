@@ -49,5 +49,15 @@
     "days": "Tage",
     "quote": "“Eine andere Sprache zu lernen bedeutet nicht nur, verschiedene Wörter für dieselben Dinge zu lernen, sondern auch eine andere Art, über Dinge nachzudenken.”",
     "author": "Flora Lewis"
+  },
+  "progress": {
+    "title": "Ihr Fortschritt",
+    "level": "Geschätztes Niveau",
+    "streak": "Aktuelle Serie",
+    "days": "Tage",
+    "practiced": "Gesamt geübt",
+    "lessons": "Gesamtlektionen",
+    "learned": "gelernt",
+    "chart": "Diagramm anzeigen"
   }
 }
