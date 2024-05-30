@@ -14,7 +14,131 @@
     "de": "Deutsch",
     "interface": "Interface Sprache"
   },
-  "noTestCard": {
-    "main": "Es scheint, dass Sie keine Ergebnisse des Einstufungstests für diese Sprache haben. Bitte absolvieren Sie den Test und kehren Sie dann zu dieser Seite zurück."
-  }
+  "navbar": {
+    "login": "Anmelden",
+    "register": "Registrieren"
+  },
+  "loginForm": {
+    "title": "Anmelden",
+    "email": "Ihre E-Mail",
+    "password": "Ihr Passwort",
+    "button": "Anmelden",
+    "wrongData": "Falsche E-Mail oder Passwort"
+  },
+  "registerForm": {
+    "title": "Neues Konto erstellen",
+    "email": "Ihre E-Mail",
+    "name": "Ihr Name",
+    "password": "Ihr Passwort",
+    "repeatPassword": "Passwort wiederholen",
+    "secureCode": "Einladungscode eingeben",
+    "button": "Neues Konto erstellen",
+    "terms1": "Ich stimme den",
+    "terms2": "Geschäftsbedingungen zu",
+    "match": "Passwörter stimmen nicht überein",
+    "termsNotAccepted": "Bedingungen akzeptieren",
+    "dataMissing": "Es fehlen einige Benutzerdaten. Bitte überprüfen Sie die Eingabewerte.",
+    "toastSuccess": "Benutzer erfolgreich registriert.",
+    "toastError": "Benutzerregistrierung fehlgeschlagen:"
+  },
+  "welcome": {
+    "subTitle": "Lassen Sie uns Ihre Sprachkenntnisse verbessern!",
+    "faq": "Häufig gestellte Fragen:",
+    "note": "Bitte beachten Sie, dass Loquela keinen Lehrer ersetzt. Es ist ein Übungstool, das Ihnen helfen soll, verschiedene Sprachkenntnisse durch verschiedene Übungsarten zu verbessern."
+  },
+  "home": {
+    "greeting": "Hallo, ",
+    "welcome": ". Willkommen bei Loquela!",
+    "selected": "Ausgewählte Sprache",
+    "level": "Sprachniveau",
+    "streak": "Tägliche Serie",
+    "days": "Tage",
+    "quote": "“Eine andere Sprache zu lernen bedeutet nicht nur, verschiedene Wörter für dieselben Dinge zu lernen, sondern auch eine andere Art, über Dinge nachzudenken.”",
+    "author": "Flora Lewis"
+  },
+  "progress": {
+    "title": "Ihr Fortschritt",
+    "level": "Geschätztes Niveau",
+    "streak": "Aktuelle Serie",
+    "days": "Tage",
+    "practiced": "Gesamt geübt",
+    "lessons": "Gesamtlektionen",
+    "learned": "gelernt",
+    "chart": "Diagramm anzeigen"
+  },
+  "aiPages": {
+    "noteHide": "Hinweis: Sie können diese Details ausblenden, indem Sie auf das Fragezeichen neben der Überschrift klicken.",
+    "start": "Übung starten",
+    "answer": "Ihre Antwort:",
+    "exercise": "Übung",
+    "checkAnswer": "Antwort überprüfen!",
+    "review": "Detaillierte Überprüfung",
+    "noteRestart": "Hinweis: Wenn Sie mehr üben möchten, drücken Sie einfach erneut die Schaltfläche Übung starten."
+  },
+  "test": {
+    "testButton": "Absenden",
+    "congratulations": " Herzlichen Glückwunsch zum Abschluss des Tests! ",
+    "level": "Ihr geschätztes Niveau ist:",
+    "errorToast": "Etwas ist schief gelaufen, bitte versuchen Sie es erneut."
+  },
+  "support": {
+    "title": "Unterstützung",
+    "text1": "Wenn Sie weitere Fragen haben, zögern Sie bitte nicht, den Entwickler per E-Mail zu kontaktieren unter",
+    "text2": ". Wir sind hier, um Ihnen zu helfen und sicherzustellen, dass Sie die beste Lernerfahrung mit Loquela haben.",
+    "button": "Verstanden"
+  },
+  "settings": {
+    "title": "Benutzereinstellungen-Seite",
+    "general": {
+      "title": "Allgemein",
+      "name": "Vollständiger Name",
+      "email": "Ihre E-Mail",
+      "timezone": "Zeitzone",
+      "language": "Lernsprache",
+      "en": "Englisch",
+      "de": "Deutsch",
+      "ua": "Ukrainisch",
+      "toastSuccess": "Allgemeine Einstellungen wurden erfolgreich aktualisiert!",
+      "toastError": "Etwas ist schief gelaufen. Bitte versuchen Sie es später noch einmal.",
+      "toastNoChange": "Keine Daten wurden geändert"
+    },
+    "password": {
+      "title": "Passwort aktualisieren",
+      "shortPass": "Das Passwort ist zu kurz!",
+      "match": "Passwörter stimmen nicht überein!",
+      "password": "Passwort",
+      "confirmPassword": "Passwort bestätigen",
+      "modalTitle": "Aktualisierung bestätigen",
+      "modalDescription": "Sie müssen Ihr altes Passwort angeben, um die Aktualisierung fortzusetzen.",
+      "oldPassword": "Altes Passwort",
+      "decline": "Ablehnen",
+      "toastSuccess": "Passwort erfolgreich aktualisiert!",
+      "toastError": "Passwortaktualisierung fehlgeschlagen. Bitte versuchen Sie es erneut"
+    },
+    "reminders": {
+      "title": "Erinnerungen & Benachrichtigungen",
+      "practice": "Ich möchte tägliche E-Mail-Erinnerungen zum Üben erhalten.",
+      "statistic": "Ich möchte meine wöchentliche Übungsstatistik erhalten.",
+      "news": "Ich möchte Loquela-Nachrichten erhalten.",
+      "toastSuccess": "Erinnerungseinstellungen wurden erfolgreich aktualisiert.",
+      "toastError": "Etwas ist schief gelaufen. Bitte versuchen Sie es später noch einmal."
+    },
+    "delete": {
+      "deleteButton": "Konto löschen",
+      "titleMain": "Konto löschen",
+      "title": "Sind Sie sicher, dass Sie dieses Konto löschen möchten?",
+      "confirmButton": "Ja, ich bin sicher",
+      "cancel": "Nein, abbrechen",
+      "toastSuccess": "Konto wurde erfolgreich gelöscht.",
+      "toastError": "Es gab ein Problem beim Löschen Ihres Kontos. Bitte versuchen Sie es erneut"
+    },
+    "updateButton": "Aktualisieren"
+  },
+  "logOut": {
+    "title": "Sind Sie sicher, dass Sie sich abmelden möchten?",
+    "confirmButton": "Ja, ich bin sicher",
+    "cancel": "Nein, abbrechen",
+    "toastError": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+  },
+  "contextError": "Keine Daten für diesen Benutzer verfügbar"
 }
