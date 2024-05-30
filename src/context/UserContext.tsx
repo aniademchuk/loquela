@@ -4,6 +4,7 @@ import { getAuth } from "firebase/auth";
 import { get, getDatabase, ref } from "firebase/database";
 import toast from "react-hot-toast";
 import { getFunctions, httpsCallable } from "firebase/functions";
+import { useTranslation } from "react-i18next";
 
 const UserContext = createContext<
     { userData: UserMain | null; setUserData: React.Dispatch<React.SetStateAction<UserMain | null>> } | undefined
@@ -15,6 +16,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     const db = getDatabase();
     const functions = getFunctions();
     const checkUserStreak = httpsCallable(functions, "checkUserStreak");
+    const { t } = useTranslation();
 
     const fetchUserData = useCallback(async (userId: string) => {
         await checkUserStreak();
@@ -27,7 +29,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
             if (snapshot.exists()) {
                 userMain[key] = snapshot.val();
             } else {
-                toast.error(`No data available for ${key}`);
+                toast.error(t("contextError"));
             }
         };
 

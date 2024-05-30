@@ -4,18 +4,20 @@ import { useNavigate } from "react-router-dom";
 import { Button, Modal, Tooltip } from "flowbite-react";
 import React, { useState } from "react";
 import { FaDoorOpen } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const LogoutButton = () => {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const auth = getAuth();
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const handleLogout = () => {
         signOut(auth)
             .then(() => {
                 navigate("/login");
             })
-            .catch(() => toast.error("Something went wrong. Please try again."));
+            .catch(() => toast.error(t("logOut.toastError")));
     };
 
     return (
@@ -32,12 +34,12 @@ const LogoutButton = () => {
                     <div className="text-center">
                         <FaDoorOpen className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
                         <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                            Are you sure you want to log out?
+                            {t("logOut.title")}
                         </h3>
                         <div className="flex justify-center gap-4">
-                            <Button onClick={handleLogout}>Yes, I'm sure</Button>
+                            <Button onClick={handleLogout}>{t("logOut.confirmButton")}</Button>
                             <Button color="gray" onClick={() => setOpenModal(false)}>
-                                No, cancel
+                                {t("logOut.cancel")}
                             </Button>
                         </div>
                     </div>

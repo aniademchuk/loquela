@@ -172,7 +172,7 @@ const SalesChart = ({ t }: { t: TFunction<"translation", undefined> }) => {
                 setCategories(response.data.categories);
                 setData(response.data.data);
             })
-            .catch(() => toast.error("Something went wrong, try again later. "))
+            .catch(() => toast.error(t("test.toastError")))
             .finally(() => setLoading(false));
     };
 

@@ -5,6 +5,7 @@ import { getFunctions, httpsCallable } from "firebase/functions";
 import { RegisterUser } from "../../interfaces/user";
 import { Spinner } from "flowbite-react";
 import { useTranslation } from "react-i18next";
+import { TFunction } from "i18next";
 
 const validateCredentials = (
     email: string,
@@ -13,20 +14,21 @@ const validateCredentials = (
     pass2: string,
     learnLanguage: string,
     timezone: string,
-    termsAccepted: boolean
+    termsAccepted: boolean,
+    t: TFunction<"translation", undefined>
 ) => {
     if (pass1 !== pass2) {
-        toast.error("Passwords don't match");
+        toast.error(t("registerForm.match"));
         return false;
     }
 
     if (!termsAccepted) {
-        toast.error("Accept terms and conditions");
+        toast.error(t("registerForm.termsNotAccepted"));
         return false;
     }
 
     if (!email || !fullName || !pass1 || !timezone || !learnLanguage) {
-        toast.error("Missing some user data. Please double check input values.");
+        toast.error(t("registerForm.dataMissing"));
         return false;
     }
 
@@ -66,19 +68,22 @@ const RegisterForm = () => {
                 confirmPassword,
                 user.learnLanguage,
                 user.timezone,
-                termsAccepted
+                termsAccepted,
+                t
             )
         ) {
             setUser((prevState) => ({ ...prevState, password }));
             register({ ...user, password, secureCode })
                 .then(() => {
-                    toast.success("User registered successfully.");
+                    toast.success(t("registerForm.toastSuccess"));
                     navigate("/login");
                 })
                 .catch((err) => {
-                    toast.error("User register failed: " + err.message);
+                    toast.error(t("registerForm.toastError") + err.message);
                 })
                 .finally(() => setLoading(false));
+        } else {
+            setLoading(false);
         }
     };
 

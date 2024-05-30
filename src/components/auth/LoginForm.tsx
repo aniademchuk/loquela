@@ -25,7 +25,7 @@ const LoginForm = () => {
             })
             .catch((error) => {
                 if (error.code === "auth/invalid-credential") {
-                    toast.error("Wrong email or password");
+                    toast.error(t("loginForm.wrongData"));
                 }
             })
             .finally(() => setLoading(false));

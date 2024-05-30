@@ -56,10 +56,8 @@ const EntryTestWrapper: React.FC<EntryTestWrapperProps> = ({
             const updatedUserData = getUpdatedUserData(userData, entryTestType, level);
 
             setUserData(updatedUserData);
-
-            toast.success(`You successfully passed entry test in ${entryTestType}.`);
         } catch (error) {
-            toast.error("Something went wrong, please try again.");
+            toast.error(t("test.errorToast"));
         } finally {
             setLoading(false);
             setOpenModal(true);

@@ -22,7 +22,8 @@
     "title": "Login",
     "email": "Your email",
     "password": "Your password",
-    "button": "Login"
+    "button": "Login",
+    "wrongData": "Wrong email or password"
   },
   "registerForm": {
     "title": "Register New Account",
@@ -33,7 +34,12 @@
     "secureCode": "Enter invitation code",
     "button": "Create New Account",
     "terms1": "I agree with the",
-    "terms2": "terms and conditions"
+    "terms2": "terms and conditions",
+    "match": "Passwords don't match",
+    "termsNotAccepted": "Accept terms and conditions",
+    "dataMissing": "Missing some user data. Please double check input values.",
+    "toastSuccess": "User registered successfully.",
+    "toastError": "User register failed: "
   },
   "welcome": {
     "subTitle": "Let's improve your language skills!",
@@ -72,12 +78,67 @@
   "test": {
     "testButton": "Submit",
     "congratulations": " Congratulations on finishing the test! ",
-    "level": "Your estimated level is:"
+    "level": "Your estimated level is:",
+    "errorToast": "Something went wrong, please try again."
   },
   "support": {
     "title": "Support",
     "text1": "If you have any additional questions, please do not hesitate to contact the developer via email at",
     "text2": ". We are here to help and ensure you have the best learning experience with Loquela.",
     "button": "Got It"
-  }
+  },
+  "settings": {
+    "title": "User Settings Page",
+    "general": {
+      "title": "General",
+      "name": "Full Name",
+      "email": "Your email",
+      "timezone": "Timezone",
+      "language": "Learn Language",
+      "en": "English",
+      "de": "German",
+      "ua": "Ukrainian",
+      "toastSuccess": "General settings were successfully updated!",
+      "toastError": "Something went wrong. Please try again later.",
+      "toastNoChange": "No Data is changed"
+    },
+    "password": {
+      "title": "Update Password",
+      "shortPass": "Password is too short!",
+      "match": "Passwords don't match!",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "modalTitle": "Confirm Update",
+      "modalDescription": "You have to provide your old password to proceed with update.",
+      "oldPassword": "Old Password",
+      "decline": "Decline",
+      "toastSuccess": "Password updated successfully!",
+      "toastError": "Failed to update password. Please Try Again"
+    },
+    "reminders": {
+      "title": "Reminders & Notifications",
+      "practice": "I would like to receive daily email reminders to practice.",
+      "statistic": "I would like to receive my practice weekly statistic.",
+      "news": "I would like to receive Loquela News.",
+      "toastSuccess": "Reminders settings were successfully updated.",
+      "toastError": "Something went wrong. Please try again later."
+    },
+    "delete": {
+      "deleteButton": "Delete Account",
+      "titleMain": "Delete Account",
+      "title": "Are you sure you want to delete this account?",
+      "confirmButton": "Yes, I'm sure",
+      "cancel": "No, cancel",
+      "toastSuccess": "Account was successfully deleted.",
+      "toastError": "There was a problem deleting you account. Please try again"
+    },
+    "updateButton": "Update"
+  },
+  "logOut": {
+    "title": "Are you sure you want to log out?",
+    "confirmButton": "Yes, I'm sure",
+    "cancel": "No, cancel",
+    "toastError": "Something went wrong. Please try again."
+  },
+  "contextError": "No data available for this user"
 }

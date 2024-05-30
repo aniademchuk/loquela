@@ -3,6 +3,7 @@ import { Card, Label, Select, Spinner, TextInput } from "flowbite-react";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { UserMain } from "../../interfaces/user";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 interface UserDataUpdateRequest {
     email: string;
@@ -23,6 +24,7 @@ const GeneralCard: React.FC<{ userData: UserMain; setUserData: Dispatch<SetState
         timezone: data.userData.users.timezone,
     });
     const [loading, setLoading] = useState<boolean>(false);
+    const { t } = useTranslation();
 
     const handleGeneralDataUpdate = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -33,7 +35,7 @@ const GeneralCard: React.FC<{ userData: UserMain; setUserData: Dispatch<SetState
             newUserData.learnLanguage === data.userData.users.learnLanguage &&
             newUserData.timezone === data.userData.users.timezone
         ) {
-            toast.error("No Data is changed");
+            toast.error(t("settings.general.toastNoChange"));
             return;
         }
 
@@ -53,10 +55,10 @@ const GeneralCard: React.FC<{ userData: UserMain; setUserData: Dispatch<SetState
                 };
 
                 data.setUserData(updatedData);
-                toast.success("General settings were successfully updated!");
+                toast.success(t("settings.general.toastSuccess"));
             })
-            .catch((reason) => {
-                toast.error("Something went wrong. Please try again later." + reason);
+            .catch(() => {
+                toast.error(t("settings.general.toastError"));
             })
             .finally(() => {
                 setLoading(false);
@@ -96,12 +98,12 @@ const GeneralCard: React.FC<{ userData: UserMain; setUserData: Dispatch<SetState
     return (
         <>
             <Card>
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">General</h5>
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{t("settings.general.title")}</h5>
                 <form onSubmit={handleGeneralDataUpdate}>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         <div>
                             <div className="mb-2 block">
-                                <Label htmlFor="fullName" value="Full Name" />
+                                <Label htmlFor="fullName" value={t("settings.general.name")} />
                             </div>
                             <TextInput
                                 id="fullName"
@@ -118,7 +120,7 @@ const GeneralCard: React.FC<{ userData: UserMain; setUserData: Dispatch<SetState
                         </div>
                         <div>
                             <div className="mb-2 block">
-                                <Label htmlFor="email" value="Your email" />
+                                <Label htmlFor="email" value={t("settings.general.email")} />
                             </div>
                             <TextInput
                                 id="email"
@@ -135,7 +137,7 @@ const GeneralCard: React.FC<{ userData: UserMain; setUserData: Dispatch<SetState
                         </div>
                         <div>
                             <div className="mb-2 block">
-                                <Label htmlFor="timezone" value="Timezone" />
+                                <Label htmlFor="timezone" value={t("settings.general.timezone")} />
                             </div>
                             <TextInput
                                 id="timezone"
@@ -152,7 +154,7 @@ const GeneralCard: React.FC<{ userData: UserMain; setUserData: Dispatch<SetState
                         </div>
                         <div>
                             <div className="mb-2 block">
-                                <Label htmlFor="learn-language" value="Learn Language" />
+                                <Label htmlFor="learn-language" value={t("settings.general.language")} />
                             </div>
                             <Select
                                 id="learn-language"
@@ -164,9 +166,9 @@ const GeneralCard: React.FC<{ userData: UserMain; setUserData: Dispatch<SetState
                                     }))
                                 }
                             >
-                                <option value="English">English</option>
-                                <option value="Ukrainian">Ukrainian</option>
-                                <option value="German">German</option>
+                                <option value="English">{t("settings.general.en")}</option>
+                                <option value="Ukrainian">{t("settings.general.ua")}</option>
+                                <option value="German">{t("settings.general.de")}</option>
                             </Select>
                         </div>
                     </div>
@@ -176,7 +178,7 @@ const GeneralCard: React.FC<{ userData: UserMain; setUserData: Dispatch<SetState
                             className="flex flex-row text-white space-x-3 bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 text-center"
                             disabled={loading}
                         >
-                            <span>Update</span>
+                            <span>{t("settings.updateButton")}</span>
                             {loading && <Spinner />}
                         </button>
                     </div>

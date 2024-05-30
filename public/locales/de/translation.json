@@ -22,7 +22,8 @@
     "title": "Anmelden",
     "email": "Ihre E-Mail",
     "password": "Ihr Passwort",
-    "button": "Anmelden"
+    "button": "Anmelden",
+    "wrongData": "Falsche E-Mail oder Passwort"
   },
   "registerForm": {
     "title": "Neues Konto erstellen",
@@ -33,7 +34,12 @@
     "secureCode": "Einladungscode eingeben",
     "button": "Neues Konto erstellen",
     "terms1": "Ich stimme den",
-    "terms2": "Geschäftsbedingungen zu"
+    "terms2": "Geschäftsbedingungen zu",
+    "match": "Passwörter stimmen nicht überein",
+    "termsNotAccepted": "Bedingungen akzeptieren",
+    "dataMissing": "Es fehlen einige Benutzerdaten. Bitte überprüfen Sie die Eingabewerte.",
+    "toastSuccess": "Benutzer erfolgreich registriert.",
+    "toastError": "Benutzerregistrierung fehlgeschlagen:"
   },
   "welcome": {
     "subTitle": "Lassen Sie uns Ihre Sprachkenntnisse verbessern!",
@@ -72,12 +78,67 @@
   "test": {
     "testButton": "Absenden",
     "congratulations": " Herzlichen Glückwunsch zum Abschluss des Tests! ",
-    "level": "Ihr geschätztes Niveau ist:"
+    "level": "Ihr geschätztes Niveau ist:",
+    "errorToast": "Etwas ist schief gelaufen, bitte versuchen Sie es erneut."
   },
   "support": {
     "title": "Unterstützung",
     "text1": "Wenn Sie weitere Fragen haben, zögern Sie bitte nicht, den Entwickler per E-Mail zu kontaktieren unter",
     "text2": ". Wir sind hier, um Ihnen zu helfen und sicherzustellen, dass Sie die beste Lernerfahrung mit Loquela haben.",
     "button": "Verstanden"
-  }
+  },
+  "settings": {
+    "title": "Benutzereinstellungen-Seite",
+    "general": {
+      "title": "Allgemein",
+      "name": "Vollständiger Name",
+      "email": "Ihre E-Mail",
+      "timezone": "Zeitzone",
+      "language": "Lernsprache",
+      "en": "Englisch",
+      "de": "Deutsch",
+      "ua": "Ukrainisch",
+      "toastSuccess": "Allgemeine Einstellungen wurden erfolgreich aktualisiert!",
+      "toastError": "Etwas ist schief gelaufen. Bitte versuchen Sie es später noch einmal.",
+      "toastNoChange": "Keine Daten wurden geändert"
+    },
+    "password": {
+      "title": "Passwort aktualisieren",
+      "shortPass": "Das Passwort ist zu kurz!",
+      "match": "Passwörter stimmen nicht überein!",
+      "password": "Passwort",
+      "confirmPassword": "Passwort bestätigen",
+      "modalTitle": "Aktualisierung bestätigen",
+      "modalDescription": "Sie müssen Ihr altes Passwort angeben, um die Aktualisierung fortzusetzen.",
+      "oldPassword": "Altes Passwort",
+      "decline": "Ablehnen",
+      "toastSuccess": "Passwort erfolgreich aktualisiert!",
+      "toastError": "Passwortaktualisierung fehlgeschlagen. Bitte versuchen Sie es erneut"
+    },
+    "reminders": {
+      "title": "Erinnerungen & Benachrichtigungen",
+      "practice": "Ich möchte tägliche E-Mail-Erinnerungen zum Üben erhalten.",
+      "statistic": "Ich möchte meine wöchentliche Übungsstatistik erhalten.",
+      "news": "Ich möchte Loquela-Nachrichten erhalten.",
+      "toastSuccess": "Erinnerungseinstellungen wurden erfolgreich aktualisiert.",
+      "toastError": "Etwas ist schief gelaufen. Bitte versuchen Sie es später noch einmal."
+    },
+    "delete": {
+      "deleteButton": "Konto löschen",
+      "titleMain": "Konto löschen",
+      "title": "Sind Sie sicher, dass Sie dieses Konto löschen möchten?",
+      "confirmButton": "Ja, ich bin sicher",
+      "cancel": "Nein, abbrechen",
+      "toastSuccess": "Konto wurde erfolgreich gelöscht.",
+      "toastError": "Es gab ein Problem beim Löschen Ihres Kontos. Bitte versuchen Sie es erneut"
+    },
+    "updateButton": "Aktualisieren"
+  },
+  "logOut": {
+    "title": "Sind Sie sicher, dass Sie sich abmelden möchten?",
+    "confirmButton": "Ja, ich bin sicher",
+    "cancel": "Nein, abbrechen",
+    "toastError": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+  },
+  "contextError": "Keine Daten für diesen Benutzer verfügbar"
 }

@@ -2,6 +2,7 @@ import { Button, Card, Label, Modal, Spinner, TextInput } from "flowbite-react";
 import React, { useState } from "react";
 import { Auth, EmailAuthProvider, reauthenticateWithCredential, updatePassword } from "firebase/auth";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const PasswordCard = ({ auth }: { auth: Auth }) => {
     const [openModal, setOpenModal] = useState<boolean>(false);
@@ -9,17 +10,18 @@ const PasswordCard = ({ auth }: { auth: Auth }) => {
     const [confirmPassword, setConfirmPassword] = useState<string>("");
     const [oldPassword, setOldPassword] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
+    const { t } = useTranslation();
 
     const handlePasswordUpdateStart = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         if (password.length < 8 || confirmPassword.length < 8) {
-            toast.error("Password is too short!");
+            toast.error(t("settings.password.shortPass"));
             return;
         }
 
         if (password === "" || confirmPassword === "" || password !== confirmPassword) {
-            toast.error("Passwords don't match!");
+            toast.error(t("settings.password.match"));
             return;
         }
 
@@ -36,10 +38,10 @@ const PasswordCard = ({ auth }: { auth: Auth }) => {
 
                 await reauthenticateWithCredential(user, credential);
                 await updatePassword(user, password);
-                toast.success("Password updated successfully!");
+                toast.success(t("settings.password.toastSuccess"));
             }
         } catch (error: any) {
-            toast.error("Failed to update password. Please Try Again");
+            toast.error(t("settings.password.toastError"));
         } finally {
             setOpenModal(false);
             setLoading(false);
@@ -52,12 +54,12 @@ const PasswordCard = ({ auth }: { auth: Auth }) => {
     return (
         <>
             <Card>
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Update Password</h5>
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{t("settings.password.title")}</h5>
                 <form onSubmit={handlePasswordUpdateStart}>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         <div>
                             <div className="mb-2 block">
-                                <Label htmlFor="password1" value="Password" />
+                                <Label htmlFor="password1" value={t("settings.password.password")} />
                             </div>
                             <TextInput
                                 id="password1"
@@ -69,7 +71,7 @@ const PasswordCard = ({ auth }: { auth: Auth }) => {
                         </div>
                         <div>
                             <div className="mb-2 block">
-                                <Label htmlFor="password2" value="Confirm Password" />
+                                <Label htmlFor="password2" value={t("settings.password.confirmPassword")} />
                             </div>
                             <TextInput
                                 id="password2"
@@ -85,20 +87,20 @@ const PasswordCard = ({ auth }: { auth: Auth }) => {
                             type="submit"
                             className="text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 text-center"
                         >
-                            Update
+                            <span>{t("settings.updateButton")}</span>
                         </button>
                     </div>
                 </form>
                 <Modal show={openModal} position="center" onClose={() => setOpenModal(false)}>
-                    <Modal.Header>Confirm Update</Modal.Header>
+                    <Modal.Header>{t("settings.password.modalTitle")}</Modal.Header>
                     <Modal.Body>
                         <div className="space-y-6 p-6">
                             <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                You have to provide your old password to proceed with update.
+                                {t("settings.password.modalDescription")}
                             </p>
                             <div>
                                 <div className="mb-2 block">
-                                    <Label htmlFor="oldPassword" value="Old Password" />
+                                    <Label htmlFor="oldPassword" value={t("settings.password.oldPassword")} />
                                 </div>
                                 <TextInput
                                     id="oldPassword"
@@ -113,14 +115,14 @@ const PasswordCard = ({ auth }: { auth: Auth }) => {
                     <Modal.Footer>
                         <div className="flex flex-row space-x-2 ml-auto">
                             <Button color="gray" onClick={() => setOpenModal(false)} className="px-2">
-                                Decline
+                                {t("settings.password.decline")}
                             </Button>
                             <Button
                                 onClick={handleReauthenticateAndUpdatePassword}
                                 className="flex flex-row"
                                 disabled={loading}
                             >
-                                <div>Update</div>
+                                <span>{t("settings.updateButton")}</span>
                                 {loading && <Spinner className="ml-2" size="md" />}
                             </Button>
                         </div>
