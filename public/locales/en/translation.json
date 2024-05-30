@@ -14,7 +14,30 @@
     "de": "German",
     "interface": "Interface Language"
   },
-  "noTestCard": {
-    "main": "Sorry, it appears you don't have any results from the entry test for this language. Please take the test, and then return to this page."
+  "navbar": {
+    "login": "Login",
+    "register": "Register"
+  },
+  "loginForm": {
+    "title": "Login",
+    "email": "Your email",
+    "password": "Your password",
+    "button": "Login"
+  },
+  "registerForm": {
+    "title": "Register New Account",
+    "email": "Your email",
+    "name": "Your name",
+    "password": "Your password",
+    "repeatPassword": "Repeat password",
+    "secureCode": "Enter invitation code",
+    "button": "Create New Account",
+    "terms1": "I agree with the",
+    "terms2": "terms and conditions"
+  },
+  "welcome": {
+    "subTitle": "Let's improve your language skills!",
+    "faq": "Frequently asked questions:",
+    "note": "Please note, Loquela is not a substitute for a teacher. It's a practice tool designed to help you improve various language skills through different types of exercises."
   }
 }

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "flowbite-react";
+import { useTranslation } from "react-i18next";
 
 const LoginForm = () => {
     const [email, setEmail] = useState<string>("");
@@ -10,6 +11,7 @@ const LoginForm = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const auth = getAuth();
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -31,10 +33,10 @@ const LoginForm = () => {
 
     return (
         <form className="max-w-md mx-auto" onSubmit={handleLogin}>
-            <h1 className="text-4xl font-bold mt-20 mb-10">Log In</h1>
+            <h1 className="text-4xl font-bold mt-20 mb-10">{t("loginForm.title")}</h1>
             <div className="mb-5">
                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
-                    Your email
+                    {t("loginForm.email")}
                 </label>
                 <input
                     type="email"
@@ -47,7 +49,7 @@ const LoginForm = () => {
             </div>
             <div className="mb-5">
                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">
-                    Your password
+                    {t("loginForm.password")}
                 </label>
                 <input
                     type="password"
@@ -61,9 +63,9 @@ const LoginForm = () => {
                 <button
                     type="submit"
                     className={`flex flex-row mt-4 space-x-2 text-white ${email === "" || password === "" ? "bg-gray-600 cursor-not-allowed" : "bg-cyan-700 hover:bg-cyan-800"} focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-md px-5 py-2.5 text-center`}
-                    disabled={email === "" && password === ""}
+                    disabled={(email === "" && password === "") || loading}
                 >
-                    <span>Login</span> {loading && <Spinner />}
+                    <span>{t("loginForm.button")}</span> {loading && <Spinner />}
                 </button>
             </div>
         </form>

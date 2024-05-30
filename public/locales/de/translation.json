@@ -14,7 +14,30 @@
     "de": "Deutsch",
     "interface": "Interface Sprache"
   },
-  "noTestCard": {
-    "main": "Es scheint, dass Sie keine Ergebnisse des Einstufungstests für diese Sprache haben. Bitte absolvieren Sie den Test und kehren Sie dann zu dieser Seite zurück."
+  "navbar": {
+    "login": "Anmelden",
+    "register": "Registrieren"
+  },
+  "loginForm": {
+    "title": "Anmelden",
+    "email": "Ihre E-Mail",
+    "password": "Ihr Passwort",
+    "button": "Anmelden"
+  },
+  "registerForm": {
+    "title": "Neues Konto erstellen",
+    "email": "Ihre E-Mail",
+    "name": "Ihr Name",
+    "password": "Ihr Passwort",
+    "repeatPassword": "Passwort wiederholen",
+    "secureCode": "Einladungscode eingeben",
+    "button": "Neues Konto erstellen",
+    "terms1": "Ich stimme den",
+    "terms2": "Geschäftsbedingungen zu"
+  },
+  "welcome": {
+    "subTitle": "Lassen Sie uns Ihre Sprachkenntnisse verbessern!",
+    "faq": "Häufig gestellte Fragen:",
+    "note": "Bitte beachten Sie, dass Loquela keinen Lehrer ersetzt. Es ist ein Übungstool, das Ihnen helfen soll, verschiedene Sprachkenntnisse durch verschiedene Übungsarten zu verbessern."
   }
 }

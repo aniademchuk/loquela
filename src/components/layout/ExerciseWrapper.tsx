@@ -193,7 +193,7 @@ const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
                 </div>
                 {hasLevel && (
                     <div className="flex justify-center">
-                        <Button onClick={handleQuestionGeneration} className="mt-4">
+                        <Button onClick={handleQuestionGeneration} className="mt-4" disabled={exerciseCard.loading}>
                             <span className="text-[15px]">Start the Exercise 🔥</span>
                         </Button>
                     </div>
@@ -225,8 +225,11 @@ const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
                             </div>
 
                             <div className="flex justify-center">
-                                <Button onClick={handleUserAnswerReview} disabled={userAnswer === ""}>
-                                    Check the Answer!
+                                <Button
+                                    onClick={handleUserAnswerReview}
+                                    disabled={userAnswer === "" || reviewCard.loading}
+                                >
+                                    <span>Check the Answer!</span>
                                 </Button>
                             </div>
                         </div>

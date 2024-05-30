@@ -58,7 +58,7 @@ const Navbar = () => {
                         className="text-gray-700 hover:text-black font-semibold text-md px-4 py-2 text-center"
                         onClick={() => navigate("/login")}
                     >
-                        Login
+                        {t("navbar.login")}
                     </button>
                     <button
                         type="button"
@@ -66,7 +66,7 @@ const Navbar = () => {
                             focus:ring-blue-300 font-semibold rounded-lg text-md px-4 py-2 text-center"
                         onClick={() => navigate("/register")}
                     >
-                        Register
+                        {t("navbar.register")}
                     </button>
                 </div>
             </div>

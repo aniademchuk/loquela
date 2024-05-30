@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { RegisterUser } from "../../interfaces/user";
 import { Spinner } from "flowbite-react";
+import { useTranslation } from "react-i18next";
 
 const validateCredentials = (
     email: string,
@@ -49,6 +50,8 @@ const RegisterForm = () => {
 
     const navigate = useNavigate();
 
+    const { t } = useTranslation();
+
     const functions = getFunctions();
     const register = httpsCallable(functions, "registerUser");
 
@@ -82,9 +85,9 @@ const RegisterForm = () => {
     return (
         <form className="max-w-md mx-auto" onSubmit={handleRegister}>
             <div className="mb-5">
-                <h1 className="text-4xl font-bold my-12">Register New Account</h1>
+                <h1 className="text-4xl font-bold my-12">{t("registerForm.title")}</h1>
                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
-                    Your email
+                    {t("registerForm.email")}
                 </label>
                 <input
                     type="email"
@@ -99,7 +102,7 @@ const RegisterForm = () => {
             </div>
             <div className="mb-5">
                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
-                    Your name
+                    {t("registerForm.name")}
                 </label>
                 <input
                     type="text"
@@ -114,7 +117,7 @@ const RegisterForm = () => {
             </div>
             <div className="mb-5">
                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">
-                    Your password
+                    {t("registerForm.password")}
                 </label>
                 <input
                     type="password"
@@ -126,7 +129,7 @@ const RegisterForm = () => {
             </div>
             <div className="mb-5">
                 <label htmlFor="repeat-password" className="block mb-2 text-sm font-medium text-gray-900">
-                    Repeat password
+                    {t("registerForm.repeatPassword")}
                 </label>
                 <input
                     type="password"
@@ -138,7 +141,7 @@ const RegisterForm = () => {
             </div>
             <div className="mb-5">
                 <label htmlFor="repeat-password" className="block mb-2 text-sm font-medium text-gray-900">
-                    Enter Registration Secure Code
+                    {t("registerForm.secureCode")}
                 </label>
                 <input
                     type="text"
@@ -160,9 +163,9 @@ const RegisterForm = () => {
                     />
                 </div>
                 <label htmlFor="terms" className="ms-2 text-sm font-medium text-gray-900">
-                    I agree with the{" "}
+                    {t("registerForm.terms1")}{" "}
                     <Link to="/" className="text-cyan-600 hover:underline">
-                        terms and conditions
+                        {t("registerForm.terms2")}
                     </Link>
                 </label>
             </div>
@@ -170,9 +173,9 @@ const RegisterForm = () => {
                 <button
                     type="submit"
                     className={`flex flex-row mt-4 space-x-2 text-white ${termsAccepted ? "bg-cyan-700 hover:bg-cyan-800" : "bg-gray-600 cursor-not-allowed"} focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
-                    disabled={!termsAccepted}
+                    disabled={!termsAccepted || loading}
                 >
-                    <span className="text-[16px]">Create New Account</span> {loading && <Spinner />}
+                    <span className="text-[16px]">{t("registerForm.button")}</span> {loading && <Spinner />}
                 </button>
             </div>
         </form>
