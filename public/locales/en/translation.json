@@ -39,5 +39,15 @@
     "subTitle": "Let's improve your language skills!",
     "faq": "Frequently asked questions:",
     "note": "Please note, Loquela is not a substitute for a teacher. It's a practice tool designed to help you improve various language skills through different types of exercises."
+  },
+  "home": {
+    "greeting": "Hello, ",
+    "welcome": ". Welcome to Loquela!",
+    "selected": "Selected Language",
+    "level": "Language Level",
+    "streak": "Daily Streak",
+    "days": "days",
+    "quote": "“Learning another language is not only learning different words for the same things, but learning another way to think about things.”",
+    "author": "Flora Lewis"
   }
 }
