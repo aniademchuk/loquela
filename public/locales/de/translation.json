@@ -68,5 +68,16 @@
     "checkAnswer": "Antwort überprüfen!",
     "review": "Detaillierte Überprüfung",
     "noteRestart": "Hinweis: Wenn Sie mehr üben möchten, drücken Sie einfach erneut die Schaltfläche Übung starten."
+  },
+  "test": {
+    "testButton": "Absenden",
+    "congratulations": " Herzlichen Glückwunsch zum Abschluss des Tests! ",
+    "level": "Ihr geschätztes Niveau ist:"
+  },
+  "support": {
+    "title": "Unterstützung",
+    "text1": "Wenn Sie weitere Fragen haben, zögern Sie bitte nicht, den Entwickler per E-Mail zu kontaktieren unter",
+    "text2": ". Wir sind hier, um Ihnen zu helfen und sicherzustellen, dass Sie die beste Lernerfahrung mit Loquela haben.",
+    "button": "Verstanden"
   }
 }

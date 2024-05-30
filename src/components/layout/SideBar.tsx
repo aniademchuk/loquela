@@ -201,18 +201,17 @@ const SideBar = ({ children }: SideNavBarProps) => {
                                     <span className="flex-1 ms-3 whitespace-nowrap">{t("sidebar.support")}</span>
                                 </div>
                                 <Modal show={openModal} onClose={() => setOpenModal(false)}>
-                                    <Modal.Header>Support</Modal.Header>
+                                    <Modal.Header>{t("support.title")}</Modal.Header>
                                     <Modal.Body>
                                         <span className="m-6 text-lg leading-relaxed text-gray-600 text-justify">
-                                            If you have any additional questions, please do not hesitate to contact the
-                                            developer via email at{" "}
-                                            <span className="text-cyan-600">ia.03.demchuk.anna@gmail.com</span>. We are
-                                            here to help and ensure you have the best learning experience with Loquela.
+                                            {t("support.text1")}{" "}
+                                            <span className="text-cyan-600">ia.03.demchuk.anna@gmail.com</span>
+                                            {t("support.text2")}
                                         </span>
                                     </Modal.Body>
                                     <Modal.Footer className="justify-center">
                                         <Button color="gray" onClick={() => setOpenModal(false)}>
-                                            Got It
+                                            {t("support.button")}
                                         </Button>
                                     </Modal.Footer>
                                 </Modal>

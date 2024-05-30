@@ -6,6 +6,7 @@ import { getFunctions, httpsCallable } from "firebase/functions";
 import toast from "react-hot-toast";
 import { UserMain } from "../../interfaces/user";
 import { formatUserLevel } from "../../helper/LevelFormatter";
+import { useTranslation } from "react-i18next";
 
 type TestType = "english" | "german" | "ukrainian";
 
@@ -32,6 +33,8 @@ const EntryTestWrapper: React.FC<EntryTestWrapperProps> = ({
     const [result, setResult] = useState<number>(0);
     const [loading, setLoading] = useState<boolean>(false);
     const [openModal, setOpenModal] = useState(false);
+
+    const { t } = useTranslation();
 
     const functions = getFunctions();
     const calcAndUpdateLangLevel = httpsCallable<CalculateUserLangLevelRequest, number>(
@@ -130,7 +133,7 @@ const EntryTestWrapper: React.FC<EntryTestWrapperProps> = ({
                         onClick={handleTestFinish}
                         className="flex px-4 py-2 gap-3 rounded-lg bg-cyan-700 hover:bg-cyan-800 text-white font-semibold text-lg items-center"
                     >
-                        <span>Submit</span>
+                        <span>{t("test.testButton")}</span>
                         {loading && <Spinner />}
                     </button>
                 </div>
@@ -140,7 +143,7 @@ const EntryTestWrapper: React.FC<EntryTestWrapperProps> = ({
                 <Modal.Body>
                     <div className="text-center space-y-6">
                         <h3 className="mb-5 text-xl font-medium text-gray-700">
-                            🎉 Congratulations on finishing the test! 🎉 <div>Your estimated level is:</div>
+                            🎉 {t("test.congratulations")} 🎉 <div>{t("test.level")}</div>
                         </h3>
                         <div className="text-[50px] font-bold text-black">{getUserLevel()}</div>
                         <div className="flex justify-center content-center gap-4">

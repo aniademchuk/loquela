@@ -68,5 +68,16 @@
     "checkAnswer": "Check the Answer!",
     "review": "Detailed Review",
     "noteRestart": "Note: If you want to practice more, simply press the start exercise button again."
+  },
+  "test": {
+    "testButton": "Submit",
+    "congratulations": " Congratulations on finishing the test! ",
+    "level": "Your estimated level is:"
+  },
+  "support": {
+    "title": "Support",
+    "text1": "If you have any additional questions, please do not hesitate to contact the developer via email at",
+    "text2": ". We are here to help and ensure you have the best learning experience with Loquela.",
+    "button": "Got It"
   }
 }
