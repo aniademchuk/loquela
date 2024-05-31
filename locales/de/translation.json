@@ -6,7 +6,9 @@
     "writing": "Schreiben",
     "reading": "Lesen",
     "test": "Test",
-    "support": "Unterstützung"
+    "support": "Unterstützung",
+    "settings": "Einstellungen",
+    "logout": "Abmelden"
   },
   "language": {
     "en": "Englisch",
@@ -65,6 +67,10 @@
     "lessons": "Gesamtlektionen",
     "learned": "gelernt",
     "chart": "Diagramm anzeigen"
+  },
+  "noTestResult": {
+    "title": "Keine Ergebnisse verfügbar",
+    "description": "Es sieht so aus, als hätten Sie den Einstufungstest für Ihre gewählte Sprache noch nicht abgeschlossen. Bitte beenden Sie den Einstufungstest, damit wir die Fragen an Ihr Niveau anpassen können. Sobald Sie fertig sind, kehren Sie auf diese Seite zurück, um Ihre Fähigkeiten zu üben."
   },
   "aiPages": {
     "noteHide": "Hinweis: Sie können diese Details ausblenden, indem Sie auf das Fragezeichen neben der Überschrift klicken.",

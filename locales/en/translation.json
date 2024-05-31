@@ -6,7 +6,9 @@
     "writing": "Writing",
     "reading": "Reading",
     "test": "Test",
-    "support": "Support"
+    "support": "Support",
+    "settings": "Settings",
+    "logout": "Logout"
   },
   "language": {
     "en": "English",
@@ -65,6 +67,10 @@
     "lessons": "Total Lessons",
     "learned": "learned",
     "chart": "Show Chart"
+  },
+  "noTestResult": {
+    "title": "No Results Available",
+    "description": "It looks like you haven't completed the entry test for your selected language yet. Please complete the entry test so we can tailor the questions to your level. Once you've finished, come back to this page to start practicing your skills."
   },
   "aiPages": {
     "noteHide": "Note: You can hide these details by clicking the question mark next to the heading.",
