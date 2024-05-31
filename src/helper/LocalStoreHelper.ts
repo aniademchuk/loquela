@@ -3,5 +3,5 @@ export const setLanguage = (lang: string) => {
 };
 
 export const getLanguage = () => {
-    return localStorage.getItem("language") || "us";
+    return localStorage.getItem("language") || "en";
 };
