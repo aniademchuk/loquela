@@ -107,7 +107,7 @@ const GeneralCard: React.FC<{ userData: UserMain; setUserData: Dispatch<SetState
                             </div>
                             <TextInput
                                 id="fullName"
-                                type="name"
+                                type="text"
                                 placeholder={newUserData.fullName}
                                 onChange={(event) =>
                                     setNewUserData((prevState) => ({

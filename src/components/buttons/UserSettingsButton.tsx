@@ -1,15 +1,17 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Tooltip } from "flowbite-react";
+import { useTranslation } from "react-i18next";
 
 const UserSettingsButton = () => {
     const navigate = useNavigate();
     const location = useLocation().pathname;
+    const { t } = useTranslation();
 
     return (
         <>
             {/* eslint-disable-next-line react/style-prop-object */}
-            <Tooltip content="Settings" style="light">
+            <Tooltip content={t("sidebar.settings")} style="light">
                 <button
                     className={`p-2 rounded-lg  group ${location === "/user-settings" ? "bg-sky-50" : "hover:bg-gray-100"}`}
                     onClick={() => navigate("/user-settings")}

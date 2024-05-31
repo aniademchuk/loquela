@@ -57,14 +57,16 @@ const Welcome = () => {
                         {t("welcome.subTitle")}
                     </h3>
                 </div>
-                <div className="mt-14 grid grid-cols-1 md:grid-cols-2 xxl:grid-cols-3 gap-x-6 gap-y-10">
+                <div className="mt-14 grid grid-cols-1 md:grid-cols-2 xxl:grid-cols-3 gap-x-6 gap-y-10 items-stretch">
                     {featuresCards.map((feature, index) => (
-                        <Card className="rounded-2xl space-y-2" key={feature.heading + index}>
+                        <Card className="flex flex-col rounded-2xl space-y-2 h-full" key={feature.heading + index}>
                             <div className="flex items-center space-x-4">
-                                <div className="p-3 bg-cyan-600 rounded-2xl w-[50px]">{feature.icon}</div>
-                                <div className="text-2xl font-semibold tracking-tight">{feature.heading}</div>
+                                <div className="p-3 bg-cyan-600 rounded-2xl w-[50px] h-[50px] flex items-center justify-center">
+                                    {feature.icon}
+                                </div>
+                                <div className="flex-grow text-2xl font-semibold tracking-tight">{feature.heading}</div>
                             </div>
-                            <div className="text-lg text-gray-600 font-semibold">{feature.description}</div>
+                            <div className="flex-1 text-lg text-gray-600 font-semibold p-1">{feature.description}</div>
                         </Card>
                     ))}
                 </div>

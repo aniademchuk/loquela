@@ -7,6 +7,7 @@ import { useUser } from "../context/UserContext";
 import { getAuth } from "firebase/auth";
 import DeleteUserAccountButton from "../components/user-settings/DeleteUserAccountButton";
 import { useTranslation } from "react-i18next";
+import React from "react";
 
 const UserSettings = () => {
     const { userData, setUserData } = useUser();
@@ -14,7 +15,11 @@ const UserSettings = () => {
     const { t } = useTranslation();
 
     if (!userData || !auth) {
-        return <Spinner />;
+        return (
+            <div className="flex items-center justify-center h-full" style={{ minHeight: "80vh" }}>
+                <Spinner className="h-24 w-24" />
+            </div>
+        );
     }
 
     return (

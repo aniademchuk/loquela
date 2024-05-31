@@ -8,11 +8,13 @@ export const getWritingPromptEN = (userLevel: string, userLearnLanguage: string)
         "A1.1": `As a language learning assistant, please generate 5 words related to the topic "${topic}" for a user at the A1.1 English level. This words should be as simple as possible, since user only started to learn ${userLearnLanguage}.
             Words should be generated in English, so user can translate them into language that he learns.
             Return user task to translate this words and 5 words separated by comas. The task and words should be provided in English.
+            Return only the task and words without any formatting, just the plain text.
             `,
 
         "A1.2": `As a language learning assistant, please generate 1 simple sentence related to the topic "${topic}" for a user at the A1.2 English level. This sentence should be as simple as possible, since user only started to learn ${userLearnLanguage}.
             Sentence should be generated in English, so user can translate them into language that he learns.
             Return user task to translate this sentence and the sentence itself. The task and sentence should be provided in English.
+            Return only the task and sentence without any formatting, just the plain text.
             `,
 
         "A2.1": `As a language learning assistant, please generate a simple writing theme using the topic "${topic}" for a user at the A2.1 English level. Imagine user who started to learn ${userLearnLanguage} and have a little bit of progress, provide theme for this language level. 
@@ -42,12 +44,12 @@ export const getWritingPromptEN = (userLevel: string, userLearnLanguage: string)
 
         "B2.1": `Use this topic: ${hardTopic} to generate a theme in English tailored for a B2.1 level language learner. This theme should help to practice writing skills.
             At the B2.1 level, individuals can write clear, detailed texts on a variety of topics, demonstrating coherent structure and a broad vocabulary. They are capable of expressing viewpoints systematically, adapting their style for different audiences, and using complex sentence structures with a high degree of grammatical accuracy.
-            Return only the text, without any additional formatting
+            Return only the text, without any additional formatting.
             `,
 
         "B2.2": `Use this topic: ${hardTopic} to generate a theme in English tailored for a B2.2 level language learner. This theme should help to practice writing skills.
             At the B2.2 level, individuals can produce clear, well-structured, and detailed texts across a range of subjects, showing controlled use of organizational patterns, connectors, and cohesive devices. They can discuss complex topics in a letter, an essay, or a report, supporting their points with logical arguments and relevant examples.
-            Return only the text, without any additional formatting
+            Return only the text, without any additional formatting.
             `,
     };
 

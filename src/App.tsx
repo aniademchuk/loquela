@@ -17,6 +17,7 @@ import { firebaseConfig } from "./firebase/config";
 import { useTranslation } from "react-i18next";
 import { getLanguage } from "./helper/LocalStoreHelper";
 import PageNotFound from "./pages/PageNotFound";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 initializeApp(firebaseConfig);
 
@@ -32,6 +33,7 @@ function App() {
             <Toaster position="bottom-right" />
             <Routes>
                 <Route path="/" element={<Welcome />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route

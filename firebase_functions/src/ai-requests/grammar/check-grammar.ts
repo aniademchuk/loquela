@@ -22,7 +22,9 @@ export const checkGrammarAnswer = functions.https.onCall(
 
 const getGrammarAnswerReview = (data: GrammarReviewRequest) => {
     const langPrompt: { [key: string]: string } = {
-        English: `The user provided corrections for a paragraph containing intentional grammatical errors. 
+        English: `
+        Never use symbols like this: *, #, <, > etc, to format you review. Don't use **text**.
+        The user provided corrections for a paragraph containing intentional grammatical errors. 
         Their response aimed to identify and correct these errors. 
         Review the user's corrections and analyze their understanding and accuracy in identifying the errors. 
         Provide a detailed explanation of what the user corrected correctly and point out any errors they missed or corrected inaccurately. 
@@ -33,8 +35,10 @@ const getGrammarAnswerReview = (data: GrammarReviewRequest) => {
         This feedback should help the user refine their understanding of grammar and enhance their correction skills.
         Here is user corrections: ${data.userAnswer} Here was the paragraph with grammatical errors: ${data.question}.
         Provide review to user as you explain to him in supportive ${data.userLanguage}, but keep all task question in original language (${data.userLearnLanguage}).
+        Formating should be only using HTML tags. 
         `,
         Ukrainian: `
+        Ніколи не використовуй символів як: *, #, <, > тощо, для форматування відповіді. Не використовуй **текст** для форматування.
         Користувач вніс виправлення до абзацу, який містив навмисні граматичні помилки.
         Його відповідь мала на меті ідентифікувати та виправити ці помилки.
         Перегляньте виправлення користувача та проаналізуйте його розуміння та точність у виявленні помилок.
@@ -47,8 +51,10 @@ const getGrammarAnswerReview = (data: GrammarReviewRequest) => {
         Ось виправлення користувача: ${data.userAnswer}. Ось був абзац з граматичними помилками: ${data.question}.
         Надай огляд для користувача, ніби розмовляєш з ним, у підтримуючій ${data.userLanguage}, але зберігайте всі завдання запитань на 
         оригінальній мові (${data.userLearnLanguage}).
+        Форматування має використовувати лише HTML-теги. 
         `,
         German: `
+        Benutze nie *, #, <, > usw. Symbole, um eine Review zu erstellen. Benutze **text** nicth.
         Der Benutzer hat Korrekturen für einen Absatz mit absichtlichen Grammatikfehlern bereitgestellt.
         Ihre Antwort zielte darauf ab, diese Fehler zu identifizieren und zu korrigieren.
         Überprüfen Sie die Korrekturen des Benutzers und analysieren Sie sein Verständnis und seine Genauigkeit bei der Fehleridentifikation.
@@ -62,6 +68,7 @@ const getGrammarAnswerReview = (data: GrammarReviewRequest) => {
         Hier sind die Korrekturen des Benutzers: ${data.userAnswer}. Hier war der Absatz mit den Grammatikfehlern: ${data.question}.
         Geben Sie dem Benutzer eine Rückmeldung, wie Sie es ihm in unterstützender ${data.userLanguage} erklären, 
         aber behalten Sie alle Aufgabenfragen in der Originalsprache (${data.userLearnLanguage}).
+        Die Formatierung sollte nur HTML-Tags verwenden. 
         `,
     };
 

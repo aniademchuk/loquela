@@ -113,7 +113,7 @@ const RegisterForm = () => {
                     type="text"
                     id="name"
                     className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5"
-                    placeholder="Mykhailo Lebigovich"
+                    placeholder="Olena Kravchenko"
                     onChange={(event) => {
                         setUser((prevState) => ({ ...prevState, fullName: event.target.value }));
                     }}
@@ -169,7 +169,7 @@ const RegisterForm = () => {
                 </div>
                 <label htmlFor="terms" className="ms-2 text-sm font-medium text-gray-900">
                     {t("registerForm.terms1")}{" "}
-                    <Link to="/" className="text-cyan-600 hover:underline">
+                    <Link to="/privacy-policy" className="text-cyan-600 hover:underline">
                         {t("registerForm.terms2")}
                     </Link>
                 </label>

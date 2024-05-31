@@ -10,7 +10,7 @@ export const getOpenAiCompletionOnlySystem = async (systemPrompt: string): Promi
         const completion = await openai.chat.completions.create({
             messages: [{ role: "system", content: systemPrompt }],
             model: "gpt-4o",
-            temperature: 1,
+            temperature: 0.7,
         });
 
         if (completion.choices[0].message.content !== null) {

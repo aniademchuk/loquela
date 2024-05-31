@@ -143,7 +143,7 @@ const ExerciseWrapper: React.FC<ExerciseWrapperProps> = ({
         const data: AnswerReviewRequest = {
             userLanguage: formatUserLanguage(getLanguage()),
             userLearnLanguage: userData.users.learnLanguage,
-            userAnswer: userAnswer,
+            userAnswer: userAnswer.trim().replace(/[.]+$/, "."),
             question: chatTask,
         };
 

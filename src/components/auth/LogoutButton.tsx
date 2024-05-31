@@ -23,7 +23,7 @@ const LogoutButton = () => {
     return (
         <>
             {/* eslint-disable-next-line react/style-prop-object */}
-            <Tooltip content="Log Out" style="light">
+            <Tooltip content={t("sidebar.logout")} style="light">
                 <button className="p-2 rounded-lg group hover:bg-gray-100" onClick={() => setOpenModal(true)}>
                     <FaDoorOpen size={26} className="text-gray-500 hover:text-gray-900" />
                 </button>
