@@ -24,7 +24,12 @@ const AuthRoute = ({ children }: AuthRouteProps) => {
         });
     }, [auth, navigate]);
 
-    if (loading) return <Spinner />;
+    if (loading)
+        return (
+            <div className="flex items-center justify-center h-full" style={{ minHeight: "80vh" }}>
+                <Spinner className="h-24 w-24" />
+            </div>
+        );
 
     return <>{children}</>;
 };
