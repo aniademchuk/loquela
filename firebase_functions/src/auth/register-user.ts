@@ -11,7 +11,7 @@ interface RegisterData {
 }
 
 export const registerUser = functions.https.onCall(async (data: RegisterData) => {
-    if (data.secureCode !== "hB47E6p$m2ie1Avc") {
+    if (data.secureCode !== process.env.REACT_APP_SECURE_KEY) {
         throw new functions.https.HttpsError("invalid-argument", "Missing secure code.");
     }
 
