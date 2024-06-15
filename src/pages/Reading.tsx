@@ -51,7 +51,7 @@ const descriptionDataMap: Record<string, DescriptionData> = {
 
 const Reading = () => {
     const { userData, setUserData } = useUser();
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
 
     const functions = getFunctions();
     const getReadingQuestion = httpsCallable<ReadingQuestionRequest, string>(functions, "getReadingQuestion");

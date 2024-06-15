@@ -54,7 +54,7 @@ const descriptionDataMap: Record<string, DescriptionData> = {
 
 const Grammar = () => {
     const { userData, setUserData } = useUser();
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
 
     const functions = getFunctions();
     const getGrammarQuestion = httpsCallable<GrammarQuestionRequest, string>(functions, "getGrammarQuestion");
