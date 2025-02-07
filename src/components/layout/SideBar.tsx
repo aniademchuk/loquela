@@ -205,7 +205,7 @@ const SideBar = ({ children }: SideNavBarProps) => {
                                     <Modal.Body>
                                         <span className="m-6 text-lg leading-relaxed text-gray-600 text-justify">
                                             {t("support.text1")}{" "}
-                                            <span className="text-cyan-600">ia.03.demchuk.anna@gmail.com</span>
+                                            <span className="text-cyan-600">mykhailokazymyr@gmail.com</span>
                                             {t("support.text2")}
                                         </span>
                                     </Modal.Body>

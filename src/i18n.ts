@@ -10,7 +10,7 @@ i18n.use(HttpBackend)
         fallbackLng: "en",
         debug: true,
         backend: {
-            loadPath: "/loquela/locales/{{lng}}/translation.json",
+            loadPath: "/locales/{{lng}}/translation.json",
         },
         interpolation: {
             escapeValue: false,

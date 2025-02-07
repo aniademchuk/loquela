@@ -37,7 +37,7 @@ export const faqAccordionEN: FAQAccordion[] = [
     {
         title: "I have additional questions.",
         content:
-            "If you have any additional questions, please do not hesitate to contact the developer via email at ia.03.demchuk.anna@gmail.com. We are here to help and ensure you have the best learning experience with Loquela.",
+            "If you have any additional questions, please do not hesitate to contact the developer via email at mykhailokazymyr@gmail.com. We are here to help and ensure you have the best learning experience with Loquela.",
     },
 ];
 
@@ -75,7 +75,7 @@ export const faqAccordionUA: FAQAccordion[] = [
     {
         title: "У мене є додаткові питання.",
         content:
-            "Якщо у вас є додаткові питання, будь ласка, не соромтеся звертатися до розробника за адресою електронної пошти ia.03.demchuk.anna@gmail.com. Ми тут, щоб допомогти та забезпечити вам найкращий досвід навчання з Loquela.",
+            "Якщо у вас є додаткові питання, будь ласка, не соромтеся звертатися до розробника за адресою електронної пошти mykhailokazymyr@gmail.com. Ми тут, щоб допомогти та забезпечити вам найкращий досвід навчання з Loquela.",
     },
 ];
 
@@ -113,6 +113,6 @@ export const faqAccordionDE: FAQAccordion[] = [
     {
         title: "Ich habe weitere Fragen.",
         content:
-            "Wenn Sie weitere Fragen haben, wenden Sie sich bitte per E-Mail an den Entwickler unter ia.03.demchuk.anna@gmail.com. Wir sind hier, um Ihnen zu helfen und sicherzustellen, dass Sie die beste Lernerfahrung mit Loquela haben.",
+            "Wenn Sie weitere Fragen haben, wenden Sie sich bitte per E-Mail an den Entwickler unter mykhailokazymyr@gmail.com. Wir sind hier, um Ihnen zu helfen und sicherzustellen, dass Sie die beste Lernerfahrung mit Loquela haben.",
     },
 ];
